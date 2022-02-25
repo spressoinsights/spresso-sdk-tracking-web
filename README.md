@@ -22,7 +22,7 @@ TBD
 
 ## Development
 
-1. Run `npm start` in project dir to serve the SDK script on [http://localhost:3000/index.js](http://localhost:3000/spresso.sdk.web.js)
+1. Run `npm start` in project dir to serve the SDK script on [http://localhost:3000/spresso.sdk.web.js](http://localhost:3000/spresso.sdk.web.js)
 2. Run `npm start` in `examples/react-app` to start a React app on [http://localhost:8080](http://localhost:8080)
 
 Copy/paste this script tag in the example React app or websites of your own choice.
