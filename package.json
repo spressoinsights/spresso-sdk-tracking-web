@@ -1,0 +1,22 @@
+{
+    "name": "spresso-sdk-web",
+    "version": "1.0.0",
+    "description": "",
+    "main": "index.js",
+    "scripts": {
+        "start": "serve lib",
+        "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "author": "Suhan Wijaya",
+    "license": "ISC",
+    "prettier": {
+        "trailingComma": "es5",
+        "tabWidth": 4,
+        "semi": true,
+        "singleQuote": true
+    },
+    "devDependencies": {
+        "serve": "^13.0.2",
+        "webpack": "^5.69.1"
+    }
+}
