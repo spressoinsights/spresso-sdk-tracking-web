@@ -4,7 +4,9 @@
     "description": "",
     "main": "index.js",
     "scripts": {
-        "start": "serve lib",
+        "start": "webpack serve",
+        "prebuild": "rimraf build",
+        "build": "webpack --progress=profile",
         "test": "echo \"Error: no test specified\" && exit 1"
     },
     "author": "Suhan Wijaya",
@@ -16,7 +18,11 @@
         "singleQuote": true
     },
     "devDependencies": {
-        "serve": "^13.0.2",
-        "webpack": "^5.69.1"
+        "@babel/preset-env": "^7.16.11",
+        "babel-loader": "^8.2.3",
+        "rimraf": "^3.0.2",
+        "webpack": "^5.69.1",
+        "webpack-cli": "^4.9.2",
+        "webpack-dev-server": "^4.7.4"
     }
 }
