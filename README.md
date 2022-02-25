@@ -4,7 +4,7 @@
 
 TBD
 
-## How to use Spresso Web SDK?
+## How to use Spresso Web SDK in Prod?
 
 TBD
 ```
