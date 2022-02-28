@@ -9,7 +9,7 @@ module.exports = {
 
     target: ['web', 'es5'], // to support IE11: https://webpack.js.org/migrate/5/#need-to-support-an-older-browser-like-ie-11
 
-    entry: './lib/index.js',
+    entry: './src/index.js',
 
     output: {
         path: path.resolve(__dirname, 'build'),
@@ -33,7 +33,7 @@ module.exports = {
 
     resolve: {
         alias: {
-            utils: path.resolve(__dirname, 'lib/utils/'),
+            utils: path.resolve(__dirname, 'src/utils/'),
         },
     },
 

@@ -5,7 +5,7 @@
     "main": "index.js",
     "scripts": {
         "start": "webpack serve",
-        "start-prod-mode": "NODE_ENV=production nodemon --exec npm run build-and-serve --watch lib",
+        "start-prod-mode": "NODE_ENV=production nodemon --exec npm run build-and-serve --watch src",
         "prebuild": "rimraf build",
         "build": "webpack --progress=profile",
         "serve": "serve build",

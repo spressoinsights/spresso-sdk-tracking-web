@@ -6,7 +6,7 @@
         init: function () {
             console.log('initialized');
 			console.log(setDeviceId());
-            addPageViewListener(window, () => console.log('pageview again'));
+            addPageViewListener(window, () => console.log('pageview'));
         },
     };
 
