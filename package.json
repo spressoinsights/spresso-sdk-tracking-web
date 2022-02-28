@@ -5,24 +5,30 @@
     "main": "index.js",
     "scripts": {
         "start": "webpack serve",
+        "start-prod-mode": "NODE_ENV=production nodemon --exec npm run build-and-serve --watch lib",
         "prebuild": "rimraf build",
         "build": "webpack --progress=profile",
+        "serve": "serve build",
+        "build-and-serve": "npm run build && npm run serve",
         "test": "echo \"Error: no test specified\" && exit 1"
     },
     "author": "Suhan Wijaya",
     "license": "ISC",
+    "devDependencies": {
+        "@babel/preset-env": "^7.16.11",
+        "babel-loader": "^8.2.3",
+        "core-js": "^3.21.1",
+        "nodemon": "^2.0.15",
+        "rimraf": "^3.0.2",
+        "serve": "^13.0.2",
+        "webpack": "^5.69.1",
+        "webpack-cli": "^4.9.2",
+        "webpack-dev-server": "^4.7.4"
+    },
     "prettier": {
         "trailingComma": "es5",
         "tabWidth": 4,
         "semi": true,
         "singleQuote": true
-    },
-    "devDependencies": {
-        "@babel/preset-env": "^7.16.11",
-        "babel-loader": "^8.2.3",
-        "rimraf": "^3.0.2",
-        "webpack": "^5.69.1",
-        "webpack-cli": "^4.9.2",
-        "webpack-dev-server": "^4.7.4"
     }
 }

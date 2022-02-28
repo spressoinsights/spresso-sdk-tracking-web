@@ -18,6 +18,9 @@ function App() {
                         <li>
                             <Link to="/users">Users</Link>
                         </li>
+                        <li>
+                            <a href='/users'>Regular link to Users</a>
+                        </li>
                     </ul>
                 </nav>
 
