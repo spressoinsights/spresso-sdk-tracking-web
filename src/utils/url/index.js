@@ -22,5 +22,17 @@ export const addPageViewListener = function (window, listener) {
         window.dispatchEvent(new Event('pageview'));
     });
 
+	// TODO: handle page refresh?
+    // window.addEventListener('pageshow', (e) => { 
+    //     window.dispatchEvent(new Event('pageview'));
+    // });
+
     window.addEventListener('pageview', listener);
+
+    window.addEventListener('beforeunload', () => {
+		window.history.pushState = pushState;
+		window.history.replaceState = replaceState;
+		window.removeEventListener('pageview', listener);
+        // console.log('removed');
+    });
 };
