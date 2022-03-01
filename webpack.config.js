@@ -7,7 +7,8 @@ module.exports = {
 
     // devtool: false,
 
-    target: ['web', 'es5'], // to support IE11: https://webpack.js.org/migrate/5/#need-to-support-an-older-browser-like-ie-11
+    // target: ['web', 'es5'], // to support IE11: https://webpack.js.org/migrate/5/#need-to-support-an-older-browser-like-ie-11
+	target: 'web',
 
     entry: './src/index.js',
 
