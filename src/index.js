@@ -1,12 +1,13 @@
 (function (window) {
     const { addPageViewListener } = require('utils/url');
-    const { setDeviceId } = require('utils/tracking');
+    const { initCommonProperties } = require('utils/tracking');
 
     let SpressoSdk = {
         init: function () {
-            console.log('initialized');
-			console.log(setDeviceId());
+            initCommonProperties();
             addPageViewListener(window, () => console.log('pageview'));
+
+            console.log('initialized');
         },
     };
 
