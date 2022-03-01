@@ -12,7 +12,7 @@ const getDeviceId = function () {
     return readCookie('deviceId');
 };
 
-export const initCommonProperties = function () {
+export const setCommonProperties = function () {
     let deviceId = getDeviceId();
 
     if (!deviceId || deviceId === '') {
