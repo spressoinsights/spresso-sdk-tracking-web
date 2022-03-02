@@ -2,13 +2,15 @@ const path = require('path');
 
 const isDev = !process.env.NODE_ENV || process.env.NODE_ENV === 'development';
 
+const WEBPACK_DEV_SERVER_PORT = 3000;
+
 module.exports = {
     mode: isDev ? 'development' : 'production',
 
     // devtool: false,
 
     // target: ['web', 'es5'], // to support IE11: https://webpack.js.org/migrate/5/#need-to-support-an-older-browser-like-ie-11
-	target: 'web',
+    target: 'web',
 
     entry: './src/index.js',
 
@@ -35,12 +37,13 @@ module.exports = {
     resolve: {
         alias: {
             utils: path.resolve(__dirname, 'src/utils/'),
+            'event-factory': path.resolve(__dirname, 'src/event-factory/'),
         },
     },
 
     devServer: {
         hot: true,
-        port: 3000,
+        port: WEBPACK_DEV_SERVER_PORT,
         devMiddleware: {
             stats: {
                 colors: true,
