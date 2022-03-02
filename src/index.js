@@ -12,21 +12,15 @@
         init() {
             initDeviceId();
 
-            // addPageViewListener(window, () => {
-            //     this.trackPageView();
-            // });
             addPageViewListener(window, this.trackPageView);
 
-            window.addEventListener('beforeunload', () => {
-                console.log('fire', this.eventsQueue);
-            });
+            window?.addEventListener?.('beforeunload', this.executeNow);
 
             console.log('initialized', this);
         }
 
-        emptyQueue() {
-            let previousQueue = null;
-            previousQueue = this.eventsQueue;
+        flushQueue() {
+            const previousQueue = this.eventsQueue;
             this.eventsQueue = [];
             return previousQueue;
         }
@@ -37,10 +31,40 @@
             if (typeof eventObj === 'object') {
                 this.eventsQueue.push(eventObj);
             }
+
+            // schedule execution ONLY when queue is not empty
+            if (this.timerId === null && this.eventsQueue.length) {
+                this.executeLater();
+            }
         }
 
+        // fires API call
+        execute() {
+            const queuedEvents = this.flushQueue();
+            console.log('FIRE', JSON.stringify(queuedEvents, null, 2));
+        }
+
+        executeLater() {
+            // console.log('execute later');
+            this.timerId = window?.setTimeout?.(() => {
+                this.execute();
+                this.timerId = null;
+                // console.log('after timeout');
+            }, 3000);
+        }
+
+        executeNow = () => {
+            // clear any timed execution
+            window?.clearTimeout?.(this.timerId);
+            this.timerId = null;
+
+            if (this.eventsQueue.length) {
+                this.execute();
+            }
+        };
+
+        // arrow function to ensure `this` is bound when passed into other functions as callback
         trackPageView = () => {
-            // arrow function to ensure `this` is bound when passed into other functions as callback
             // console.log('pageview', this);
             this.enqueue({ eventName: 'PAGE_VIEW' });
         };
