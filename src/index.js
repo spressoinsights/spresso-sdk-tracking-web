@@ -3,11 +3,11 @@
     const { initDeviceId } = require('utils/tracking');
     const { EventFactory } = require('event-factory');
 
-    class SpressoSdk  {
-		constructor() {
-			this.eventsQueue = [];
-			this.timerId = null;
-		}
+    class SpressoSdk {
+        constructor() {
+            this.eventsQueue = [];
+            this.timerId = null;
+        }
 
         init() {
             initDeviceId();
@@ -39,10 +39,11 @@
             }
         }
 
-        trackPageView = () => { // arrow function to ensure `this` is bound when passed into other functions as callback
+        trackPageView = () => {
+            // arrow function to ensure `this` is bound when passed into other functions as callback
             // console.log('pageview', this);
             this.enqueue({ eventName: 'PAGE_VIEW' });
-        }
+        };
     }
 
     window.SpressoSdk = new SpressoSdk();
