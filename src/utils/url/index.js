@@ -36,3 +36,7 @@ export const addPageViewListener = function (window, listener) {
         // console.log('removed');
     });
 };
+
+export const getCurrentUrl = function () {
+    return typeof window !== 'undefined' ? window.location.href : '';
+};

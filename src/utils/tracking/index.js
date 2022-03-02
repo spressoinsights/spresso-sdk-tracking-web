@@ -8,18 +8,16 @@ const setDeviceId = function () {
     return deviceId;
 };
 
-const getDeviceId = function () {
+export const getDeviceId = function () {
     return readCookie('deviceId');
 };
 
-export const setCommonProperties = function () {
+export const initDeviceId = function () {
     let deviceId = getDeviceId();
 
     if (!deviceId || deviceId === '') {
         deviceId = setDeviceId();
     }
 
-    return {
-        deviceId,
-    };
+    return deviceId;
 };
