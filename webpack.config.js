@@ -35,10 +35,8 @@ module.exports = {
     },
 
     resolve: {
-        alias: {
-            utils: path.resolve(__dirname, 'src/utils/'),
-            'event-factory': path.resolve(__dirname, 'src/event-factory/'),
-        },
+        modules: [path.resolve(__dirname, 'src'), 'node_modules'], // https://webpack.js.org/configuration/resolve/#resolvemodules
+        // alias: {},
     },
 
     devServer: {
