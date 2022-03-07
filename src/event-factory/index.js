@@ -8,8 +8,11 @@ const getCommonProps = function () {
     };
 };
 
+export const PAGE_VIEW = 'PAGE_VIEW';
+export const VIEW_PDP = 'VIEW_PDP';
+
 export const EventFactory = {
-    PAGE_VIEW: {
+    [PAGE_VIEW]: {
         createEvent: function () {
             return {
                 event: 'pageView',
@@ -19,4 +22,16 @@ export const EventFactory = {
             };
         },
     },
+
+    [VIEW_PDP]: {
+        createEvent: function () {
+            return {
+                event: 'viewPDP',
+                properties: {
+                    ...getCommonProps(),
+                },
+            };
+        },
+    },
 };
+

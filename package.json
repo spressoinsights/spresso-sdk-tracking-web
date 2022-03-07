@@ -8,7 +8,7 @@
         "start-prod-mode": "NODE_ENV=production nodemon --exec npm run build-and-serve --watch src",
         "prebuild": "rimraf build",
         "build": "webpack --progress=profile",
-        "serve": "serve build",
+        "serve": "serve build --listen=3002",
         "build-and-serve": "npm run build && npm run serve",
         "test": "echo \"Error: no test specified\" && exit 1"
     },

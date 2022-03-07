@@ -1,18 +1,20 @@
 (function (window) {
-    const { addPageViewListener } = require('utils/url');
+    // const { addPageViewListener } = require('utils/url');
     const { initDeviceId } = require('utils/tracking');
-    const { EventFactory } = require('event-factory');
+    const { PAGE_VIEW, VIEW_PDP, EventFactory } = require('event-factory');
 
     class SpressoSdk {
         constructor() {
             this.eventsQueue = [];
             this.timerId = null;
+
+            this.EXECUTE_DELAY = 5000;
         }
 
         init() {
             initDeviceId();
 
-            addPageViewListener(window, this.trackPageView);
+            // addPageViewListener(window, this.trackPageView);
 
             window?.addEventListener?.('beforeunload', this.executeNow);
 
@@ -50,7 +52,7 @@
                 this.execute();
                 this.timerId = null;
                 // console.log('after timeout');
-            }, 3000);
+            }, this.EXECUTE_DELAY);
         }
 
         executeNow = () => {
@@ -66,7 +68,11 @@
         // arrow function to ensure `this` is bound when passed into other functions as callback
         trackPageView = () => {
             // console.log('pageview', this);
-            this.enqueue({ eventName: 'PAGE_VIEW' });
+            this.enqueue({ eventName: PAGE_VIEW });
+        };
+
+        trackViewPDP = () => {
+            this.enqueue({ eventName: VIEW_PDP });
         };
     }
 
