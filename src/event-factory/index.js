@@ -1,10 +1,12 @@
 import { getDeviceId } from 'utils/tracking';
 import { getCurrentUrl } from 'utils/url';
 
-const getCommonProps = function () {
+const getCommonProps = function ({ userId }) {
+    const deviceId = getDeviceId();
     return {
-        deviceId: getDeviceId(),
+        deviceId,
         page: getCurrentUrl(),
+        userId: userId || deviceId,
     };
 };
 
@@ -13,22 +15,22 @@ export const VIEW_PDP = 'VIEW_PDP';
 
 export const EventFactory = {
     [PAGE_VIEW]: {
-        createEvent: function () {
+        createEvent: function ({ userId }) {
             return {
                 event: 'pageView',
                 properties: {
-                    ...getCommonProps(),
+                    ...getCommonProps({ userId }),
                 },
             };
         },
     },
 
     [VIEW_PDP]: {
-        createEvent: function ({ variantGid, variantPrice, variantReport }) {
+        createEvent: function ({ variantGid, variantPrice, variantReport, userId }) {
             return {
                 event: 'viewPDP',
                 properties: {
-                    ...getCommonProps(),
+                    ...getCommonProps({ userId }),
                     variantGid,
                     variantPrice,
                     variantReport,

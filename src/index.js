@@ -66,13 +66,13 @@
         };
 
         // arrow function to ensure `this` is bound when passed into other functions as callback
-        trackPageView = () => {
+        trackPageView = ({ userId } = {}) => {
             // console.log('pageview', this);
-            this.enqueue({ eventName: PAGE_VIEW });
+            this.enqueue({ eventName: PAGE_VIEW, eventData: { userId } });
         };
 
-        trackViewPDP = ({ variantGid, variantPrice, variantReport }) => {
-            this.enqueue({ eventName: VIEW_PDP, eventData: { variantGid, variantPrice, variantReport } });
+        trackViewPDP = ({ variantGid, variantPrice, variantReport, userId } = {}) => {
+            this.enqueue({ eventName: VIEW_PDP, eventData: { variantGid, variantPrice, variantReport, userId } });
         };
     }
 
