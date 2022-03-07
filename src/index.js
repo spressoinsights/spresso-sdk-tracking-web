@@ -71,8 +71,8 @@
             this.enqueue({ eventName: PAGE_VIEW });
         };
 
-        trackViewPDP = () => {
-            this.enqueue({ eventName: VIEW_PDP });
+        trackViewPDP = ({ variantGid, variantPrice, variantReport }) => {
+            this.enqueue({ eventName: VIEW_PDP, eventData: { variantGid, variantPrice, variantReport } });
         };
     }
 

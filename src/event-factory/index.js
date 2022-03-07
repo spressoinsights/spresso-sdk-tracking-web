@@ -24,14 +24,16 @@ export const EventFactory = {
     },
 
     [VIEW_PDP]: {
-        createEvent: function () {
+        createEvent: function ({ variantGid, variantPrice, variantReport }) {
             return {
                 event: 'viewPDP',
                 properties: {
                     ...getCommonProps(),
+                    variantGid,
+                    variantPrice,
+                    variantReport,
                 },
             };
         },
     },
 };
-
