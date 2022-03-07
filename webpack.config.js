@@ -2,7 +2,7 @@ const path = require('path');
 
 const isDev = !process.env.NODE_ENV || process.env.NODE_ENV === 'development';
 
-const WEBPACK_DEV_SERVER_PORT = 3000;
+const WEBPACK_DEV_SERVER_PORT = 3002;
 
 module.exports = {
     mode: isDev ? 'development' : 'production',
