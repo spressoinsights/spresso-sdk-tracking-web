@@ -19,8 +19,6 @@ export const addIntersectionObserver = function ({ listener, root, target, thres
         return;
     }
 
-    let observer = null;
-
     const cb = (entries, observer) => {
         entries.forEach((entry) => {
             if (entry?.isIntersecting) {
@@ -30,15 +28,11 @@ export const addIntersectionObserver = function ({ listener, root, target, thres
         });
     };
 
-    try {
-        observer = new IntersectionObserver(cb, {
-            root: root instanceof HTMLElement ? root : null,
-            threshold,
-        });
-        observer.observe(target);
-    } catch (err) {
-        console.error(err);
-    }
+	const observer = new IntersectionObserver(cb, {
+		root: root instanceof HTMLElement ? root : null,
+		threshold,
+	});
+	observer?.observe?.(target);
 };
 
 export const addPageViewListener = function (listener) {
