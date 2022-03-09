@@ -1,4 +1,4 @@
-import { addPageViewListener, addBeforeUnloadListener } from 'utils/browser';
+import { addPageViewListener, addBeforeUnloadListener, addIntersectionObserver } from 'utils/browser';
 import { initDeviceId } from 'utils/tracking';
 import { PAGE_VIEW, VIEW_PDP, GLIMPSE_PLE, EventFactory } from 'event-factory';
 
@@ -7,13 +7,13 @@ class SpressoSdk {
         this.eventsQueue = [];
         this.timerId = null;
 
-        this.EXECUTE_DELAY = 5000;
+        this.EXECUTE_DELAY = 3000;
     }
 
     init() {
         initDeviceId();
 
-        addPageViewListener(this.trackPageView);
+        // addPageViewListener(this.trackPageView);
         addBeforeUnloadListener(this.executeNow);
 
         console.log('initialized', this);
@@ -75,8 +75,18 @@ class SpressoSdk {
         this.enqueue({ eventName: VIEW_PDP, eventData: { variantGid, variantPrice, variantReport, userId } });
     };
 
-    trackGlimpsePLE = ({ variantGid, variantPrice, variantReport, userId } = {}) => {
-        this.enqueue({ eventName: GLIMPSE_PLE, eventData: { variantGid, variantPrice, variantReport, userId } });
+    trackGlimpsePLE = ({ variantGid, variantPrice, variantReport, userId, root, target, glimpseThreshold } = {}) => {
+        addIntersectionObserver({
+            listener: () => {
+                this.enqueue({
+                    eventName: GLIMPSE_PLE,
+                    eventData: { variantGid, variantPrice, variantReport, userId },
+                });
+            },
+            root,
+            target,
+            threshold: glimpseThreshold,
+        });
     };
 }
 

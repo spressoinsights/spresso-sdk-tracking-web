@@ -1,17 +1,57 @@
-export const addBeforeUnloadListener = function (listener) {
-	typeof window !== 'undefined' && window?.addEventListener?.('beforeunload', () => {
-		listener();
-		window.removeEventListener('beforeunload', listener);
-	});
-}
+const isBrowser = function () {
+    return typeof window !== 'undefined';
+};
 
-export const addIntersectionObserver = function() {}
+export const addBeforeUnloadListener = function (listener) {
+    isBrowser() &&
+        window?.addEventListener?.('beforeunload', () => {
+            listener();
+            window.removeEventListener('beforeunload', listener);
+        });
+};
+
+export const addIntersectionObserver = function ({ listener, root, target, threshold = 1 }) {
+    console.log({
+        "typeof IntersectionObserver !== 'function'": typeof IntersectionObserver !== 'function',
+        'root instanceof HTMLElement': root instanceof HTMLElement,
+        'target instanceof HTMLElement': target instanceof HTMLElement,
+    });
+
+    if (
+        !isBrowser() ||
+        typeof IntersectionObserver !== 'function' ||
+        !(typeof HTMLElement !== 'undefined' && target instanceof HTMLElement)
+    ) {
+        return;
+    }
+
+    let observer = null;
+
+    const cb = (entries, observer) => {
+        entries.forEach((entry) => {
+            if (entry?.isIntersecting) {
+                typeof listener === 'function' && listener();
+                observer?.unobserve?.(entry.target); // fire callback only once after `target` is visible within `root`
+            }
+        });
+    };
+
+    try {
+        observer = new IntersectionObserver(cb, {
+            root: root instanceof HTMLElement ? root : null,
+            threshold,
+        });
+        observer.observe(target);
+    } catch (err) {
+        console.error(err);
+    }
+};
 
 export const addPageViewListener = function (listener) {
     // https://dirask.com/posts/JavaScript-on-location-changed-event-on-url-changed-event-DKeyZj
 
-    let pushState = typeof window !== 'undefined' && window?.history?.pushState;
-    let replaceState = typeof window !== 'undefined' && window?.history?.replaceState;
+    let pushState = isBrowser() && window?.history?.pushState;
+    let replaceState = isBrowser() && window?.history?.replaceState;
 
     if (typeof pushState !== 'function' || typeof replaceState !== 'function' || typeof listener !== 'function') {
         return;
@@ -47,5 +87,5 @@ export const addPageViewListener = function (listener) {
 };
 
 export const getCurrentUrl = function () {
-    return typeof window !== 'undefined' ? window.location.href : '';
+    return isBrowser() ? window.location.href : '';
 };
