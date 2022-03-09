@@ -1,7 +1,7 @@
 import { getDeviceId } from 'utils/tracking';
 import { getCurrentUrl } from 'utils/browser';
 
-const getCommonProps = function ({ userId }) {
+const getMetaProps = function ({ userId }) {
     const deviceId = getDeviceId();
     return {
         deviceId,
@@ -14,6 +14,7 @@ export const PAGE_VIEW = 'PAGE_VIEW';
 export const VIEW_PDP = 'VIEW_PDP';
 export const GLIMPSE_PLE = 'GLIMPSE_PLE';
 export const TAP_ADD_TO_CART = 'TAP_ADD_TO_CART';
+export const PURCHASE_VARIANT = 'PURCHASE_VARIANT';
 
 export const EventFactory = {
     [PAGE_VIEW]: {
@@ -21,7 +22,7 @@ export const EventFactory = {
             return {
                 event: 'pageView',
                 properties: {
-                    ...getCommonProps({ userId }),
+                    ...getMetaProps({ userId }),
                 },
             };
         },
@@ -32,7 +33,7 @@ export const EventFactory = {
             return {
                 event: 'viewPDP',
                 properties: {
-                    ...getCommonProps({ userId }),
+                    ...getMetaProps({ userId }),
                     variantGid,
                     variantPrice,
                     variantReport,
@@ -46,7 +47,7 @@ export const EventFactory = {
             return {
                 event: 'glimpsePLE',
                 properties: {
-                    ...getCommonProps({ userId }),
+                    ...getMetaProps({ userId }),
                     variantGid,
                     variantPrice,
                     variantReport,
@@ -60,10 +61,26 @@ export const EventFactory = {
             return {
                 event: 'tapAddToCart',
                 properties: {
-                    ...getCommonProps({ userId }),
+                    ...getMetaProps({ userId }),
                     variantGid,
                     variantPrice,
                     variantReport,
+                    thestralFeatures,
+                },
+            };
+        },
+    },
+
+    [PURCHASE_VARIANT]: {
+        createEvent: function ({ variantGid, variantPrice, variantReport, userId, thestralFeatures, orderGid }) {
+            return {
+                event: 'purchaseVariant',
+                properties: {
+                    ...getMetaProps({ userId }),
+                    variantGid,
+                    variantPrice,
+                    variantReport,
+                    orderGid,
                     thestralFeatures,
                 },
             };

@@ -1,6 +1,6 @@
 import { addPageViewListener, addBeforeUnloadListener, addIntersectionObserver } from 'utils/browser';
 import { initDeviceId } from 'utils/tracking';
-import { EventFactory, PAGE_VIEW, VIEW_PDP, GLIMPSE_PLE, TAP_ADD_TO_CART } from 'event-factory';
+import { EventFactory, PAGE_VIEW, VIEW_PDP, GLIMPSE_PLE, TAP_ADD_TO_CART, PURCHASE_VARIANT } from 'event-factory';
 
 class SpressoSdk {
     constructor() {
@@ -86,6 +86,10 @@ class SpressoSdk {
 
     trackTapAddToCart = (eventData = {}) => {
         this.enqueue({ eventName: TAP_ADD_TO_CART, eventData });
+    };
+
+    trackPurchaseVariant = (eventData = {}) => {
+        this.enqueue({ eventName: PURCHASE_VARIANT, eventData });
     };
 }
 
