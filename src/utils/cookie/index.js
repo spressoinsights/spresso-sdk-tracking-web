@@ -24,6 +24,12 @@ export const readCookie = function (name) {
     }
 
     let ind1 = allCookie.indexOf(';', index);
+
+    if (ind1 === -1) {
+        // if there's only a single cookie
+        ind1 = allCookie.length;
+    }
+
     return allCookie.substring(index + name.length + 1, ind1);
 };
 

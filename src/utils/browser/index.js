@@ -1,15 +1,17 @@
-export const addBeforeUnloadListener = function (window, listener) {
-	window?.addEventListener?.('beforeunload', () => {
+export const addBeforeUnloadListener = function (listener) {
+	typeof window !== 'undefined' && window?.addEventListener?.('beforeunload', () => {
 		listener();
 		window.removeEventListener('beforeunload', listener);
 	});
 }
 
-export const addPageViewListener = function (window, listener) {
+export const addIntersectionObserver = function() {}
+
+export const addPageViewListener = function (listener) {
     // https://dirask.com/posts/JavaScript-on-location-changed-event-on-url-changed-event-DKeyZj
 
-    let pushState = window?.history?.pushState;
-    let replaceState = window?.history?.replaceState;
+    let pushState = typeof window !== 'undefined' && window?.history?.pushState;
+    let replaceState = typeof window !== 'undefined' && window?.history?.replaceState;
 
     if (typeof pushState !== 'function' || typeof replaceState !== 'function' || typeof listener !== 'function') {
         return;

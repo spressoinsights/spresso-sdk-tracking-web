@@ -13,8 +13,8 @@ class SpressoSdk {
     init() {
         initDeviceId();
 
-        // addPageViewListener(window, this.trackPageView);
-        addBeforeUnloadListener(window, this.executeNow);
+        addPageViewListener(this.trackPageView);
+        addBeforeUnloadListener(this.executeNow);
 
         console.log('initialized', this);
 
