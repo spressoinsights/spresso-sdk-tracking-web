@@ -1,7 +1,7 @@
 (function (window) {
-    // const { addPageViewListener } = require('utils/url');
+    const { addPageViewListener, addBeforeUnloadListener } = require('utils/browser');
     const { initDeviceId } = require('utils/tracking');
-    const { PAGE_VIEW, VIEW_PDP, EventFactory } = require('event-factory');
+    const { PAGE_VIEW, VIEW_PDP, GLIMPSE_PLE, EventFactory } = require('event-factory');
 
     class SpressoSdk {
         constructor() {
@@ -15,8 +15,7 @@
             initDeviceId();
 
             // addPageViewListener(window, this.trackPageView);
-
-            window?.addEventListener?.('beforeunload', this.executeNow);
+            addBeforeUnloadListener(window, this.executeNow);
 
             console.log('initialized', this);
         }
@@ -73,6 +72,10 @@
 
         trackViewPDP = ({ variantGid, variantPrice, variantReport, userId } = {}) => {
             this.enqueue({ eventName: VIEW_PDP, eventData: { variantGid, variantPrice, variantReport, userId } });
+        };
+
+        trackGlimpsePLE = ({ variantGid, variantPrice, variantReport, userId } = {}) => {
+            this.enqueue({ eventName: GLIMPSE_PLE, eventData: { variantGid, variantPrice, variantReport, userId } });
         };
     }
 

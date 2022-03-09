@@ -1,5 +1,5 @@
 import { getDeviceId } from 'utils/tracking';
-import { getCurrentUrl } from 'utils/url';
+import { getCurrentUrl } from 'utils/browser';
 
 const getCommonProps = function ({ userId }) {
     const deviceId = getDeviceId();
@@ -12,6 +12,7 @@ const getCommonProps = function ({ userId }) {
 
 export const PAGE_VIEW = 'PAGE_VIEW';
 export const VIEW_PDP = 'VIEW_PDP';
+export const GLIMPSE_PLE = 'GLIMPSE_PLE';
 
 export const EventFactory = {
     [PAGE_VIEW]: {
@@ -29,6 +30,20 @@ export const EventFactory = {
         createEvent: function ({ variantGid, variantPrice, variantReport, userId }) {
             return {
                 event: 'viewPDP',
+                properties: {
+                    ...getCommonProps({ userId }),
+                    variantGid,
+                    variantPrice,
+                    variantReport,
+                },
+            };
+        },
+    },
+
+    [GLIMPSE_PLE]: {
+        createEvent: function ({ variantGid, variantPrice, variantReport, userId }) {
+            return {
+                event: 'glimpsePLE',
                 properties: {
                     ...getCommonProps({ userId }),
                     variantGid,

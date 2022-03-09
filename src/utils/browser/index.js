@@ -1,3 +1,10 @@
+export const addBeforeUnloadListener = function (window, listener) {
+	window?.addEventListener?.('beforeunload', () => {
+		listener();
+		window.removeEventListener('beforeunload', listener);
+	});
+}
+
 export const addPageViewListener = function (window, listener) {
     // https://dirask.com/posts/JavaScript-on-location-changed-event-on-url-changed-event-DKeyZj
 
