@@ -1,6 +1,6 @@
 import { addPageViewListener, addBeforeUnloadListener, addIntersectionObserver } from 'utils/browser';
 import { initDeviceId } from 'utils/tracking';
-import { PAGE_VIEW, VIEW_PDP, GLIMPSE_PLE, EventFactory } from 'event-factory';
+import { EventFactory, PAGE_VIEW, VIEW_PDP, GLIMPSE_PLE, TAP_ADD_TO_CART } from 'event-factory';
 
 class SpressoSdk {
     constructor() {
@@ -66,27 +66,26 @@ class SpressoSdk {
     };
 
     // arrow function to ensure `this` is bound when passed into other functions as callback
-    trackPageView = ({ userId } = {}) => {
+    trackPageView = (eventData = {}) => {
         // console.log('pageview', this);
-        this.enqueue({ eventName: PAGE_VIEW, eventData: { userId } });
+        this.enqueue({ eventName: PAGE_VIEW, eventData });
     };
 
-    trackViewPDP = ({ variantGid, variantPrice, variantReport, userId } = {}) => {
-        this.enqueue({ eventName: VIEW_PDP, eventData: { variantGid, variantPrice, variantReport, userId } });
+    trackViewPDP = (eventData = {}) => {
+        this.enqueue({ eventName: VIEW_PDP, eventData });
     };
 
-    trackGlimpsePLE = ({ variantGid, variantPrice, variantReport, userId, root, target, glimpseThreshold } = {}) => {
+    trackGlimpsePLE = ({ root, target, glimpseThreshold, ...eventData } = {}) => {
         addIntersectionObserver({
-            listener: () => {
-                this.enqueue({
-                    eventName: GLIMPSE_PLE,
-                    eventData: { variantGid, variantPrice, variantReport, userId },
-                });
-            },
+            listener: () => this.enqueue({ eventName: GLIMPSE_PLE, eventData }),
             root,
             target,
             threshold: glimpseThreshold,
         });
+    };
+
+    trackTapAddToCart = (eventData = {}) => {
+        this.enqueue({ eventName: TAP_ADD_TO_CART, eventData });
     };
 }
 
