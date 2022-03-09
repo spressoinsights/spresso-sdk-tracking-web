@@ -1,4 +1,4 @@
-const isBrowser = function () {
+export const isBrowser = function () {
     return typeof window !== 'undefined';
 };
 

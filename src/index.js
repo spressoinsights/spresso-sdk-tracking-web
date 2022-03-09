@@ -1,4 +1,4 @@
-import { addPageViewListener, addBeforeUnloadListener, addIntersectionObserver } from 'utils/browser';
+import { addPageViewListener, addBeforeUnloadListener, addIntersectionObserver, isBrowser } from 'utils/browser';
 import { initDeviceId } from 'utils/tracking';
 import { EventFactory, PAGE_VIEW, VIEW_PDP, GLIMPSE_PLE, TAP_ADD_TO_CART, PURCHASE_VARIANT } from 'event-factory';
 
@@ -48,7 +48,7 @@ class SpressoSdk {
 
     executeLater() {
         // console.log('execute later');
-        this.timerId = window?.setTimeout?.(() => {
+        this.timerId = isBrowser() && window?.setTimeout?.(() => {
             this.execute();
             this.timerId = null;
             // console.log('after timeout');
@@ -57,7 +57,7 @@ class SpressoSdk {
 
     executeNow = () => {
         // clear any timed execution
-        window?.clearTimeout?.(this.timerId);
+        isBrowser() && window?.clearTimeout?.(this.timerId);
         this.timerId = null;
 
         if (this.eventsQueue.length) {
