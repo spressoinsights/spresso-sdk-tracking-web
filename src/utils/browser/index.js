@@ -11,12 +11,6 @@ export const addBeforeUnloadListener = function (listener) {
 };
 
 export const addIntersectionObserver = function ({ listener, root, target, threshold = 1 }) {
-    console.log({
-        "typeof IntersectionObserver !== 'function'": typeof IntersectionObserver !== 'function',
-        'root instanceof HTMLElement': root instanceof HTMLElement,
-        'target instanceof HTMLElement': target instanceof HTMLElement,
-    });
-
     if (
         !isBrowser() ||
         typeof IntersectionObserver !== 'function' ||
