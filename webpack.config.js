@@ -1,4 +1,5 @@
 const path = require('path');
+// const TerserPlugin = require('terser-webpack-plugin');
 
 const isDev = !process.env.NODE_ENV || process.env.NODE_ENV === 'development';
 
@@ -40,6 +41,20 @@ module.exports = {
         modules: [path.resolve(__dirname, 'src'), 'node_modules'], // https://webpack.js.org/configuration/resolve/#resolvemodules
         // alias: {},
     },
+
+    // optimization: {
+    //     minimize: !isDev,
+    //     minimizer: [
+    //         !isDev && new TerserPlugin({
+    //             minify: TerserPlugin.uglifyJsMinify,
+    //             // `terserOptions` options will be passed to `uglify-js`
+    //             // Link to options - https://github.com/mishoo/UglifyJS#minify-options
+    //             terserOptions: {
+    //                 mangle: { toplevel: true },
+    //             },
+    //         }),
+    //     ].filter(Boolean),
+    // },
 
     devServer: {
         hot: true,
