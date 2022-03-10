@@ -1,6 +1,14 @@
 import { addPageViewListener, addBeforeUnloadListener, addIntersectionObserver, isBrowser } from 'utils/browser';
 import { initDeviceId } from 'utils/tracking';
-import { EventFactory, PAGE_VIEW, VIEW_PDP, GLIMPSE_PLE, TAP_ADD_TO_CART, PURCHASE_VARIANT } from 'event-factory';
+import {
+    EventFactory,
+    PAGE_VIEW,
+    VIEW_PDP,
+    GLIMPSE_PLE,
+    TAP_ADD_TO_CART,
+    PURCHASE_VARIANT,
+    CREATE_ORDER,
+} from 'event-factory';
 
 class SpressoSdk {
     constructor() {
@@ -35,7 +43,7 @@ class SpressoSdk {
         }
 
         // schedule execution ONLY when queue is not empty
-        if (this.timerId === null && this.eventsQueue.length) {
+        if (!this.timerId && this.eventsQueue.length) {
             this.executeLater();
         }
     }
@@ -48,11 +56,13 @@ class SpressoSdk {
 
     executeLater() {
         // console.log('execute later');
-        this.timerId = isBrowser() && window?.setTimeout?.(() => {
-            this.execute();
-            this.timerId = null;
-            // console.log('after timeout');
-        }, this.EXECUTE_DELAY);
+        this.timerId =
+            isBrowser() &&
+            window?.setTimeout?.(() => {
+                this.execute();
+                this.timerId = null;
+                // console.log('after timeout');
+            }, this.EXECUTE_DELAY);
     }
 
     executeNow = () => {
@@ -90,6 +100,10 @@ class SpressoSdk {
 
     trackPurchaseVariant = (eventData = {}) => {
         this.enqueue({ eventName: PURCHASE_VARIANT, eventData });
+    };
+
+    trackCreateOrder = (eventData = {}) => {
+        this.enqueue({ eventName: CREATE_ORDER, eventData });
     };
 }
 

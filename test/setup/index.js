@@ -89,6 +89,6 @@ export const setupMockServer = (path = '/', method = 'GET', expectedResponse = n
     return { createMockServer, destroyMockServer, getMockServer };
 };
 
-const { getMockServerPort, createMockServer, destroyMockServer, getMockServer } = setupMockServer('/track', 'GET');
+const { getMockServerPort, createMockServer, destroyMockServer, getMockServer } = setupMockServer('/track', 'POST');
 
 createMockServer();

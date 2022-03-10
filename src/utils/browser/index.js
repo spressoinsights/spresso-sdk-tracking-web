@@ -14,12 +14,13 @@ export const addIntersectionObserver = function ({ listener, root, target, thres
     if (
         !isBrowser() ||
         typeof IntersectionObserver !== 'function' ||
-        !(typeof HTMLElement !== 'undefined' && target instanceof HTMLElement)
+        typeof HTMLElement === 'undefined' ||
+        !(target instanceof HTMLElement)
     ) {
         return;
     }
 
-    const cb = (entries, observer) => {
+    const executeListener = (entries, observer) => {
         entries.forEach((entry) => {
             if (entry?.isIntersecting) {
                 typeof listener === 'function' && listener();
@@ -28,11 +29,11 @@ export const addIntersectionObserver = function ({ listener, root, target, thres
         });
     };
 
-	const observer = new IntersectionObserver(cb, {
-		root: root instanceof HTMLElement ? root : null,
-		threshold,
-	});
-	observer?.observe?.(target);
+    const observer = new IntersectionObserver(executeListener, {
+        root: root instanceof HTMLElement ? root : null, // `null` defaults to the browser's viewport
+        threshold,
+    });
+    observer?.observe?.(target);
 };
 
 export const addPageViewListener = function (listener) {
