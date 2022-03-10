@@ -15,7 +15,7 @@
         "dev:prod-mode": "run-p dev:mb dev:setup start-prod-mode",
         "dev": "run-p dev:mb dev:setup start",
         "test": "echo \"Error: no test specified\" && exit 1",
-		"docs": "nodemon --exec jsdoc --destination ./docs/ --readme README.md src/index.js --watch src"
+        "docs": "nodemon --exec jsdoc --destination ./docs/ --readme README.md src/index.js --watch src"
     },
     "author": "Suhan Wijaya",
     "license": "ISC",
@@ -26,6 +26,7 @@
         "core-js": "^3.21.1",
         "cross-fetch": "^3.1.5",
         "get-port": "^5.1.1",
+        "jsdoc": "^3.6.10",
         "mountebank": "^2.6.0",
         "nodemon": "^2.0.15",
         "npm-run-all": "^4.1.5",
