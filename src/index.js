@@ -1,5 +1,6 @@
 import { addPageViewListener, addBeforeUnloadListener, addIntersectionObserver, isBrowser } from 'utils/browser';
 import { initDeviceId } from 'utils/tracking';
+import { track } from 'utils/api';
 import {
     EventFactory,
     PAGE_VIEW,
@@ -12,6 +13,7 @@ import {
 
 class SpressoSdk {
     constructor() {
+        this.trackingEndpoint = 'http://localhost:1337/track';
         this.eventsQueue = [];
         this.timerId = null;
 
@@ -51,7 +53,7 @@ class SpressoSdk {
     // fires API call
     execute() {
         const queuedEvents = this.flushQueue();
-        console.log('FIRE', JSON.stringify(queuedEvents, null, 2));
+        track({ endpoint: this.trackingEndpoint, events: queuedEvents });
     }
 
     executeLater() {
