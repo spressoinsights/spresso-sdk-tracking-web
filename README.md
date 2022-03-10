@@ -1,6 +1,6 @@
 # Spresso Web SDK
 
-## What is Spresso Web SDK?
+## What is Spresso Web SDK? 
 
 Lorem eiusmod non duis ea deserunt ut. Excepteur mollit irure exercitation nostrud nisi sint dolor eu sunt voluptate aute cupidatat laborum. Velit ipsum tempor ad mollit ullamco consectetur laborum veniam elit. Dolor quis duis quis quis cupidatat reprehenderit velit irure nulla nisi ad et qui aliquip.
 
