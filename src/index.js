@@ -13,7 +13,6 @@ import {
 
 class SpressoSdk {
     constructor() {
-        this.trackingEndpoint = 'http://localhost:1337/track';
         this.eventsQueue = [];
         this.timerId = null;
 
@@ -53,7 +52,7 @@ class SpressoSdk {
     // fires API call
     execute() {
         const queuedEvents = this.flushQueue();
-        track({ endpoint: this.trackingEndpoint, events: queuedEvents });
+        track(queuedEvents);
     }
 
     executeLater() {

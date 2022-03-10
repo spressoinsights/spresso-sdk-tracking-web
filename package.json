@@ -12,7 +12,8 @@
         "build-and-serve": "run-s build serve",
         "dev:mb": "mb",
         "dev:setup": "babel-node ./test/setup/index.js",
-        "dev": "run-p dev:mb dev:setup start-prod-mode",
+        "dev:prod-mode": "run-p dev:mb dev:setup start-prod-mode",
+        "dev": "run-p dev:mb dev:setup start",
         "test": "echo \"Error: no test specified\" && exit 1"
     },
     "author": "Suhan Wijaya",
