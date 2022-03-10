@@ -1,14 +1,14 @@
 {
     "name": "spresso-sdk-web",
-    "version": "1.0.0",
+    "version": "0.1.0-alpha",
     "description": "",
     "main": "index.js",
     "scripts": {
         "start": "webpack serve",
         "start-prod-mode": "NODE_ENV=production nodemon --exec npm run build-and-serve --watch src",
-        "prebuild": "rimraf build",
+        "prebuild": "rimraf dist",
         "build": "webpack --progress=profile",
-        "serve": "serve build --listen=3002",
+        "serve": "serve dist --listen=3002",
         "build-and-serve": "run-s build serve",
         "dev:mb": "mb",
         "dev:setup": "babel-node ./test/setup/index.js",
