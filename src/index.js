@@ -82,8 +82,6 @@ class SpressoSdk {
      * @param {string} [eventData.userId] - The customer's user ID. Will default to `deviceId` for guests.
      */
     trackPageView(eventData = {}) {
-        // arrow function to ensure `this` is bound when passed into other functions as callback
-        // console.log('pageview', this);
         this.enqueue({ eventName: PAGE_VIEW, eventData });
     }
 
