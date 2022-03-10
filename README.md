@@ -2,11 +2,11 @@
 
 ## What is Spresso Web SDK?
 
-TBD
+Lorem eiusmod non duis ea deserunt ut. Excepteur mollit irure exercitation nostrud nisi sint dolor eu sunt voluptate aute cupidatat laborum. Velit ipsum tempor ad mollit ullamco consectetur laborum veniam elit. Dolor quis duis quis quis cupidatat reprehenderit velit irure nulla nisi ad et qui aliquip.
 
 ## How to use Spresso Web SDK in Prod?
 
-TBD
+Lorem eiusmod non duis ea deserunt ut. Excepteur mollit irure exercitation nostrud nisi sint dolor eu sunt voluptate aute cupidatat laborum. Velit ipsum tempor ad mollit ullamco consectetur laborum veniam elit. Dolor quis duis quis quis cupidatat reprehenderit velit irure nulla nisi ad et qui aliquip.
 ```
 <script>
     (function () {
@@ -43,4 +43,4 @@ Copy/paste this script tag in the example React app or websites of your own choi
 
 ## Testing
 
-TBD
+Lorem eiusmod non duis ea deserunt ut. Excepteur mollit irure exercitation nostrud nisi sint dolor eu sunt voluptate aute cupidatat laborum. Velit ipsum tempor ad mollit ullamco consectetur laborum veniam elit. Dolor quis duis quis quis cupidatat reprehenderit velit irure nulla nisi ad et qui aliquip.

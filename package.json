@@ -14,7 +14,8 @@
         "dev:setup": "babel-node ./test/setup/index.js",
         "dev:prod-mode": "run-p dev:mb dev:setup start-prod-mode",
         "dev": "run-p dev:mb dev:setup start",
-        "test": "echo \"Error: no test specified\" && exit 1"
+        "test": "echo \"Error: no test specified\" && exit 1",
+		"docs": "nodemon --exec jsdoc --destination ./docs/ --readme README.md src/index.js --watch src"
     },
     "author": "Suhan Wijaya",
     "license": "ISC",
