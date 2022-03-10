@@ -15,7 +15,7 @@
         "dev:prod-mode": "run-p dev:mb dev:setup start-prod-mode",
         "dev": "run-p dev:mb dev:setup start",
         "test": "echo \"Error: no test specified\" && exit 1",
-        "docs": "nodemon --exec jsdoc --destination ./docs/ --readme README.md src/index.js --watch src"
+        "docs": "nodemon --exec jsdoc -c jsdoc.config.js src/index.js --watch src"
     },
     "author": "Suhan Wijaya",
     "license": "ISC",
@@ -23,6 +23,7 @@
         "@babel/node": "^7.16.8",
         "@babel/preset-env": "^7.16.11",
         "babel-loader": "^8.2.3",
+        "clean-jsdoc-theme": "^3.3.3",
         "core-js": "^3.21.1",
         "cross-fetch": "^3.1.5",
         "get-port": "^5.1.1",

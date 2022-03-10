@@ -11,7 +11,7 @@ import {
     CREATE_ORDER,
 } from 'event-factory';
 
-/** Instantiated on page load. */
+/** Instantiated on page load. Accessible on `window.SpressoSdk` */
 class SpressoSdk {
     constructor() {
         this.eventsQueue = [];
