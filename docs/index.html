@@ -85,7 +85,7 @@
   <body>
 
     <nav class="navbar" id="navbar">
-      <div class="navbar-heading" id="navbar-heading"><a href="index.html"><h2 class="navbar-heading-text">Get Started</h2></a></div><div class="search-box" id="search-box"><div class="search-box-input-container"><input class="search-box-input" type="text" placeholder="Search..." id="search-box-input" /><svg class="search-icon" alt="search-icon"><use xlink:href="#search-icon"></use></svg></div><div class="search-item-container" id="search-item-container"><ul class="search-item-ul" id="search-item-ul"></ul></div></div><div class="sidebar-main-content" id="sidebar-main-content"><div class="accordion collapsed" id="8681810" > <h3 class="accordion-heading">Classes<svg><use xlink:href="#down-icon"></use></svg></h3><ul class="accordion-content"><li class="accordion collapsed child" id=6693933><div class="accordion-heading child"><a href="SpressoSdk.html">SpressoSdk</a><svg><use xlink:href="#down-icon"></use></svg></div><ul class='methods accordion-content'><li data-type='method'><a href="SpressoSdk.html#trackCreateOrder">trackCreateOrder</a></li><li data-type='method'><a href="SpressoSdk.html#trackGlimpsePLE">trackGlimpsePLE</a></li><li data-type='method'><a href="SpressoSdk.html#trackPageView">trackPageView</a></li><li data-type='method'><a href="SpressoSdk.html#trackPurchaseVariant">trackPurchaseVariant</a></li><li data-type='method'><a href="SpressoSdk.html#trackTapAddToCart">trackTapAddToCart</a></li><li data-type='method'><a href="SpressoSdk.html#trackViewPDP">trackViewPDP</a></li></ul></li></ul> </div>
+      <div class="navbar-heading" id="navbar-heading"><a href="index.html"><h2 class="navbar-heading-text">Getting Started</h2></a></div><div class="search-box" id="search-box"><div class="search-box-input-container"><input class="search-box-input" type="text" placeholder="Search..." id="search-box-input" /><svg class="search-icon" alt="search-icon"><use xlink:href="#search-icon"></use></svg></div><div class="search-item-container" id="search-item-container"><ul class="search-item-ul" id="search-item-ul"></ul></div></div><div class="sidebar-main-content" id="sidebar-main-content"><div class="accordion collapsed" id="1320692" > <h3 class="accordion-heading">Classes<svg><use xlink:href="#down-icon"></use></svg></h3><ul class="accordion-content"><li class="accordion collapsed child" id=459679><div class="accordion-heading child"><a href="SpressoSdk.html">SpressoSdk</a><svg><use xlink:href="#down-icon"></use></svg></div><ul class='methods accordion-content'><li data-type='method'><a href="SpressoSdk.html#trackCreateOrder">trackCreateOrder</a></li><li data-type='method'><a href="SpressoSdk.html#trackGlimpsePLE">trackGlimpsePLE</a></li><li data-type='method'><a href="SpressoSdk.html#trackPageView">trackPageView</a></li><li data-type='method'><a href="SpressoSdk.html#trackPurchaseVariant">trackPurchaseVariant</a></li><li data-type='method'><a href="SpressoSdk.html#trackTapAddToCart">trackTapAddToCart</a></li><li data-type='method'><a href="SpressoSdk.html#trackViewPDP">trackViewPDP</a></li></ul></li></ul> </div>
       
 
     </nav>
@@ -129,7 +129,7 @@
         s.type = 'text/javascript';
         s.async = true;
         s.src = 'https://&lt;SOME_CDN>/spresso.tracking.sdk.web.js';
-        s.onload = function() { SpressoSdk.init(tenantId) }
+        s.onload = function() { window.SpressoSdk.init(tenantId) }
         var x = document.getElementsByTagName('script')[0];
         x.parentNode.insertBefore(s, x);
     })('tenantId');
@@ -138,7 +138,7 @@
 <h2>Development</h2>
 <ol>
 <li>Run <code>npm install</code> in project dir.</li>
-<li>Run <code>npm run dev</code> in project dir to serve the SDK script on <a href="http://localhost:3002/spresso.sdk.web.js">http://localhost:3002/spresso.sdk.web.js</a></li>
+<li>Run <code>npm run dev</code> in project dir to serve the SDK script on <a href="http://localhost:3002/spresso.tracking.sdk.web.js">http://localhost:3002/spresso.tracking.sdk.web.js</a></li>
 <li>Run <code>npm install</code> in <code>examples/react-app</code></li>
 <li>Run <code>npm start</code> in <code>examples/react-app</code> to start a React app on <a href="http://localhost:8080">http://localhost:8080</a></li>
 </ol>
@@ -149,7 +149,7 @@
         s.type = 'text/javascript';
         s.async = true;
         s.src = 'http://localhost:3002/spresso.tracking.sdk.web.js';
-        s.onload = function() { SpressoSdk.init(tenantId) }
+        s.onload = function() { window.SpressoSdk.init(tenantId) }
         var x = document.getElementsByTagName('script')[0];
         x.parentNode.insertBefore(s, x);
     })('tenantId');

@@ -15,7 +15,7 @@ Lorem eiusmod non duis ea deserunt ut. Excepteur mollit irure exercitation nostr
         s.type = 'text/javascript';
         s.async = true;
         s.src = 'https://<SOME_CDN>/spresso.tracking.sdk.web.js';
-        s.onload = function() { SpressoSdk.init(tenantId) }
+        s.onload = function() { window.SpressoSdk.init(tenantId) }
         var x = document.getElementsByTagName('script')[0];
         x.parentNode.insertBefore(s, x);
     })('tenantId');
@@ -25,7 +25,7 @@ Lorem eiusmod non duis ea deserunt ut. Excepteur mollit irure exercitation nostr
 ## Development
 
 1. Run `npm install` in project dir.
-2. Run `npm run dev` in project dir to serve the SDK script on [http://localhost:3002/spresso.sdk.web.js](http://localhost:3002/spresso.sdk.web.js)
+2. Run `npm run dev` in project dir to serve the SDK script on [http://localhost:3002/spresso.tracking.sdk.web.js](http://localhost:3002/spresso.tracking.sdk.web.js)
 3. Run `npm install` in `examples/react-app`
 4. Run `npm start` in `examples/react-app` to start a React app on [http://localhost:8080](http://localhost:8080)
 
@@ -38,7 +38,7 @@ Copy/paste this script tag in the example React app or websites of your own choi
         s.type = 'text/javascript';
         s.async = true;
         s.src = 'http://localhost:3002/spresso.tracking.sdk.web.js';
-        s.onload = function() { SpressoSdk.init(tenantId) }
+        s.onload = function() { window.SpressoSdk.init(tenantId) }
         var x = document.getElementsByTagName('script')[0];
         x.parentNode.insertBefore(s, x);
     })('tenantId');

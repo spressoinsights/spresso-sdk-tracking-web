@@ -10,7 +10,7 @@ module.exports = {
         theme_opts: {
             theme: 'light',
             favicon: 'https://app.spresso.com/public/favicon.svg',
-            title: 'Get Started',
+            title: 'Getting Started',
         },
     },
 };
