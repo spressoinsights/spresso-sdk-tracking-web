@@ -1,10 +1,10 @@
 import { getDeviceId } from 'utils/properties';
 import { getCurrentUrl } from 'utils/browser';
 
-const getMetaProps = function ({ userId }) {
+const getMetaProps = function ({ userId, tenantId }) {
     const deviceId = getDeviceId();
     return {
-        tenant_id: 'tenant',
+        tenant_id: tenantId,
         device_id: deviceId,
         // page: getCurrentUrl(),
         user_id: userId || deviceId,
@@ -21,11 +21,11 @@ export const CREATE_ORDER = 'CREATE_ORDER';
 
 export const EventFactory = {
     [PAGE_VIEW]: {
-        createEvent: function ({ userId }) {
+        createEvent: function (otherProps) {
             return {
                 event: 'spressoPageView',
                 properties: {
-                    ...getMetaProps({ userId }),
+                    ...getMetaProps(otherProps),
                     page: getCurrentUrl(),
                 },
             };
@@ -33,11 +33,11 @@ export const EventFactory = {
     },
 
     [VIEW_PDP]: {
-        createEvent: function ({ variantId, variantPrice, variantReport, userId }) {
+        createEvent: function ({ variantId, variantPrice, variantReport, ...otherProps }) {
             return {
                 event: 'spressoViewPDP',
                 properties: {
-                    ...getMetaProps({ userId }),
+                    ...getMetaProps(otherProps),
                     variant_id: variantId,
                     variant_price: variantPrice,
                     variant_report: variantReport,
@@ -47,11 +47,11 @@ export const EventFactory = {
     },
 
     [GLIMPSE_PLE]: {
-        createEvent: function ({ variantId, variantPrice, variantReport, userId }) {
+        createEvent: function ({ variantId, variantPrice, variantReport, ...otherProps }) {
             return {
                 event: 'spressoGlimpsePLE',
                 properties: {
-                    ...getMetaProps({ userId }),
+                    ...getMetaProps(otherProps),
                     variant_id: variantId,
                     variant_price: variantPrice,
                     variant_report: variantReport,
@@ -61,11 +61,11 @@ export const EventFactory = {
     },
 
     [TAP_ADD_TO_CART]: {
-        createEvent: function ({ variantId, variantPrice, variantReport, userId, thestralFeatures }) {
+        createEvent: function ({ variantId, variantPrice, variantReport, thestralFeatures, ...otherProps }) {
             return {
                 event: 'spressoTapAddToCart',
                 properties: {
-                    ...getMetaProps({ userId }),
+                    ...getMetaProps(otherProps),
                     variant_id: variantId,
                     variant_price: variantPrice,
                     variant_report: variantReport,
@@ -76,11 +76,11 @@ export const EventFactory = {
     },
 
     [PURCHASE_VARIANT]: {
-        createEvent: function ({ variantId, variantPrice, variantReport, userId, thestralFeatures, orderId }) {
+        createEvent: function ({ variantId, variantPrice, variantReport, orderId, thestralFeatures, ...otherProps }) {
             return {
                 event: 'spressoPurchaseVariant',
                 properties: {
-                    ...getMetaProps({ userId }),
+                    ...getMetaProps(otherProps),
                     variant_id: variantId,
                     variant_price: variantPrice,
                     variant_report: variantReport,
@@ -92,11 +92,11 @@ export const EventFactory = {
     },
 
     [CREATE_ORDER]: {
-        createEvent: function ({ userId, thestralFeatures, orderId }) {
+        createEvent: function ({ orderId, thestralFeatures, ...otherProps }) {
             return {
                 event: 'spressoPurchaseVariant',
                 properties: {
-                    ...getMetaProps({ userId }),
+                    ...getMetaProps(otherProps),
                     order_id: orderId,
                     // thestralFeatures,
                 },

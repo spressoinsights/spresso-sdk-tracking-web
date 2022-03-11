@@ -16,18 +16,20 @@ class SpressoSdk {
     constructor() {
         this.eventsQueue = [];
         this.timerId = null;
+        this.tenantId = (isBrowser() && window?.SpressoSdk?.tenantId) || null;
 
         this.EXECUTE_DELAY = 3000;
+        console.log('SpressoSdk CONSTRUCTED');
     }
 
-    init() {
-        initDeviceId();
+    init(tenantId) {
+        this.tenantId = tenantId;
 
+        initDeviceId();
         // addPageViewListener(this.trackPageView);
         addBeforeUnloadListener(this.executeNow.bind(this));
 
-        console.log('initialized', this);
-
+        console.log('SpressoSdk INITIALIZED');
         return this;
     }
 
@@ -38,6 +40,7 @@ class SpressoSdk {
     }
 
     enqueue({ eventName, eventData = {} }) {
+        eventData.tenantId = this.tenantId;
         let eventObj = EventFactory[eventName]?.createEvent?.(eventData);
 
         if (typeof eventObj === 'object') {
@@ -75,7 +78,7 @@ class SpressoSdk {
         if (this.eventsQueue.length) {
             this.execute();
         }
-    };
+    }
 
     /**
      * @param {object} eventData
@@ -98,9 +101,9 @@ class SpressoSdk {
 
     /**
      * @param {object} eventData
-	 * @param {HTMLElement} [eventData.root=null] - The parent container of the PLE elements, whose bounding rectangle will be considered the viewport. Defaults to browser viewport. 
-	 * @param {HTMLElement} eventData.target - The PLE element to be glimpsed. 
-	 * @param {number} [eventData.glimpseThreshold=1] - The area of the PLE element that's visible in the viewport, expressed as a ratio, to trigger the event. 
+     * @param {HTMLElement} [eventData.root=null] - The parent container of the PLE elements, whose bounding rectangle will be considered the viewport. Defaults to browser viewport.
+     * @param {HTMLElement} eventData.target - The PLE element to be glimpsed.
+     * @param {number} [eventData.glimpseThreshold=1] - The area of the PLE element that's visible in the viewport, expressed as a ratio, to trigger the event.
      * @param {string} [eventData.userId] - The customer's user ID. Defaults to `deviceId` for guests.
      * @param {string} eventData.variantId - Variant ID.
      * @param {string} eventData.variantPrice - Variant price.
@@ -148,4 +151,5 @@ class SpressoSdk {
     }
 }
 
-export default new SpressoSdk().init();
+// export default new SpressoSdk().init();
+export default new SpressoSdk();
