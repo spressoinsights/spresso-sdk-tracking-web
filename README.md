@@ -10,16 +10,16 @@ Lorem eiusmod non duis ea deserunt ut. Excepteur mollit irure exercitation nostr
 
 ```
 <script>
-	(function (tenantId) {
-		window.SpressoSdk = window.SpressoSdk || { init: function() { SpressoSdk.tenantId = tenantId; } };
-		var s = document.createElement('script');
-		s.type = 'text/javascript';
-		s.async = true;
-		s.src = 'http://localhost:3002/spresso.sdk.web.js';
-		s.onload = function() { SpressoSdk.init(tenantId) }
-		var x = document.getElementsByTagName('script')[0];
-		x.parentNode.insertBefore(s, x);
-	})('tenantId');
+    (function (tenantId) {
+        window.SpressoSdk = window.SpressoSdk || { init: function() { SpressoSdk.tenantId = tenantId; } };
+        var s = document.createElement('script');
+        s.type = 'text/javascript';
+        s.async = true;
+        s.src = 'http://localhost:3002/spresso.sdk.web.js';
+        s.onload = function() { SpressoSdk.init(tenantId) }
+        var x = document.getElementsByTagName('script')[0];
+        x.parentNode.insertBefore(s, x);
+    })('tenantId');
 </script>
 ```
 
@@ -34,16 +34,16 @@ Copy/paste this script tag in the example React app or websites of your own choi
 
 ```
 <script>
-	(function (tenantId) {
-		window.SpressoSdk = window.SpressoSdk || { init: function() { SpressoSdk.tenantId = tenantId; } };
-		var s = document.createElement('script');
-		s.type = 'text/javascript';
-		s.async = true;
-		s.src = 'http://localhost:3002/spresso.sdk.web.js';
-		s.onload = function() { SpressoSdk.init(tenantId) }
-		var x = document.getElementsByTagName('script')[0];
-		x.parentNode.insertBefore(s, x);
-	})('tenantId');
+    (function (tenantId) {
+        window.SpressoSdk = window.SpressoSdk || { init: function() { SpressoSdk.tenantId = tenantId; } };
+        var s = document.createElement('script');
+        s.type = 'text/javascript';
+        s.async = true;
+        s.src = 'http://localhost:3002/spresso.sdk.web.js';
+        s.onload = function() { SpressoSdk.init(tenantId) }
+        var x = document.getElementsByTagName('script')[0];
+        x.parentNode.insertBefore(s, x);
+    })('tenantId');
 </script>
 ```
 
