@@ -21,7 +21,7 @@ export const CREATE_ORDER = 'CREATE_ORDER';
 
 export const EventFactory = {
     [PAGE_VIEW]: {
-        createEvent: function (otherProps) {
+        createEvent: function ({ ...otherProps }) {
             return {
                 event: 'spressoPageView',
                 properties: {
