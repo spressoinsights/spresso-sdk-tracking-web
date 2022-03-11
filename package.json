@@ -14,8 +14,11 @@
         "dev:setup": "babel-node ./test/setup/index.js",
         "dev:prod-mode": "run-p dev:mb dev:setup start-prod-mode",
         "dev": "run-p dev:mb dev:setup start",
-        "test": "echo \"Error: no test specified\" && exit 1",
-        "docs": "nodemon --exec jsdoc -c jsdoc.config.js src/index.js --watch src"
+        "docs:clear": "rimraf docs",
+        "docs:build": "jsdoc -c jsdoc.config.js src/index.js",
+        "docs:clear-and-build": "run-s docs:clear docs:build",
+        "docs": "nodemon --exec npm run docs:clear-and-build --watch src",
+        "test": "echo \"Error: no test specified\" && exit 1"
     },
     "author": "Suhan Wijaya",
     "license": "ISC",

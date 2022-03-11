@@ -79,7 +79,7 @@ class SpressoSdk {
 
     /**
      * @param {object} eventData
-     * @param {string} [eventData.userId] - The customer's user ID. Will default to `deviceId` for guests.
+     * @param {string} [eventData.userId] - The customer's user ID. Defaults to `deviceId` for guests.
      */
     trackPageView(eventData = {}) {
         this.enqueue({ eventName: PAGE_VIEW, eventData });
@@ -87,7 +87,7 @@ class SpressoSdk {
 
     /**
      * @param {object} eventData
-     * @param {string} [eventData.userId] - The customer's user ID. Will default to `deviceId` for guests.
+     * @param {string} [eventData.userId] - The customer's user ID. Defaults to `deviceId` for guests.
      * @param {string} eventData.variantId - Variant ID.
      * @param {string} eventData.variantPrice - Variant price.
      * @param {string} eventData.variantReport - Variant report.
@@ -98,7 +98,10 @@ class SpressoSdk {
 
     /**
      * @param {object} eventData
-     * @param {string} [eventData.userId] - The customer's user ID. Will default to `deviceId` for guests.
+	 * @param {HTMLElement} [eventData.root=null] - The parent container of the PLE elements, whose bounding rectangle will be considered the viewport. Defaults to browser viewport. 
+	 * @param {HTMLElement} eventData.target - The PLE element to be glimpsed. 
+	 * @param {number} [eventData.glimpseThreshold=1] - The area of the PLE element that's visible in the viewport, expressed as a ratio, to trigger the event. 
+     * @param {string} [eventData.userId] - The customer's user ID. Defaults to `deviceId` for guests.
      * @param {string} eventData.variantId - Variant ID.
      * @param {string} eventData.variantPrice - Variant price.
      * @param {string} eventData.variantReport - Variant report.
@@ -114,7 +117,7 @@ class SpressoSdk {
 
     /**
      * @param {object} eventData
-     * @param {string} [eventData.userId] - The customer's user ID. Will default to `deviceId` for guests.
+     * @param {string} [eventData.userId] - The customer's user ID. Defaults to `deviceId` for guests.
      * @param {string} eventData.variantId - Variant ID.
      * @param {string} eventData.variantPrice - Variant price.
      * @param {string} eventData.variantReport - Variant report.
@@ -125,7 +128,7 @@ class SpressoSdk {
 
     /**
      * @param {object} eventData
-     * @param {string} [eventData.userId] - The customer's user ID. Will default to `deviceId` for guests.
+     * @param {string} [eventData.userId] - The customer's user ID. Defaults to `deviceId` for guests.
      * @param {string} eventData.variantId - Variant ID.
      * @param {string} eventData.variantPrice - Variant price.
      * @param {string} eventData.variantReport - Variant report.
@@ -137,7 +140,7 @@ class SpressoSdk {
 
     /**
      * @param {object} eventData
-     * @param {string} [eventData.userId] - The customer's user ID. Will default to `deviceId` for guests.
+     * @param {string} [eventData.userId] - The customer's user ID. Defaults to `deviceId` for guests.
      * @param {string} eventData.orderId - The customer's order ID.
      */
     trackCreateOrder(eventData = {}) {

@@ -83,7 +83,7 @@
   <body>
 
     <nav class="navbar" id="navbar">
-      <div class="navbar-heading" id="navbar-heading"><a href="index.html"><h2 class="navbar-heading-text">Home</h2></a></div><div class="search-box" id="search-box"><div class="search-box-input-container"><input class="search-box-input" type="text" placeholder="Search..." id="search-box-input" /><svg class="search-icon" alt="search-icon"><use xlink:href="#search-icon"></use></svg></div><div class="search-item-container" id="search-item-container"><ul class="search-item-ul" id="search-item-ul"></ul></div></div><div class="sidebar-main-content" id="sidebar-main-content"><div class="accordion collapsed" id="415930" > <h3 class="accordion-heading">Classes<svg><use xlink:href="#down-icon"></use></svg></h3><ul class="accordion-content"><li class="accordion collapsed child" id=6627792><div class="accordion-heading child"><a href="SpressoSdk.html">SpressoSdk</a><svg><use xlink:href="#down-icon"></use></svg></div><ul class='methods accordion-content'><li data-type='method'><a href="SpressoSdk.html#trackCreateOrder">trackCreateOrder</a></li><li data-type='method'><a href="SpressoSdk.html#trackGlimpsePLE">trackGlimpsePLE</a></li><li data-type='method'><a href="SpressoSdk.html#trackPageView">trackPageView</a></li><li data-type='method'><a href="SpressoSdk.html#trackPurchaseVariant">trackPurchaseVariant</a></li><li data-type='method'><a href="SpressoSdk.html#trackTapAddToCart">trackTapAddToCart</a></li><li data-type='method'><a href="SpressoSdk.html#trackViewPDP">trackViewPDP</a></li></ul></li></ul> </div>
+      <div class="navbar-heading" id="navbar-heading"><a href="index.html"><h2 class="navbar-heading-text">Home</h2></a></div><div class="search-box" id="search-box"><div class="search-box-input-container"><input class="search-box-input" type="text" placeholder="Search..." id="search-box-input" /><svg class="search-icon" alt="search-icon"><use xlink:href="#search-icon"></use></svg></div><div class="search-item-container" id="search-item-container"><ul class="search-item-ul" id="search-item-ul"></ul></div></div><div class="sidebar-main-content" id="sidebar-main-content"><div class="accordion collapsed" id="478782" > <h3 class="accordion-heading">Classes<svg><use xlink:href="#down-icon"></use></svg></h3><ul class="accordion-content"><li class="accordion collapsed child" id=4065336><div class="accordion-heading child"><a href="SpressoSdk.html">SpressoSdk</a><svg><use xlink:href="#down-icon"></use></svg></div><ul class='methods accordion-content'><li data-type='method'><a href="SpressoSdk.html#trackCreateOrder">trackCreateOrder</a></li><li data-type='method'><a href="SpressoSdk.html#trackGlimpsePLE">trackGlimpsePLE</a></li><li data-type='method'><a href="SpressoSdk.html#trackPageView">trackPageView</a></li><li data-type='method'><a href="SpressoSdk.html#trackPurchaseVariant">trackPurchaseVariant</a></li><li data-type='method'><a href="SpressoSdk.html#trackTapAddToCart">trackTapAddToCart</a></li><li data-type='method'><a href="SpressoSdk.html#trackViewPDP">trackViewPDP</a></li></ul></li></ul> </div>
       
 
     </nav>
@@ -353,7 +353,7 @@
 
             
 
-            <td class="description last"><p>The customer's user ID. Will default to <code>deviceId</code> for guests.</p></td>
+            <td class="description last"><p>The customer's user ID. Defaults to <code>deviceId</code> for guests.</p></td>
         </tr>
 
     
@@ -436,7 +436,7 @@
         <div class="details-item-container">
             <dt class="tag-source">Source:</dt>
             <dd class="tag-source"><ul class="dummy"><li>
-                <a href="index.js.html">index.js</a>, <a href="index.js.html#line143">line 143</a>
+                <a href="index.js.html">index.js</a>, <a href="index.js.html#line146">line 146</a>
             </li></ul></dd>
         </div>
     
@@ -547,12 +547,127 @@
         
 
         
+        <th>Default</th>
+        
 
         <th class="last">Description</th>
     </tr>
     </thead>
 
     <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>root</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">HTMLElement</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                    null
+                
+                </td>
+            
+
+            <td class="description last"><p>The parent container of the PLE elements, whose bounding rectangle will be considered the viewport. Defaults to browser viewport.</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>target</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">HTMLElement</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                </td>
+            
+
+            <td class="description last"><p>The PLE element to be glimpsed.</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>glimpseThreshold</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">number</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                    1
+                
+                </td>
+            
+
+            <td class="description last"><p>The area of the PLE element that's visible in the viewport, expressed as a ratio, to trigger the event.</p></td>
+        </tr>
+
     
 
         <tr>
@@ -582,8 +697,12 @@
             
 
             
+                <td class="default">
+                
+                </td>
+            
 
-            <td class="description last"><p>The customer's user ID. Will default to <code>deviceId</code> for guests.</p></td>
+            <td class="description last"><p>The customer's user ID. Defaults to <code>deviceId</code> for guests.</p></td>
         </tr>
 
     
@@ -612,6 +731,10 @@
                 </td>
             
 
+            
+                <td class="default">
+                
+                </td>
             
 
             <td class="description last"><p>Variant ID.</p></td>
@@ -644,6 +767,10 @@
             
 
             
+                <td class="default">
+                
+                </td>
+            
 
             <td class="description last"><p>Variant price.</p></td>
         </tr>
@@ -674,6 +801,10 @@
                 </td>
             
 
+            
+                <td class="default">
+                
+                </td>
             
 
             <td class="description last"><p>Variant report.</p></td>
@@ -728,7 +859,7 @@
         <div class="details-item-container">
             <dt class="tag-source">Source:</dt>
             <dd class="tag-source"><ul class="dummy"><li>
-                <a href="index.js.html">index.js</a>, <a href="index.js.html#line106">line 106</a>
+                <a href="index.js.html">index.js</a>, <a href="index.js.html#line109">line 109</a>
             </li></ul></dd>
         </div>
     
@@ -875,7 +1006,7 @@
 
             
 
-            <td class="description last"><p>The customer's user ID. Will default to <code>deviceId</code> for guests.</p></td>
+            <td class="description last"><p>The customer's user ID. Defaults to <code>deviceId</code> for guests.</p></td>
         </tr>
 
     
@@ -1074,7 +1205,7 @@
 
             
 
-            <td class="description last"><p>The customer's user ID. Will default to <code>deviceId</code> for guests.</p></td>
+            <td class="description last"><p>The customer's user ID. Defaults to <code>deviceId</code> for guests.</p></td>
         </tr>
 
     
@@ -1250,7 +1381,7 @@
         <div class="details-item-container">
             <dt class="tag-source">Source:</dt>
             <dd class="tag-source"><ul class="dummy"><li>
-                <a href="index.js.html">index.js</a>, <a href="index.js.html#line134">line 134</a>
+                <a href="index.js.html">index.js</a>, <a href="index.js.html#line137">line 137</a>
             </li></ul></dd>
         </div>
     
@@ -1397,7 +1528,7 @@
 
             
 
-            <td class="description last"><p>The customer's user ID. Will default to <code>deviceId</code> for guests.</p></td>
+            <td class="description last"><p>The customer's user ID. Defaults to <code>deviceId</code> for guests.</p></td>
         </tr>
 
     
@@ -1542,7 +1673,7 @@
         <div class="details-item-container">
             <dt class="tag-source">Source:</dt>
             <dd class="tag-source"><ul class="dummy"><li>
-                <a href="index.js.html">index.js</a>, <a href="index.js.html#line122">line 122</a>
+                <a href="index.js.html">index.js</a>, <a href="index.js.html#line125">line 125</a>
             </li></ul></dd>
         </div>
     
@@ -1689,7 +1820,7 @@
 
             
 
-            <td class="description last"><p>The customer's user ID. Will default to <code>deviceId</code> for guests.</p></td>
+            <td class="description last"><p>The customer's user ID. Defaults to <code>deviceId</code> for guests.</p></td>
         </tr>
 
     

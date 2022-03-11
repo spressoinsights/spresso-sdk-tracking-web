@@ -83,7 +83,7 @@
   <body>
 
     <nav class="navbar" id="navbar">
-      <div class="navbar-heading" id="navbar-heading"><a href="index.html"><h2 class="navbar-heading-text">Home</h2></a></div><div class="search-box" id="search-box"><div class="search-box-input-container"><input class="search-box-input" type="text" placeholder="Search..." id="search-box-input" /><svg class="search-icon" alt="search-icon"><use xlink:href="#search-icon"></use></svg></div><div class="search-item-container" id="search-item-container"><ul class="search-item-ul" id="search-item-ul"></ul></div></div><div class="sidebar-main-content" id="sidebar-main-content"><div class="accordion collapsed" id="415930" > <h3 class="accordion-heading">Classes<svg><use xlink:href="#down-icon"></use></svg></h3><ul class="accordion-content"><li class="accordion collapsed child" id=6627792><div class="accordion-heading child"><a href="SpressoSdk.html">SpressoSdk</a><svg><use xlink:href="#down-icon"></use></svg></div><ul class='methods accordion-content'><li data-type='method'><a href="SpressoSdk.html#trackCreateOrder">trackCreateOrder</a></li><li data-type='method'><a href="SpressoSdk.html#trackGlimpsePLE">trackGlimpsePLE</a></li><li data-type='method'><a href="SpressoSdk.html#trackPageView">trackPageView</a></li><li data-type='method'><a href="SpressoSdk.html#trackPurchaseVariant">trackPurchaseVariant</a></li><li data-type='method'><a href="SpressoSdk.html#trackTapAddToCart">trackTapAddToCart</a></li><li data-type='method'><a href="SpressoSdk.html#trackViewPDP">trackViewPDP</a></li></ul></li></ul> </div>
+      <div class="navbar-heading" id="navbar-heading"><a href="index.html"><h2 class="navbar-heading-text">Home</h2></a></div><div class="search-box" id="search-box"><div class="search-box-input-container"><input class="search-box-input" type="text" placeholder="Search..." id="search-box-input" /><svg class="search-icon" alt="search-icon"><use xlink:href="#search-icon"></use></svg></div><div class="search-item-container" id="search-item-container"><ul class="search-item-ul" id="search-item-ul"></ul></div></div><div class="sidebar-main-content" id="sidebar-main-content"><div class="accordion collapsed" id="478782" > <h3 class="accordion-heading">Classes<svg><use xlink:href="#down-icon"></use></svg></h3><ul class="accordion-content"><li class="accordion collapsed child" id=4065336><div class="accordion-heading child"><a href="SpressoSdk.html">SpressoSdk</a><svg><use xlink:href="#down-icon"></use></svg></div><ul class='methods accordion-content'><li data-type='method'><a href="SpressoSdk.html#trackCreateOrder">trackCreateOrder</a></li><li data-type='method'><a href="SpressoSdk.html#trackGlimpsePLE">trackGlimpsePLE</a></li><li data-type='method'><a href="SpressoSdk.html#trackPageView">trackPageView</a></li><li data-type='method'><a href="SpressoSdk.html#trackPurchaseVariant">trackPurchaseVariant</a></li><li data-type='method'><a href="SpressoSdk.html#trackTapAddToCart">trackTapAddToCart</a></li><li data-type='method'><a href="SpressoSdk.html#trackViewPDP">trackViewPDP</a></li></ul></li></ul> </div>
       
 
     </nav>
@@ -190,7 +190,7 @@ class SpressoSdk {
 
     /**
      * @param {object} eventData
-     * @param {string} [eventData.userId] - The customer's user ID. Will default to `deviceId` for guests.
+     * @param {string} [eventData.userId] - The customer's user ID. Defaults to `deviceId` for guests.
      */
     trackPageView(eventData = {}) {
         this.enqueue({ eventName: PAGE_VIEW, eventData });
@@ -198,7 +198,7 @@ class SpressoSdk {
 
     /**
      * @param {object} eventData
-     * @param {string} [eventData.userId] - The customer's user ID. Will default to `deviceId` for guests.
+     * @param {string} [eventData.userId] - The customer's user ID. Defaults to `deviceId` for guests.
      * @param {string} eventData.variantId - Variant ID.
      * @param {string} eventData.variantPrice - Variant price.
      * @param {string} eventData.variantReport - Variant report.
@@ -209,7 +209,10 @@ class SpressoSdk {
 
     /**
      * @param {object} eventData
-     * @param {string} [eventData.userId] - The customer's user ID. Will default to `deviceId` for guests.
+	 * @param {HTMLElement} [eventData.root=null] - The parent container of the PLE elements, whose bounding rectangle will be considered the viewport. Defaults to browser viewport. 
+	 * @param {HTMLElement} eventData.target - The PLE element to be glimpsed. 
+	 * @param {number} [eventData.glimpseThreshold=1] - The area of the PLE element that's visible in the viewport, expressed as a ratio, to trigger the event. 
+     * @param {string} [eventData.userId] - The customer's user ID. Defaults to `deviceId` for guests.
      * @param {string} eventData.variantId - Variant ID.
      * @param {string} eventData.variantPrice - Variant price.
      * @param {string} eventData.variantReport - Variant report.
@@ -225,7 +228,7 @@ class SpressoSdk {
 
     /**
      * @param {object} eventData
-     * @param {string} [eventData.userId] - The customer's user ID. Will default to `deviceId` for guests.
+     * @param {string} [eventData.userId] - The customer's user ID. Defaults to `deviceId` for guests.
      * @param {string} eventData.variantId - Variant ID.
      * @param {string} eventData.variantPrice - Variant price.
      * @param {string} eventData.variantReport - Variant report.
@@ -236,7 +239,7 @@ class SpressoSdk {
 
     /**
      * @param {object} eventData
-     * @param {string} [eventData.userId] - The customer's user ID. Will default to `deviceId` for guests.
+     * @param {string} [eventData.userId] - The customer's user ID. Defaults to `deviceId` for guests.
      * @param {string} eventData.variantId - Variant ID.
      * @param {string} eventData.variantPrice - Variant price.
      * @param {string} eventData.variantReport - Variant report.
@@ -248,7 +251,7 @@ class SpressoSdk {
 
     /**
      * @param {object} eventData
-     * @param {string} [eventData.userId] - The customer's user ID. Will default to `deviceId` for guests.
+     * @param {string} [eventData.userId] - The customer's user ID. Defaults to `deviceId` for guests.
      * @param {string} eventData.orderId - The customer's order ID.
      */
     trackCreateOrder(eventData = {}) {
