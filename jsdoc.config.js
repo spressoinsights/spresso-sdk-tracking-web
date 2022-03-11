@@ -9,6 +9,7 @@ module.exports = {
         template: './node_modules/clean-jsdoc-theme',
         theme_opts: {
             theme: 'light',
+            favicon: 'https://app.spresso.com/public/favicon.svg',
         },
     },
 };
