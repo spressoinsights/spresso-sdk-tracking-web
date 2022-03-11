@@ -1,4 +1,4 @@
-import { getDeviceId } from 'utils/tracking';
+import { getDeviceId } from 'utils/properties';
 import { getCurrentUrl } from 'utils/browser';
 
 const getMetaProps = function ({ userId }) {

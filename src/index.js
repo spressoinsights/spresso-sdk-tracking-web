@@ -1,5 +1,5 @@
 import { addPageViewListener, addBeforeUnloadListener, addIntersectionObserver, isBrowser } from 'utils/browser';
-import { initDeviceId } from 'utils/tracking';
+import { initDeviceId } from 'utils/properties';
 import { track } from 'utils/api';
 import {
     EventFactory,
