@@ -39,7 +39,6 @@ export const EventFactory = {
 
     [VIEW_PDP]: {
         createEvent: function ({ variantId, variantPrice, variantReport, ...otherProps }) {
-			console.log({variantId})
             return {
                 event: 'spressoViewPDP',
                 ...getRootProps(),
