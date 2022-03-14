@@ -38,7 +38,7 @@ export const setupMockServer = (expectedResponse = null) => {
                             is: {
                                 headers: {
                                     'Content-Type': 'application/json',
-                                    'Access-Control-Allow-Origin': 'http://localhost:3000',
+                                    'Access-Control-Allow-Origin': '*',
                                     'Access-Control-Allow-Methods': 'OPTIONS, GET, POST, PUT',
                                     'Access-Control-Allow-Headers': '*',
                                 },

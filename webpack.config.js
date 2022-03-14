@@ -10,6 +10,10 @@ module.exports = {
 
     // devtool: false,
 
+    cache: {
+        type: 'filesystem', // https://webpack.js.org/configuration/cache/#cachetype
+    },
+
     entry: './src/index.js',
 
     output: {

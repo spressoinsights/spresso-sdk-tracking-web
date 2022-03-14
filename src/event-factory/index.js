@@ -1,14 +1,18 @@
 import { getDeviceId } from 'utils/properties';
 import { getCurrentUrl } from 'utils/browser';
 
+const getRootProps = function () {
+    return {
+        utcTimestampMs: new Date().getTime(),
+    };
+};
+
 const getMetaProps = function ({ userId, tenantId }) {
     const deviceId = getDeviceId();
     return {
-        tenant_id: tenantId,
-        device_id: deviceId,
-        // page: getCurrentUrl(),
-        user_id: userId || deviceId,
-        timestamp: new Date().getTime(),
+        tenantId,
+        deviceId,
+        userId: userId || deviceId,
     };
 };
 
@@ -24,6 +28,7 @@ export const EventFactory = {
         createEvent: function ({ ...otherProps }) {
             return {
                 event: 'spressoPageView',
+                ...getRootProps(),
                 properties: {
                     ...getMetaProps(otherProps),
                     page: getCurrentUrl(),
@@ -34,13 +39,15 @@ export const EventFactory = {
 
     [VIEW_PDP]: {
         createEvent: function ({ variantId, variantPrice, variantReport, ...otherProps }) {
+			console.log({variantId})
             return {
                 event: 'spressoViewPDP',
+                ...getRootProps(),
                 properties: {
                     ...getMetaProps(otherProps),
-                    variant_id: variantId,
-                    variant_price: variantPrice,
-                    variant_report: variantReport,
+                    variantId,
+                    variantPrice,
+                    variantReport,
                 },
             };
         },
@@ -50,11 +57,12 @@ export const EventFactory = {
         createEvent: function ({ variantId, variantPrice, variantReport, ...otherProps }) {
             return {
                 event: 'spressoGlimpsePLE',
+                ...getRootProps(),
                 properties: {
                     ...getMetaProps(otherProps),
-                    variant_id: variantId,
-                    variant_price: variantPrice,
-                    variant_report: variantReport,
+                    variantId,
+                    variantPrice,
+                    variantReport,
                 },
             };
         },
@@ -64,11 +72,12 @@ export const EventFactory = {
         createEvent: function ({ variantId, variantPrice, variantReport, thestralFeatures, ...otherProps }) {
             return {
                 event: 'spressoTapAddToCart',
+                ...getRootProps(),
                 properties: {
                     ...getMetaProps(otherProps),
-                    variant_id: variantId,
-                    variant_price: variantPrice,
-                    variant_report: variantReport,
+                    variantId,
+                    variantPrice,
+                    variantReport,
                     // thestralFeatures,
                 },
             };
@@ -79,12 +88,13 @@ export const EventFactory = {
         createEvent: function ({ variantId, variantPrice, variantReport, orderId, thestralFeatures, ...otherProps }) {
             return {
                 event: 'spressoPurchaseVariant',
+                ...getRootProps(),
                 properties: {
                     ...getMetaProps(otherProps),
-                    variant_id: variantId,
-                    variant_price: variantPrice,
-                    variant_report: variantReport,
-                    order_id: orderId,
+                    variantId,
+                    variantPrice,
+                    variantReport,
+                    orderId,
                     // thestralFeatures,
                 },
             };
@@ -95,9 +105,10 @@ export const EventFactory = {
         createEvent: function ({ orderId, thestralFeatures, ...otherProps }) {
             return {
                 event: 'spressoPurchaseVariant',
+                ...getRootProps(),
                 properties: {
                     ...getMetaProps(otherProps),
-                    order_id: orderId,
+                    orderId,
                     // thestralFeatures,
                 },
             };
