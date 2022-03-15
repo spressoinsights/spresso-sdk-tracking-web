@@ -26,8 +26,6 @@ Lorem eiusmod non duis ea deserunt ut. Excepteur mollit irure exercitation nostr
 
 1. Run `npm install` in project dir.
 2. Run `npm run dev` in project dir to serve the SDK script on [http://localhost:3002/spresso.tracking.sdk.web.js](http://localhost:3002/spresso.tracking.sdk.web.js)
-3. Run `npm install` in `examples/react-app`
-4. Run `npm start` in `examples/react-app` to start a React app on [http://localhost:8080](http://localhost:8080)
 
 Copy/paste this script tag in the example React app or websites of your own choice.
 
