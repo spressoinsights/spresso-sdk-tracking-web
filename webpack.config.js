@@ -20,7 +20,7 @@ module.exports = {
 
     output: {
         path: path.resolve(__dirname, 'dist'),
-        filename: 'spresso.tracking.sdk.web.js',
+        filename: 'spresso.sdk.tracking.web.js',
         library: {
             name: 'SpressoSdk',
             type: 'umd', // enable browser or node import
