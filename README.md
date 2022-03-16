@@ -14,7 +14,7 @@ Lorem eiusmod non duis ea deserunt ut. Excepteur mollit irure exercitation nostr
         var s = document.createElement('script');
         s.type = 'text/javascript';
         s.async = true;
-        s.src = 'https://<SOME_CDN>/spresso.sdk.tracking.web.js';
+        s.src = 'https://<SOME_CDN>/vX.Y.Z/spresso.sdk.tracking.web.js';
         s.onload = function() { window.SpressoSdk.init(tenantId) }
         var x = document.getElementsByTagName('script')[0];
         x.parentNode.insertBefore(s, x);
