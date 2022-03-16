@@ -1,10 +1,8 @@
 name: deploy-workflow
-on:
-  push:
-    tags:        
-      - v**
+on: create
 jobs:
     deploy-job:
+        if: ${{ startsWith(github.ref, 'refs/tags/v') }}
         runs-on: ubuntu-latest
         env:
           NODE_ENV: production
