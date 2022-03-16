@@ -1,4 +1,4 @@
-# Spresso Web SDK
+# Spresso Web SDK 
 
 ## What is Spresso Web SDK?
 
