@@ -5,6 +5,8 @@ const isDev = !process.env.NODE_ENV || process.env.NODE_ENV === 'development';
 
 const WEBPACK_DEV_SERVER_PORT = 3002;
 
+console.log({ 'process.env.NODE_ENV': process.env.NODE_ENV });
+
 module.exports = {
     mode: isDev ? 'development' : 'production',
 
