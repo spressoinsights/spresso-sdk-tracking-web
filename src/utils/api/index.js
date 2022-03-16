@@ -1,8 +1,8 @@
 import 'cross-fetch/polyfill';
 import { isBrowser } from 'utils/browser';
 
-const ENDPOINT = 'http://localhost:1337/track';
-// const ENDPOINT = 'https://staging-pensieve-0983.boxed.com/track';
+// const ENDPOINT = 'http://localhost:1337/track';
+const ENDPOINT = 'https://staging-pensieve-0983.boxed.com/track';
 
 export const track = function (events) {
     if (!isBrowser() || !events?.length) {
