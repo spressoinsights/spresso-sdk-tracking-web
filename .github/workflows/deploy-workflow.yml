@@ -9,10 +9,9 @@ jobs:
             - name: Checks out repo
               uses: actions/checkout@v2
             - name: Setup Node
-              id: setup-node
               uses: actions/setup-node@v2
               with:
                   node-version: '16.13.2'
                   # cache: 'npm' # https://github.com/actions/setup-node#caching-packages-dependencies
-            - run: npm install
+            - run: npm install --include=dev
             - run: npm run build
