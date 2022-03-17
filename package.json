@@ -1,7 +1,7 @@
 {
-    "name": "spresso-tracking-sdk-web",
-    "version": "0.1.0-alpha",
-    "description": "",
+    "name": "spresso-sdk-tracking-web",
+    "version": "0.1.4-alpha",
+    "description": "Spresso Analytics Web SDK",
     "main": "index.js",
     "scripts": {
         "start": "webpack serve",
