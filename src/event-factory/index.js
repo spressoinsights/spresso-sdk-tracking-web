@@ -2,8 +2,11 @@ import { getDeviceId } from 'utils/properties';
 import { getCurrentUrl } from 'utils/browser';
 
 const getRootProps = function () {
+    const currentTimestamp = new Date();
+
     return {
-        utcTimestampMs: new Date().getTime(),
+        utcTimestampMs: currentTimestamp.getTime(),
+        timezoneOffsetTs: currentTimestamp.getTimezoneOffset(),
     };
 };
 
