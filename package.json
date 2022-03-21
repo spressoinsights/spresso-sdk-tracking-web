@@ -1,6 +1,6 @@
 {
     "name": "spresso-sdk-tracking-web",
-    "version": "0.1.5-alpha",
+    "version": "0.1.6-alpha",
     "description": "Spresso Analytics Web SDK",
     "main": "index.js",
     "scripts": {
