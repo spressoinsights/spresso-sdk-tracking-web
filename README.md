@@ -33,4 +33,4 @@ SpressoSdk.trackViewPDP({
 });
 ```
 
-Click [here](/docs/SpressoSdk.html) for the all the events that you can send. 
+Click [here](SpressoSdk.html) for the all the events that you can send. 
