@@ -17,7 +17,7 @@
         "docs:clear": "rimraf docs",
         "docs:build": "jsdoc -c jsdoc.config.js src/index.js",
         "docs:clear-and-build": "run-s docs:clear docs:build",
-        "docs": "nodemon --exec npm run docs:clear-and-build --watch src",
+        "docs": "nodemon --exec npm run docs:clear-and-build --watch src --watch README.md",
         "test": "echo \"Error: no test specified\" && exit 1"
     },
     "author": "Suhan Wijaya",

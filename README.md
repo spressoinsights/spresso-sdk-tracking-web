@@ -1,33 +1,11 @@
-# Spresso Web SDK 
+# Spresso Web SDK
 
-## What is Spresso Web SDK?
+## Overview
 
-Lorem eiusmod non duis ea deserunt ut. Excepteur mollit irure exercitation nostrud nisi sint dolor eu sunt voluptate aute cupidatat laborum. Velit ipsum tempor ad mollit ullamco consectetur laborum veniam elit. Dolor quis duis quis quis cupidatat reprehenderit velit irure nulla nisi ad et qui aliquip.
+Spresso Web SDK is a client-side JavaScript library you can install in your project to start sending event data from anywhere in your application.
+### 1. Initialize the library in your project
 
-## How to use Spresso Web SDK in Prod?
-
-Lorem eiusmod non duis ea deserunt ut. Excepteur mollit irure exercitation nostrud nisi sint dolor eu sunt voluptate aute cupidatat laborum. Velit ipsum tempor ad mollit ullamco consectetur laborum veniam elit. Dolor quis duis quis quis cupidatat reprehenderit velit irure nulla nisi ad et qui aliquip.
-
-```
-<script>
-    (function (tenantId) {
-        var s = document.createElement('script');
-        s.type = 'text/javascript';
-        s.async = true;
-        s.src = 'https://<SOME_CDN>/vX.Y.Z/spresso.sdk.tracking.web.js';
-        s.onload = function() { window.SpressoSdk.init(tenantId) }
-        var x = document.getElementsByTagName('script')[0];
-        x.parentNode.insertBefore(s, x);
-    })('tenantId');
-</script>
-```
-
-## Development
-
-1. Run `npm install` in project dir.
-2. Run `npm run dev` in project dir to serve the SDK script on [http://localhost:3002/spresso.sdk.tracking.web.js](http://localhost:3002/spresso.sdk.tracking.web.js)
-
-Copy/paste this script tag in the example React app or websites of your own choice.
+Paste the HTML script tag snippet within the `<head>` tag of your page and initialize with your tenant ID.
 
 ```
 <script>
@@ -35,7 +13,7 @@ Copy/paste this script tag in the example React app or websites of your own choi
         var s = document.createElement('script');
         s.type = 'text/javascript';
         s.async = true;
-        s.src = 'http://localhost:3002/spresso.sdk.tracking.web.js';
+        s.src = 'https://boxed-spresso-sdk-staging-gcp.boxed.com/tracking-web/vX.Y.Z/spresso.sdk.tracking.web.js';
         s.onload = function() { window.SpressoSdk.init(tenantId) }
         var x = document.getElementsByTagName('script')[0];
         x.parentNode.insertBefore(s, x);
@@ -43,6 +21,16 @@ Copy/paste this script tag in the example React app or websites of your own choi
 </script>
 ```
 
-## Testing
+### 2. Send Data
 
-Lorem eiusmod non duis ea deserunt ut. Excepteur mollit irure exercitation nostrud nisi sint dolor eu sunt voluptate aute cupidatat laborum. Velit ipsum tempor ad mollit ullamco consectetur laborum veniam elit. Dolor quis duis quis quis cupidatat reprehenderit velit irure nulla nisi ad et qui aliquip.
+Let's get started by sending event data, for example, when a user views a Product Details Page (PDP).
+
+```javascript
+SpressoSdk.trackViewPDP({
+    variantId: 'some-id',
+    variantPrice: '1000000',
+    userId: 'awesome-customer-id',
+});
+```
+
+Click [here](/docs/SpressoSdk.html) for the all the events that you can send. 
