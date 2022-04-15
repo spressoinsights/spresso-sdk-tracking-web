@@ -49,7 +49,7 @@ export const setupMockServer = (expectedResponse = null) => {
                 })) || [],
             });
 
-            console.log('mock server created', res);
+            // console.log('mock server created', res);
         } catch (err) {
             console.error(err);
         }
@@ -60,7 +60,7 @@ export const setupMockServer = (expectedResponse = null) => {
         try {
             if (!mockServerPort) throw 'port not set';
             const res = await superagent.delete(`http://localhost:2525/imposters/${mockServerPort}`);
-            console.log('mock server destroyed', res);
+            // console.log('mock server destroyed', res);
         } catch (err) {
             console.error(err);
         }

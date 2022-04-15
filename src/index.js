@@ -151,5 +151,4 @@ class SpressoSdk {
     }
 }
 
-// export default new SpressoSdk().init();
 export default new SpressoSdk();

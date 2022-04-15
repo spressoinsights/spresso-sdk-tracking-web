@@ -1,5 +1,4 @@
 const path = require('path');
-// const TerserPlugin = require('terser-webpack-plugin');
 
 const isDev = !process.env.NODE_ENV || process.env.NODE_ENV === 'development';
 
@@ -10,13 +9,13 @@ console.log({ 'process.env.NODE_ENV': process.env.NODE_ENV });
 module.exports = {
     mode: isDev ? 'development' : 'production',
 
-    // devtool: false,
+    devtool: isDev && 'eval-cheap-module-source-map',
 
     cache: {
         type: 'filesystem', // https://webpack.js.org/configuration/cache/#cachetype
     },
 
-    entry: './src/index.js',
+    entry: path.resolve(__dirname, './src/index.js'),
 
     output: {
         path: path.resolve(__dirname, 'dist'),
@@ -45,32 +44,19 @@ module.exports = {
 
     resolve: {
         modules: [path.resolve(__dirname, 'src'), 'node_modules'], // https://webpack.js.org/configuration/resolve/#resolvemodules
-        // alias: {},
     },
 
-    // optimization: {
-    //     minimize: !isDev,
-    //     minimizer: [
-    //         !isDev && new TerserPlugin({
-    //             minify: TerserPlugin.uglifyJsMinify,
-    //             // `terserOptions` options will be passed to `uglify-js`
-    //             // Link to options - https://github.com/mishoo/UglifyJS#minify-options
-    //             terserOptions: {
-    //                 mangle: { toplevel: true },
-    //             },
-    //         }),
-    //     ].filter(Boolean),
-    // },
-
-    devServer: {
-        hot: true,
-        port: WEBPACK_DEV_SERVER_PORT,
-        devMiddleware: {
-            stats: {
-                colors: true,
-                errors: true,
-                warnings: true,
+    ...(isDev && {
+        devServer: {
+            hot: true,
+            port: WEBPACK_DEV_SERVER_PORT,
+            devMiddleware: {
+                stats: {
+                    colors: true,
+                    errors: true,
+                    warnings: true,
+                },
             },
         },
-    },
+    }),
 };
