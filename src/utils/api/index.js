@@ -1,10 +1,11 @@
 import 'cross-fetch/polyfill';
 import { isBrowser } from 'utils/browser';
 
-// const ENDPOINT = 'http://localhost:1337/track';
-const ENDPOINT = 'https://34.111.61.186.nip.io/track';
+const isDev = !process.env.NODE_ENV || process.env.NODE_ENV === 'development';
 
-export const track = function (events) {
+const ENDPOINT = isDev ? 'http://localhost:1337/track' : 'https://34.111.61.186.nip.io/track';
+
+export const track = function ({ orgId, events }) {
     if (!isBrowser() || !events?.length) {
         return;
     }
@@ -21,6 +22,7 @@ export const track = function (events) {
             method: 'POST',
             headers: {
                 'Content-type': 'application/json; charset=utf-8',
+                orgId: orgId,
             },
             body,
         }).then((res) => {

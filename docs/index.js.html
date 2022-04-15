@@ -85,7 +85,7 @@
   <body>
 
     <nav class="navbar" id="navbar">
-      <div class="navbar-heading" id="navbar-heading"><a href="index.html"><h2 class="navbar-heading-text">Getting Started</h2></a></div><div class="search-box" id="search-box"><div class="search-box-input-container"><input class="search-box-input" type="text" placeholder="Search..." id="search-box-input" /><svg class="search-icon" alt="search-icon"><use xlink:href="#search-icon"></use></svg></div><div class="search-item-container" id="search-item-container"><ul class="search-item-ul" id="search-item-ul"></ul></div></div><div class="sidebar-main-content" id="sidebar-main-content"><div class="accordion collapsed" id="9034373" > <h3 class="accordion-heading">Classes<svg><use xlink:href="#down-icon"></use></svg></h3><ul class="accordion-content"><li class="accordion collapsed child" id=395413><div class="accordion-heading child"><a href="SpressoSdk.html">SpressoSdk</a><svg><use xlink:href="#down-icon"></use></svg></div><ul class='methods accordion-content'><li data-type='method'><a href="SpressoSdk.html#trackCreateOrder">trackCreateOrder</a></li><li data-type='method'><a href="SpressoSdk.html#trackGlimpsePLE">trackGlimpsePLE</a></li><li data-type='method'><a href="SpressoSdk.html#trackPageView">trackPageView</a></li><li data-type='method'><a href="SpressoSdk.html#trackPurchaseVariant">trackPurchaseVariant</a></li><li data-type='method'><a href="SpressoSdk.html#trackTapAddToCart">trackTapAddToCart</a></li><li data-type='method'><a href="SpressoSdk.html#trackViewPDP">trackViewPDP</a></li></ul></li></ul> </div>
+      <div class="navbar-heading" id="navbar-heading"><a href="index.html"><h2 class="navbar-heading-text">Getting Started</h2></a></div><div class="search-box" id="search-box"><div class="search-box-input-container"><input class="search-box-input" type="text" placeholder="Search..." id="search-box-input" /><svg class="search-icon" alt="search-icon"><use xlink:href="#search-icon"></use></svg></div><div class="search-item-container" id="search-item-container"><ul class="search-item-ul" id="search-item-ul"></ul></div></div><div class="sidebar-main-content" id="sidebar-main-content"><div class="accordion collapsed" id="8412586" > <h3 class="accordion-heading">Classes<svg><use xlink:href="#down-icon"></use></svg></h3><ul class="accordion-content"><li class="accordion collapsed child" id=5123984><div class="accordion-heading child"><a href="SpressoSdk.html">SpressoSdk</a><svg><use xlink:href="#down-icon"></use></svg></div><ul class='methods accordion-content'><li data-type='method'><a href="SpressoSdk.html#trackCreateOrder">trackCreateOrder</a></li><li data-type='method'><a href="SpressoSdk.html#trackGlimpsePLE">trackGlimpsePLE</a></li><li data-type='method'><a href="SpressoSdk.html#trackPageView">trackPageView</a></li><li data-type='method'><a href="SpressoSdk.html#trackPurchaseVariant">trackPurchaseVariant</a></li><li data-type='method'><a href="SpressoSdk.html#trackTapAddToCart">trackTapAddToCart</a></li><li data-type='method'><a href="SpressoSdk.html#trackViewPDP">trackViewPDP</a></li></ul></li></ul> </div>
       
 
     </nav>
@@ -129,14 +129,14 @@ class SpressoSdk {
     constructor() {
         this.eventsQueue = [];
         this.timerId = null;
-        this.tenantId = (isBrowser() &amp;&amp; window?.SpressoSdk?.tenantId) || null;
+        this.orgId = (isBrowser() &amp;&amp; window?.SpressoSdk?.orgId) || null;
 
         this.EXECUTE_DELAY = 3000;
         console.log('SpressoSdk CONSTRUCTED');
     }
 
-    init(tenantId) {
-        this.tenantId = tenantId;
+    init(orgId) {
+        this.orgId = orgId;
 
         initDeviceId();
         // addPageViewListener(this.trackPageView);
@@ -153,7 +153,6 @@ class SpressoSdk {
     }
 
     enqueue({ eventName, eventData = {} }) {
-        eventData.tenantId = this.tenantId;
         let eventObj = EventFactory[eventName]?.createEvent?.(eventData);
 
         if (typeof eventObj === 'object') {
@@ -169,7 +168,7 @@ class SpressoSdk {
     // fires API call
     execute() {
         const queuedEvents = this.flushQueue();
-        track(queuedEvents);
+        track({ orgId: this.orgId, events: queuedEvents });
     }
 
     executeLater() {
@@ -264,7 +263,6 @@ class SpressoSdk {
     }
 }
 
-// export default new SpressoSdk().init();
 export default new SpressoSdk();
 </code></pre>
         </article>

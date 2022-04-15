@@ -9,15 +9,16 @@ Paste the HTML script tag snippet within the `<head>` tag of your page and initi
 
 ```
 <script>
-    (function (tenantId) {
+    (function (orgId) {
+        var SpressoSdk = window.SpressoSdk || { init: function(orgId) { SpressoSdk.orgId = orgId; } }
         var s = document.createElement('script');
         s.type = 'text/javascript';
         s.async = true;
         s.src = 'https://boxed-spresso-sdk-staging-gcp.boxed.com/tracking-web/vX.Y.Z/spresso.sdk.tracking.web.js';
-        s.onload = function() { window.SpressoSdk.init(tenantId) }
+        s.onload = function() { SpressoSdk.init(orgId) }
         var x = document.getElementsByTagName('script')[0];
         x.parentNode.insertBefore(s, x);
-    })('tenantId');
+    })('orgId');
 </script>
 ```
 

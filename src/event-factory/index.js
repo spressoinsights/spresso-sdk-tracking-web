@@ -10,10 +10,9 @@ const getRootProps = function () {
     };
 };
 
-const getMetaProps = function ({ userId, tenantId }) {
+const getMetaProps = function ({ userId }) {
     const deviceId = getDeviceId();
     return {
-        tenantId,
         deviceId,
         userId: userId || deviceId,
     };
