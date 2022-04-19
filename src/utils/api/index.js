@@ -3,7 +3,8 @@ import { isBrowser } from 'utils/browser';
 
 const isDev = !process.env.NODE_ENV || process.env.NODE_ENV === 'development';
 
-const ENDPOINT = isDev ? 'http://localhost:1337/track' : 'https://34.111.61.186.nip.io/track';
+// const ENDPOINT = isDev ? 'http://localhost:1337/track' : 'https://34.111.61.186.nip.io/track';
+const ENDPOINT = 'https://staging-pensieve-0983.boxed.com/track';
 
 export const track = function ({ orgId, events }) {
     if (!isBrowser() || !events?.length) {
