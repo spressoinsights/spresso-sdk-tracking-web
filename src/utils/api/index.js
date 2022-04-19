@@ -23,7 +23,7 @@ export const track = function ({ orgId, events }) {
             method: 'POST',
             headers: {
                 'Content-type': 'application/json; charset=utf-8',
-                orgId: orgId,
+                'Org-id': orgId,
             },
             body,
         }).then((res) => {
