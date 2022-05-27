@@ -6,7 +6,7 @@ const isDev = !process.env.NODE_ENV || process.env.NODE_ENV === 'development';
 export const track = function ({ orgId, events, isStagingData }) {
     console.log({ isStagingData });
 
-    const ENDPOINT = 'https://public-pensieve-collector.us-east4.staging.spresso.com/track';
+    const ENDPOINT = 'https://public-pensieve-stats.us-east4.staging.spresso.com/track';
 
     if (!isBrowser() || !events?.length) {
         return;
@@ -24,7 +24,7 @@ export const track = function ({ orgId, events, isStagingData }) {
             method: 'POST',
             headers: {
                 'Content-type': 'application/json; charset=utf-8',
-                'Org-id': orgId,
+                'Org-Id': orgId,
             },
             body,
         }).then((res) => {
