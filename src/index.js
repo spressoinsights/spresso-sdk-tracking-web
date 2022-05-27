@@ -17,13 +17,15 @@ class SpressoSdk {
         this.eventsQueue = [];
         this.timerId = null;
         this.orgId = (isBrowser() && window?.SpressoSdk?.orgId) || null;
+        this.options = (isBrowser() && window?.SpressoSdk?.options) || {};
 
         this.EXECUTE_DELAY = 3000;
         console.log('SpressoSdk CONSTRUCTED');
     }
 
-    init(orgId) {
+    init(orgId, options = {}) {
         this.orgId = orgId;
+        this.options = options;
 
         initDeviceId();
         // addPageViewListener(this.trackPageView);
@@ -54,8 +56,9 @@ class SpressoSdk {
 
     // fires API call
     execute() {
+        const { isStagingData } = this.options;
         const queuedEvents = this.flushQueue();
-        track({ orgId: this.orgId, events: queuedEvents });
+        track({ orgId: this.orgId, events: queuedEvents, isStagingData });
     }
 
     executeLater() {

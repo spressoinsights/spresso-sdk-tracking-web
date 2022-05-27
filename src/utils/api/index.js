@@ -3,10 +3,11 @@ import { isBrowser } from 'utils/browser';
 
 const isDev = !process.env.NODE_ENV || process.env.NODE_ENV === 'development';
 
-// const ENDPOINT = isDev ? 'http://localhost:1337/track' : 'https://34.111.61.186.nip.io/track';
-const ENDPOINT = 'https://staging-pensieve-0983-public.boxed.com/track';
+export const track = function ({ orgId, events, isStagingData }) {
+    console.log({ isStagingData });
 
-export const track = function ({ orgId, events }) {
+    const ENDPOINT = 'https://public-pensieve-collector.us-east4.staging.spresso.com/track';
+
     if (!isBrowser() || !events?.length) {
         return;
     }
