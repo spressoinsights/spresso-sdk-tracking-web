@@ -105,7 +105,7 @@ export const EventFactory = {
     [CREATE_ORDER]: {
         createEvent: function ({ orderId, thestralFeatures, ...otherProps }) {
             return {
-                event: 'spressoPurchaseVariant',
+                event: 'spressoCreateOrder',
                 ...getRootProps(),
                 properties: {
                     ...getMetaProps(otherProps),
