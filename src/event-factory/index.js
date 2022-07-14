@@ -6,7 +6,7 @@ const getRootProps = function () {
 
     return {
         utcTimestampMs: currentTimestamp.getTime(),
-        timezoneOffsetTs: currentTimestamp.getTimezoneOffset(),
+        timezoneOffset: currentTimestamp.getTimezoneOffset() * 60 * 1000, // convert to milliseconds
     };
 };
 
@@ -57,7 +57,7 @@ export const EventFactory = {
     [GLIMPSE_PLE]: {
         createEvent: function ({ variantId, variantPrice, variantReport, ...otherProps }) {
             return {
-                event: 'spressoGlimpsePLE',
+                event: 'spressoGlimpsePle',
                 ...getRootProps(),
                 properties: {
                     ...getMetaProps(otherProps),
