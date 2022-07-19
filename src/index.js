@@ -16,15 +16,15 @@ class SpressoSdk {
     constructor() {
         this.eventsQueue = [];
         this.timerId = null;
-        this.orgId = (isBrowser() && window?.SpressoSdk?.orgId) || null;
+        this.orgId = (isBrowser() && window?.SpressoSdk?.options?.orgId) || null;
         this.options = (isBrowser() && window?.SpressoSdk?.options) || {};
 
         this.EXECUTE_DELAY = 3000;
         console.log('SpressoSdk CONSTRUCTED');
     }
 
-    init(orgId, options = {}) {
-        this.orgId = orgId;
+    init(options = {}) {
+        this.orgId = options.orgId;
         this.options = options;
 
         initDeviceId();
@@ -42,7 +42,12 @@ class SpressoSdk {
     }
 
     enqueue({ eventName, eventData = {} }) {
-        let eventObj = EventFactory[eventName]?.createEvent?.(eventData);
+        const { userId } = this.options; 
+
+        let eventObj = EventFactory[eventName]?.createEvent?.({
+            ...eventData,
+            ...(userId && { userId })
+        });
 
         if (typeof eventObj === 'object') {
             this.eventsQueue.push(eventObj);
@@ -56,9 +61,9 @@ class SpressoSdk {
 
     // fires API call
     execute() {
-        const { isStagingData } = this.options;
+        const { orgId, isStagingData } = this.options;
         const queuedEvents = this.flushQueue();
-        track({ orgId: this.orgId, events: queuedEvents, isStagingData });
+        track({ orgId, events: queuedEvents, isStagingData });
     }
 
     executeLater() {
