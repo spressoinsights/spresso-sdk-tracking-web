@@ -85,7 +85,7 @@
   <body>
 
     <nav class="navbar" id="navbar">
-      <div class="navbar-heading" id="navbar-heading"><a href="index.html"><h2 class="navbar-heading-text">Getting Started</h2></a></div><div class="search-box" id="search-box"><div class="search-box-input-container"><input class="search-box-input" type="text" placeholder="Search..." id="search-box-input" /><svg class="search-icon" alt="search-icon"><use xlink:href="#search-icon"></use></svg></div><div class="search-item-container" id="search-item-container"><ul class="search-item-ul" id="search-item-ul"></ul></div></div><div class="sidebar-main-content" id="sidebar-main-content"><div class="accordion collapsed" id="2832763" > <h3 class="accordion-heading">Classes<svg><use xlink:href="#down-icon"></use></svg></h3><ul class="accordion-content"><li class="accordion collapsed child" id=6493336><div class="accordion-heading child"><a href="SpressoSdk.html">SpressoSdk</a><svg><use xlink:href="#down-icon"></use></svg></div><ul class='methods accordion-content'><li data-type='method'><a href="SpressoSdk.html#trackCreateOrder">trackCreateOrder</a></li><li data-type='method'><a href="SpressoSdk.html#trackGlimpsePLE">trackGlimpsePLE</a></li><li data-type='method'><a href="SpressoSdk.html#trackPageView">trackPageView</a></li><li data-type='method'><a href="SpressoSdk.html#trackPurchaseVariant">trackPurchaseVariant</a></li><li data-type='method'><a href="SpressoSdk.html#trackTapAddToCart">trackTapAddToCart</a></li><li data-type='method'><a href="SpressoSdk.html#trackViewPDP">trackViewPDP</a></li></ul></li></ul> </div>
+      <div class="navbar-heading" id="navbar-heading"><a href="index.html"><h2 class="navbar-heading-text">Getting Started</h2></a></div><div class="search-box" id="search-box"><div class="search-box-input-container"><input class="search-box-input" type="text" placeholder="Search..." id="search-box-input" /><svg class="search-icon" alt="search-icon"><use xlink:href="#search-icon"></use></svg></div><div class="search-item-container" id="search-item-container"><ul class="search-item-ul" id="search-item-ul"></ul></div></div><div class="sidebar-main-content" id="sidebar-main-content"><div class="accordion collapsed" id="7453420" > <h3 class="accordion-heading">Classes<svg><use xlink:href="#down-icon"></use></svg></h3><ul class="accordion-content"><li class="accordion collapsed child" id=1483731><div class="accordion-heading child"><a href="SpressoSdk.html">SpressoSdk</a><svg><use xlink:href="#down-icon"></use></svg></div><ul class='methods accordion-content'><li data-type='method'><a href="SpressoSdk.html#trackCreateOrder">trackCreateOrder</a></li><li data-type='method'><a href="SpressoSdk.html#trackGlimpsePLE">trackGlimpsePLE</a></li><li data-type='method'><a href="SpressoSdk.html#trackPageView">trackPageView</a></li><li data-type='method'><a href="SpressoSdk.html#trackPurchaseVariant">trackPurchaseVariant</a></li><li data-type='method'><a href="SpressoSdk.html#trackTapAddToCart">trackTapAddToCart</a></li><li data-type='method'><a href="SpressoSdk.html#trackViewPDP">trackViewPDP</a></li></ul></li></ul> </div>
       
 
     </nav>
@@ -122,14 +122,14 @@
 <h2>Overview</h2>
 <p>Spresso Web SDK is a client-side JavaScript library you can install in your project to start sending event data from anywhere in your application.</p>
 <h3>1. Initialize the library in your project</h3>
-<p>Paste the HTML script tag snippet within the <code>&lt;head&gt;</code> tag of your page and initialize with your tenant ID.</p>
+<p>Paste the HTML script tag snippet within the <code>&lt;head&gt;</code> tag of your page and initialize with your Org ID.</p>
 <pre class="prettyprint source"><code>&lt;script>
     (function (orgId) {
         window.SpressoSdk = window.SpressoSdk || { init: function(orgId) { SpressoSdk.orgId = orgId; } }
         var s = document.createElement('script');
         s.type = 'text/javascript';
         s.async = true;
-        s.src = 'https://boxed-spresso-sdk-staging-gcp.boxed.com/tracking-web/vX.Y.Z/spresso.sdk.tracking.web.js';
+        s.src = 'https://boxed-spresso-sdk-staging-gcp.boxed.com/tracking-web/0.1.17-alpha/spresso.sdk.tracking.web.js';
         s.onload = function() { window.SpressoSdk.init(orgId) }
         var x = document.getElementsByTagName('script')[0];
         x.parentNode.insertBefore(s, x);
