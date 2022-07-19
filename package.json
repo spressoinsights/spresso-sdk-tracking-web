@@ -15,8 +15,9 @@
         "dev:prod-mode": "run-p dev:mb dev:setup start-prod-mode",
         "dev": "run-p dev:mb dev:setup start",
         "docs:clear": "rimraf docs",
+		"docs:generate-readme": "node src/scripts/generate-readme/index.js", 
         "docs:build": "jsdoc -c jsdoc.config.js src/index.js",
-        "docs:clear-and-build": "run-s docs:clear docs:build",
+        "docs:clear-and-build": "run-s docs:clear docs:generate-readme docs:build",
         "docs": "nodemon --exec npm run docs:clear-and-build --watch src --watch README.md",
         "test": "echo \"Error: no test specified\" && exit 1"
     },
@@ -29,6 +30,7 @@
         "clean-jsdoc-theme": "^3.3.3",
         "core-js": "^3.21.1",
         "cross-fetch": "^3.1.5",
+        "ejs": "^3.1.8",
         "get-port": "^5.1.1",
         "jsdoc": "^3.6.10",
         "mountebank": "^2.6.0",
