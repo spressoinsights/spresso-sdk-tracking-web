@@ -85,7 +85,7 @@
   <body>
 
     <nav class="navbar" id="navbar">
-      <div class="navbar-heading" id="navbar-heading"><a href="index.html"><h2 class="navbar-heading-text">Getting Started</h2></a></div><div class="search-box" id="search-box"><div class="search-box-input-container"><input class="search-box-input" type="text" placeholder="Search..." id="search-box-input" /><svg class="search-icon" alt="search-icon"><use xlink:href="#search-icon"></use></svg></div><div class="search-item-container" id="search-item-container"><ul class="search-item-ul" id="search-item-ul"></ul></div></div><div class="sidebar-main-content" id="sidebar-main-content"><div class="accordion collapsed" id="4635305" > <h3 class="accordion-heading">Classes<svg><use xlink:href="#down-icon"></use></svg></h3><ul class="accordion-content"><li class="accordion collapsed child" id=7652551><div class="accordion-heading child"><a href="SpressoSdk.html">SpressoSdk</a><svg><use xlink:href="#down-icon"></use></svg></div><ul class='methods accordion-content'><li data-type='method'><a href="SpressoSdk.html#trackCreateOrder">trackCreateOrder</a></li><li data-type='method'><a href="SpressoSdk.html#trackGlimpsePLE">trackGlimpsePLE</a></li><li data-type='method'><a href="SpressoSdk.html#trackPageView">trackPageView</a></li><li data-type='method'><a href="SpressoSdk.html#trackPurchaseVariant">trackPurchaseVariant</a></li><li data-type='method'><a href="SpressoSdk.html#trackTapAddToCart">trackTapAddToCart</a></li><li data-type='method'><a href="SpressoSdk.html#trackViewPDP">trackViewPDP</a></li></ul></li></ul> </div>
+      <div class="navbar-heading" id="navbar-heading"><a href="index.html"><h2 class="navbar-heading-text">Getting Started</h2></a></div><div class="search-box" id="search-box"><div class="search-box-input-container"><input class="search-box-input" type="text" placeholder="Search..." id="search-box-input" /><svg class="search-icon" alt="search-icon"><use xlink:href="#search-icon"></use></svg></div><div class="search-item-container" id="search-item-container"><ul class="search-item-ul" id="search-item-ul"></ul></div></div><div class="sidebar-main-content" id="sidebar-main-content"><div class="accordion collapsed" id="6611968" > <h3 class="accordion-heading">Classes<svg><use xlink:href="#down-icon"></use></svg></h3><ul class="accordion-content"><li class="accordion collapsed child" id=651652><div class="accordion-heading child"><a href="SpressoSdk.html">SpressoSdk</a><svg><use xlink:href="#down-icon"></use></svg></div><ul class='methods accordion-content'><li data-type='method'><a href="SpressoSdk.html#init">init</a></li><li data-type='method'><a href="SpressoSdk.html#trackCreateOrder">trackCreateOrder</a></li><li data-type='method'><a href="SpressoSdk.html#trackGlimpsePLE">trackGlimpsePLE</a></li><li data-type='method'><a href="SpressoSdk.html#trackPageView">trackPageView</a></li><li data-type='method'><a href="SpressoSdk.html#trackPurchaseVariant">trackPurchaseVariant</a></li><li data-type='method'><a href="SpressoSdk.html#trackTapAddToCart">trackTapAddToCart</a></li><li data-type='method'><a href="SpressoSdk.html#trackViewPDP">trackViewPDP</a></li></ul></li></ul> </div>
       
 
     </nav>
@@ -129,15 +129,20 @@ class SpressoSdk {
     constructor() {
         this.eventsQueue = [];
         this.timerId = null;
-        this.orgId = (isBrowser() &amp;&amp; window?.SpressoSdk?.orgId) || null;
+        this.orgId = (isBrowser() &amp;&amp; window?.SpressoSdk?.options?.orgId) || null;
         this.options = (isBrowser() &amp;&amp; window?.SpressoSdk?.options) || {};
 
         this.EXECUTE_DELAY = 3000;
         console.log('SpressoSdk CONSTRUCTED');
     }
 
-    init(orgId, options = {}) {
-        this.orgId = orgId;
+	 /**
+     * @param {object} options
+	 * @param {string} options.orgId - Your Org ID. 
+     * @param {string} [options.userId] - The customer's user ID. Defaults to `deviceId` for guests.
+     */
+    init(options = {}) {
+        this.orgId = options.orgId;
         this.options = options;
 
         initDeviceId();
@@ -155,7 +160,12 @@ class SpressoSdk {
     }
 
     enqueue({ eventName, eventData = {} }) {
-        let eventObj = EventFactory[eventName]?.createEvent?.(eventData);
+        const { userId } = this.options; 
+
+        let eventObj = EventFactory[eventName]?.createEvent?.({
+            ...eventData,
+            ...(userId &amp;&amp; { userId })
+        });
 
         if (typeof eventObj === 'object') {
             this.eventsQueue.push(eventObj);
@@ -169,9 +179,9 @@ class SpressoSdk {
 
     // fires API call
     execute() {
-        const { isStagingData } = this.options;
+        const { orgId, isStagingData } = this.options;
         const queuedEvents = this.flushQueue();
-        track({ orgId: this.orgId, events: queuedEvents, isStagingData });
+        track({ orgId, events: queuedEvents, isStagingData });
     }
 
     executeLater() {
@@ -208,7 +218,7 @@ class SpressoSdk {
      * @param {string} [eventData.userId] - The customer's user ID. Defaults to `deviceId` for guests.
      * @param {string} eventData.variantId - Variant ID.
      * @param {string} eventData.variantPrice - Variant price.
-     * @param {string} eventData.variantReport - Variant report.
+     * @param {object} eventData.variantReport - Variant report.
      */
     trackViewPDP(eventData = {}) {
         this.enqueue({ eventName: VIEW_PDP, eventData });
@@ -222,7 +232,7 @@ class SpressoSdk {
      * @param {string} [eventData.userId] - The customer's user ID. Defaults to `deviceId` for guests.
      * @param {string} eventData.variantId - Variant ID.
      * @param {string} eventData.variantPrice - Variant price.
-     * @param {string} eventData.variantReport - Variant report.
+     * @param {object} eventData.variantReport - Variant report.
      */
     trackGlimpsePLE({ root, target, glimpseThreshold, ...eventData } = {}) {
         addIntersectionObserver({
@@ -238,7 +248,7 @@ class SpressoSdk {
      * @param {string} [eventData.userId] - The customer's user ID. Defaults to `deviceId` for guests.
      * @param {string} eventData.variantId - Variant ID.
      * @param {string} eventData.variantPrice - Variant price.
-     * @param {string} eventData.variantReport - Variant report.
+     * @param {object} eventData.variantReport - Variant report.
      */
     trackTapAddToCart(eventData = {}) {
         this.enqueue({ eventName: TAP_ADD_TO_CART, eventData });
@@ -249,7 +259,7 @@ class SpressoSdk {
      * @param {string} [eventData.userId] - The customer's user ID. Defaults to `deviceId` for guests.
      * @param {string} eventData.variantId - Variant ID.
      * @param {string} eventData.variantPrice - Variant price.
-     * @param {string} eventData.variantReport - Variant report.
+     * @param {object} eventData.variantReport - Variant report.
      * @param {string} eventData.orderId - The customer's order ID.
      */
     trackPurchaseVariant(eventData = {}) {
@@ -292,7 +302,7 @@ export default new SpressoSdk();
       <script src="scripts/search.js"></script>
       <script src="scripts/third-party/fuse.js"></script>
       <script>
-        var list = [{"title":"SpressoSdk","link":"<a href=\"SpressoSdk.html\">SpressoSdk</a>"},{"title":"SpressoSdk#trackCreateOrder","link":"<a href=\"SpressoSdk.html#trackCreateOrder\">SpressoSdk &rtrif; trackCreateOrder</a>"},{"title":"SpressoSdk#trackGlimpsePLE","link":"<a href=\"SpressoSdk.html#trackGlimpsePLE\">SpressoSdk &rtrif; trackGlimpsePLE</a>"},{"title":"SpressoSdk#trackPageView","link":"<a href=\"SpressoSdk.html#trackPageView\">SpressoSdk &rtrif; trackPageView</a>"},{"title":"SpressoSdk#trackPurchaseVariant","link":"<a href=\"SpressoSdk.html#trackPurchaseVariant\">SpressoSdk &rtrif; trackPurchaseVariant</a>"},{"title":"SpressoSdk#trackTapAddToCart","link":"<a href=\"SpressoSdk.html#trackTapAddToCart\">SpressoSdk &rtrif; trackTapAddToCart</a>"},{"title":"SpressoSdk#trackViewPDP","link":"<a href=\"SpressoSdk.html#trackViewPDP\">SpressoSdk &rtrif; trackViewPDP</a>"}];
+        var list = [{"title":"SpressoSdk","link":"<a href=\"SpressoSdk.html\">SpressoSdk</a>"},{"title":"SpressoSdk#init","link":"<a href=\"SpressoSdk.html#init\">SpressoSdk &rtrif; init</a>"},{"title":"SpressoSdk#trackCreateOrder","link":"<a href=\"SpressoSdk.html#trackCreateOrder\">SpressoSdk &rtrif; trackCreateOrder</a>"},{"title":"SpressoSdk#trackGlimpsePLE","link":"<a href=\"SpressoSdk.html#trackGlimpsePLE\">SpressoSdk &rtrif; trackGlimpsePLE</a>"},{"title":"SpressoSdk#trackPageView","link":"<a href=\"SpressoSdk.html#trackPageView\">SpressoSdk &rtrif; trackPageView</a>"},{"title":"SpressoSdk#trackPurchaseVariant","link":"<a href=\"SpressoSdk.html#trackPurchaseVariant\">SpressoSdk &rtrif; trackPurchaseVariant</a>"},{"title":"SpressoSdk#trackTapAddToCart","link":"<a href=\"SpressoSdk.html#trackTapAddToCart\">SpressoSdk &rtrif; trackTapAddToCart</a>"},{"title":"SpressoSdk#trackViewPDP","link":"<a href=\"SpressoSdk.html#trackViewPDP\">SpressoSdk &rtrif; trackViewPDP</a>"}];
         var options = 
           setupSearch(list, options)
       </script>

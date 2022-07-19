@@ -9,16 +9,32 @@ Paste the HTML script tag snippet within the `<head>` tag of your page and initi
 
 ```
 <script>
-    (function (orgId) {
-        window.SpressoSdk = window.SpressoSdk || { init: function(orgId) { SpressoSdk.orgId = orgId; } }
+    (function (options) {
+        window.SpressoSdk = window.SpressoSdk || { init: function(o) { SpressoSdk.options = o; } }
         var s = document.createElement('script');
         s.type = 'text/javascript';
         s.async = true;
-        s.src = 'https://boxed-spresso-sdk-staging-gcp.boxed.com/tracking-web/v0.1.18-alpha/spresso.sdk.tracking.web.js';
-        s.onload = function() { window.SpressoSdk.init(orgId) }
+        s.src = 'https://boxed-spresso-sdk-staging-gcp.boxed.com/tracking-web/v1.1.18-alpha/spresso.sdk.tracking.web.js';
+        s.onload = function() { window.SpressoSdk.init(options) }
         var x = document.getElementsByTagName('script')[0];
         x.parentNode.insertBefore(s, x);
-    })('orgId');
+    })({ orgId: 'YOUR_ORG_ID' });
+</script>
+```
+
+If User ID is available, paste the HTML script tag snippet below to initialize with Org ID and User ID. 
+```
+<script>
+    (function (options) {
+        window.SpressoSdk = window.SpressoSdk || { init: function(o) { SpressoSdk.options = o; } }
+        var s = document.createElement('script');
+        s.type = 'text/javascript';
+        s.async = true;
+        s.src = 'https://boxed-spresso-sdk-staging-gcp.boxed.com/tracking-web/v1.1.18-alpha/spresso.sdk.tracking.web.js';
+        s.onload = function() { window.SpressoSdk.init(options) }
+        var x = document.getElementsByTagName('script')[0];
+        x.parentNode.insertBefore(s, x);
+    })({ orgId: 'YOUR_ORG_ID', userId: 'USER_ID' });
 </script>
 ```
 
@@ -34,4 +50,4 @@ SpressoSdk.trackViewPDP({
 });
 ```
 
-Click [here](SpressoSdk.html) for the all the events that you can send. 
+Click [here](SpressoSdk.html) for all the events that you can send. 
