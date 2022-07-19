@@ -18,7 +18,7 @@
 		"docs:generate-readme": "node src/scripts/generate-readme/index.js", 
         "docs:build": "jsdoc -c jsdoc.config.js src/index.js",
         "docs:clear-and-build": "run-s docs:clear docs:generate-readme docs:build",
-        "docs": "nodemon --exec npm run docs:clear-and-build --watch src --watch README.md",
+        "docs": "nodemon --exec npm run docs:clear-and-build --watch src",
         "test": "echo \"Error: no test specified\" && exit 1"
     },
     "author": "Suhan Wijaya",
