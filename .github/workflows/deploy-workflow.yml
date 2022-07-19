@@ -31,9 +31,11 @@ jobs:
                   path: './dist/spresso.sdk.tracking.web.js'
                   destination: 'spresso-sdk/tracking-web/${{ env.RELEASE_VERSION }}'
             - id: 'update-docs'
+              name: 'Update Docs'
               run: npm run docs:clear-and-build
             - id: 'publish-docs'
               name: 'Publish Docs'
               uses: stefanzweifel/git-auto-commit-action@v4
               with:
+                branch: main
                 commit_message: Automated docs publish
