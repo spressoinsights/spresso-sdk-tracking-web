@@ -95,7 +95,7 @@ class SpressoSdk {
      * @param {string} [eventData.userId] - The customer's user ID. Defaults to `deviceId` for guests.
      * @param {string} eventData.variantId - Variant ID.
      * @param {string} eventData.variantPrice - Variant price.
-     * @param {string} eventData.variantReport - Variant report.
+     * @param {object} eventData.variantReport - Variant report.
      */
     trackViewPDP(eventData = {}) {
         this.enqueue({ eventName: VIEW_PDP, eventData });
@@ -109,7 +109,7 @@ class SpressoSdk {
      * @param {string} [eventData.userId] - The customer's user ID. Defaults to `deviceId` for guests.
      * @param {string} eventData.variantId - Variant ID.
      * @param {string} eventData.variantPrice - Variant price.
-     * @param {string} eventData.variantReport - Variant report.
+     * @param {object} eventData.variantReport - Variant report.
      */
     trackGlimpsePLE({ root, target, glimpseThreshold, ...eventData } = {}) {
         addIntersectionObserver({
@@ -125,7 +125,7 @@ class SpressoSdk {
      * @param {string} [eventData.userId] - The customer's user ID. Defaults to `deviceId` for guests.
      * @param {string} eventData.variantId - Variant ID.
      * @param {string} eventData.variantPrice - Variant price.
-     * @param {string} eventData.variantReport - Variant report.
+     * @param {object} eventData.variantReport - Variant report.
      */
     trackTapAddToCart(eventData = {}) {
         this.enqueue({ eventName: TAP_ADD_TO_CART, eventData });
@@ -136,7 +136,7 @@ class SpressoSdk {
      * @param {string} [eventData.userId] - The customer's user ID. Defaults to `deviceId` for guests.
      * @param {string} eventData.variantId - Variant ID.
      * @param {string} eventData.variantPrice - Variant price.
-     * @param {string} eventData.variantReport - Variant report.
+     * @param {object} eventData.variantReport - Variant report.
      * @param {string} eventData.orderId - The customer's order ID.
      */
     trackPurchaseVariant(eventData = {}) {
