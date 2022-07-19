@@ -23,6 +23,11 @@ class SpressoSdk {
         console.log('SpressoSdk CONSTRUCTED');
     }
 
+	 /**
+     * @param {object} options
+	 * @param {string} options.orgId - Your Org ID. 
+     * @param {string} [options.userId] - The customer's user ID. Defaults to `deviceId` for guests.
+     */
     init(options = {}) {
         this.orgId = options.orgId;
         this.options = options;
