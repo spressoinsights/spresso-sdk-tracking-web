@@ -99,6 +99,8 @@ class SpressoSdk {
     }
 
     /**
+	 * Tracks when a user navigates to a Product Display Page. Should only fire once on fresh page load or after a SPA transition. 
+	 * Should be used in addition to {@link SpressoSdk#trackPageView}. 
      * @param {object} eventData
      * @param {string} [eventData.userId] - The customer's user ID. Defaults to `deviceId` for guests.
      * @param {string} eventData.variantId - Variant ID.
@@ -154,7 +156,7 @@ class SpressoSdk {
      * @param {object} eventData
      * @param {string} [eventData.userId] - The customer's user ID. Defaults to `deviceId` for guests.
      * @param {string} eventData.variantId - Variant ID.
-     * @param {number} eventData.variantPrice - Variant price.
+     * @param {number} eventData.variantPriceTotal - Variant price total (includes tax and shipping).
      * @param {object} eventData.variantReport - Variant report.
      * @param {string} eventData.orderId - The customer's order ID.
      */
