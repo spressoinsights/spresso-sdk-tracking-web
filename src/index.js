@@ -1,17 +1,11 @@
-import { addPageViewListener, addBeforeUnloadListener, addIntersectionObserver, isBrowser } from 'utils/browser';
+import { addBeforeUnloadListener, addIntersectionObserver, isBrowser } from 'utils/browser';
 import { initDeviceId } from 'utils/properties';
 import { track } from 'utils/api';
-import {
-    EventFactory,
-    PAGE_VIEW,
-    VIEW_PDP,
-    GLIMPSE_PLE,
-    TAP_ADD_TO_CART,
-    PURCHASE_VARIANT,
-    CREATE_ORDER,
-} from 'event-factory';
+import { EventFactory, EVENT_NAMES } from 'event-factory';
 
-/** Instantiated on page load. Accessible on `window.SpressoSdk` */
+/**
+ * Instantiated on page load. Accessible on `window.SpressoSdk`.
+ */
 class SpressoSdk {
     constructor() {
         this.eventsQueue = [];
@@ -23,17 +17,11 @@ class SpressoSdk {
         console.log('SpressoSdk CONSTRUCTED');
     }
 
-	 /**
-     * @param {object} options
-	 * @param {string} options.orgId - Your Org ID. 
-     * @param {string} [options.userId] - The customer's user ID. Defaults to `deviceId` for guests.
-     */
     init(options = {}) {
         this.orgId = options.orgId;
         this.options = options;
 
         initDeviceId();
-        // addPageViewListener(this.trackPageView);
         addBeforeUnloadListener(this.executeNow.bind(this));
 
         console.log('SpressoSdk INITIALIZED');
@@ -46,12 +34,22 @@ class SpressoSdk {
         return previousQueue;
     }
 
-    enqueue({ eventName, eventData = {} }) {
-        const { userId } = this.options; 
+    /**
+     * @example
+     * SpressoSdk.queueEvent('VIEW_PDP', {
+     * 	variantId: 'some-id',
+     * 	variantPrice: 100000
+     * });
+     * @param {object} data
+     * @param {EVENT_NAMES} data.eventName - Click on `EVENT_NAMES` for a list of possible values.
+     * @param {object} data.eventData - Click on `EVENT_NAMES` for required `eventData` properties.
+     */
+    queueEvent({ eventName, eventData = {} }) {
+        const { userId } = this.options;
 
         let eventObj = EventFactory[eventName]?.createEvent?.({
             ...eventData,
-            ...(userId && { userId })
+            ...(userId && { userId }),
         });
 
         if (typeof eventObj === 'object') {
@@ -97,18 +95,18 @@ class SpressoSdk {
      * @param {string} [eventData.userId] - The customer's user ID. Defaults to `deviceId` for guests.
      */
     trackPageView(eventData = {}) {
-        this.enqueue({ eventName: PAGE_VIEW, eventData });
+        this.queueEvent({ eventName: EVENT_NAMES.PAGE_VIEW, eventData });
     }
 
     /**
      * @param {object} eventData
      * @param {string} [eventData.userId] - The customer's user ID. Defaults to `deviceId` for guests.
      * @param {string} eventData.variantId - Variant ID.
-     * @param {string} eventData.variantPrice - Variant price.
+     * @param {number} eventData.variantPrice - Variant price.
      * @param {object} eventData.variantReport - Variant report.
      */
     trackViewPDP(eventData = {}) {
-        this.enqueue({ eventName: VIEW_PDP, eventData });
+        this.queueEvent({ eventName: EVENT_NAMES.VIEW_PDP, eventData });
     }
 
     /**
@@ -118,12 +116,12 @@ class SpressoSdk {
      * @param {number} [eventData.glimpseThreshold=1] - The area of the PLE element that's visible in the viewport, expressed as a ratio, to trigger the event.
      * @param {string} [eventData.userId] - The customer's user ID. Defaults to `deviceId` for guests.
      * @param {string} eventData.variantId - Variant ID.
-     * @param {string} eventData.variantPrice - Variant price.
+     * @param {number} eventData.variantPrice - Variant price.
      * @param {object} eventData.variantReport - Variant report.
      */
-    trackGlimpsePLE({ root, target, glimpseThreshold, ...eventData } = {}) {
+    registerGlimpsePLE({ root, target, glimpseThreshold, ...eventData } = {}) {
         addIntersectionObserver({
-            listener: () => this.enqueue({ eventName: GLIMPSE_PLE, eventData }),
+            listener: () => this.trackGlimpsePLE(eventData),
             root,
             target,
             threshold: glimpseThreshold,
@@ -134,23 +132,34 @@ class SpressoSdk {
      * @param {object} eventData
      * @param {string} [eventData.userId] - The customer's user ID. Defaults to `deviceId` for guests.
      * @param {string} eventData.variantId - Variant ID.
-     * @param {string} eventData.variantPrice - Variant price.
+     * @param {number} eventData.variantPrice - Variant price.
      * @param {object} eventData.variantReport - Variant report.
      */
-    trackTapAddToCart(eventData = {}) {
-        this.enqueue({ eventName: TAP_ADD_TO_CART, eventData });
+    trackGlimpsePLE(eventData = {}) {
+        this.queueEvent({ eventName: EVENT_NAMES.GLIMPSE_PLE, eventData });
     }
 
     /**
      * @param {object} eventData
      * @param {string} [eventData.userId] - The customer's user ID. Defaults to `deviceId` for guests.
      * @param {string} eventData.variantId - Variant ID.
-     * @param {string} eventData.variantPrice - Variant price.
+     * @param {number} eventData.variantPrice - Variant price.
+     * @param {object} eventData.variantReport - Variant report.
+     */
+    trackTapAddToCart(eventData = {}) {
+        this.queueEvent({ eventName: EVENT_NAMES.TAP_ADD_TO_CART, eventData });
+    }
+
+    /**
+     * @param {object} eventData
+     * @param {string} [eventData.userId] - The customer's user ID. Defaults to `deviceId` for guests.
+     * @param {string} eventData.variantId - Variant ID.
+     * @param {number} eventData.variantPrice - Variant price.
      * @param {object} eventData.variantReport - Variant report.
      * @param {string} eventData.orderId - The customer's order ID.
      */
     trackPurchaseVariant(eventData = {}) {
-        this.enqueue({ eventName: PURCHASE_VARIANT, eventData });
+        this.queueEvent({ eventName: EVENT_NAMES.PURCHASE_VARIANT, eventData });
     }
 
     /**
@@ -159,7 +168,7 @@ class SpressoSdk {
      * @param {string} eventData.orderId - The customer's order ID.
      */
     trackCreateOrder(eventData = {}) {
-        this.enqueue({ eventName: CREATE_ORDER, eventData });
+        this.queueEvent({ eventName: EVENT_NAMES.CREATE_ORDER, eventData });
     }
 }
 

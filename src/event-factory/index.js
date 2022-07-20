@@ -18,15 +18,27 @@ const getMetaProps = function ({ userId }) {
     };
 };
 
-export const PAGE_VIEW = 'PAGE_VIEW';
-export const VIEW_PDP = 'VIEW_PDP';
-export const GLIMPSE_PLE = 'GLIMPSE_PLE';
-export const TAP_ADD_TO_CART = 'TAP_ADD_TO_CART';
-export const PURCHASE_VARIANT = 'PURCHASE_VARIANT';
-export const CREATE_ORDER = 'CREATE_ORDER';
+/**
+ * A list of event names that can be passed into {@link SpressoSdk#queueEvent}.
+ * @namespace EVENT_NAMES
+ * @property {string} CREATE_ORDER='CREATE_ORDER' - Requires the same `eventData` as {@link SpressoSdk#trackCreateOrder}.
+ * @property {string} GLIMPSE_PLE='GLIMPSE_PLE' - Requires the same `eventData` as {@link SpressoSdk#trackGlimpsePLE}.
+ * @property {string} PAGE_VIEW='PAGE_VIEW' - Requires the same `eventData` as {@link SpressoSdk#trackPageView}.
+ * @property {string} PURCHASE_VARIANT='PURCHASE_VARIANT' - Requires the same `eventData` as {@link SpressoSdk#trackPurchaseVariant}.
+ * @property {string} TAP_ADD_TO_CART='TAP_ADD_TO_CART' - Requires the same `eventData` as {@link SpressoSdk#trackTapAddToCart}.
+ * @property {string} VIEW_PDP='VIEW_PDP' - Requires the same `eventData` as {@link SpressoSdk#trackViewPDP}.
+ */
+ export const EVENT_NAMES = {
+    CREATE_ORDER: 'CREATE_ORDER',
+    GLIMPSE_PLE: 'GLIMPSE_PLE',
+    PAGE_VIEW: 'PAGE_VIEW',
+    PURCHASE_VARIANT: 'PURCHASE_VARIANT',
+    TAP_ADD_TO_CART: 'TAP_ADD_TO_CART',
+    VIEW_PDP: 'VIEW_PDP',
+};
 
 export const EventFactory = {
-    [PAGE_VIEW]: {
+    [EVENT_NAMES.PAGE_VIEW]: {
         createEvent: function ({ ...otherProps }) {
             return {
                 event: 'spressoPageView',
@@ -39,7 +51,7 @@ export const EventFactory = {
         },
     },
 
-    [VIEW_PDP]: {
+    [EVENT_NAMES.VIEW_PDP]: {
         createEvent: function ({ variantId, variantPrice, variantReport, ...otherProps }) {
             return {
                 event: 'spressoViewPDP',
@@ -54,7 +66,7 @@ export const EventFactory = {
         },
     },
 
-    [GLIMPSE_PLE]: {
+    [EVENT_NAMES.GLIMPSE_PLE]: {
         createEvent: function ({ variantId, variantPrice, variantReport, ...otherProps }) {
             return {
                 event: 'spressoGlimpsePle',
@@ -69,7 +81,7 @@ export const EventFactory = {
         },
     },
 
-    [TAP_ADD_TO_CART]: {
+    [EVENT_NAMES.TAP_ADD_TO_CART]: {
         createEvent: function ({ variantId, variantPrice, variantReport, thestralFeatures, ...otherProps }) {
             return {
                 event: 'spressoTapAddToCart',
@@ -85,7 +97,7 @@ export const EventFactory = {
         },
     },
 
-    [PURCHASE_VARIANT]: {
+    [EVENT_NAMES.PURCHASE_VARIANT]: {
         createEvent: function ({ variantId, variantPrice, variantReport, orderId, thestralFeatures, ...otherProps }) {
             return {
                 event: 'spressoPurchaseVariant',
@@ -102,7 +114,7 @@ export const EventFactory = {
         },
     },
 
-    [CREATE_ORDER]: {
+    [EVENT_NAMES.CREATE_ORDER]: {
         createEvent: function ({ orderId, thestralFeatures, ...otherProps }) {
             return {
                 event: 'spressoCreateOrder',

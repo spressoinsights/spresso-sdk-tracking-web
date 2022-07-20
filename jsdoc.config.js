@@ -1,6 +1,10 @@
 'use strict';
 
 module.exports = {
+    source: {
+        include: ['src', 'src/event-factory'],
+    },
+
     plugins: ['plugins/markdown'],
 
     opts: {
@@ -11,6 +15,12 @@ module.exports = {
             theme: 'light',
             favicon: 'https://app.spresso.com/public/favicon.svg',
             title: 'Getting Started',
+        },
+    },
+
+    templates: {
+        default: {
+            outputSourceFiles: false,
         },
     },
 };
