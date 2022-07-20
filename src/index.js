@@ -2,6 +2,7 @@ import { addBeforeUnloadListener, addIntersectionObserver, isBrowser } from 'uti
 import { initDeviceId } from 'utils/properties';
 import { track } from 'utils/api';
 import { EventFactory, EVENT_NAMES } from 'event-factory';
+import { consoleLog } from 'utils/debug';
 
 /**
  * Instantiated on page load. Accessible on `window.SpressoSdk`.
@@ -14,7 +15,7 @@ class SpressoSdk {
         this.options = (isBrowser() && window?.SpressoSdk?.options) || {};
 
         this.EXECUTE_DELAY = 3000;
-        console.log('SpressoSdk CONSTRUCTED');
+        consoleLog('SpressoSdk CONSTRUCTED');
     }
 
     init(options = {}) {
@@ -24,7 +25,7 @@ class SpressoSdk {
         initDeviceId();
         addBeforeUnloadListener(this.executeNow.bind(this));
 
-        console.log('SpressoSdk INITIALIZED');
+        consoleLog('SpressoSdk INITIALIZED');
         return this;
     }
 
@@ -70,13 +71,13 @@ class SpressoSdk {
     }
 
     executeLater() {
-        // console.log('execute later');
+        // consoleLog('execute later');
         this.timerId =
             isBrowser() &&
             window?.setTimeout?.(() => {
                 this.execute();
                 this.timerId = null;
-                // console.log('after timeout');
+                // consoleLog('after timeout');
             }, this.EXECUTE_DELAY);
     }
 
@@ -99,8 +100,8 @@ class SpressoSdk {
     }
 
     /**
-	 * Tracks when a user navigates to a Product Display Page. Should only fire once on fresh page load or after a SPA transition. 
-	 * Should be used in addition to {@link SpressoSdk#trackPageView}. 
+     * Tracks when a user navigates to a Product Display Page. Should only fire once on fresh page load or after a SPA transition.
+     * Should be used in addition to {@link SpressoSdk#trackPageView}.
      * @param {object} eventData
      * @param {string} [eventData.userId] - The customer's user ID. Defaults to `deviceId` for guests.
      * @param {string} eventData.variantId - Variant ID.

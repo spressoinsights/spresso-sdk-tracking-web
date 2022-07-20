@@ -1,10 +1,11 @@
 import 'cross-fetch/polyfill';
 import { isBrowser } from 'utils/browser';
+import { consoleLog } from 'utils/debug';
 
 const isDev = !process.env.NODE_ENV || process.env.NODE_ENV === 'development';
 
 export const track = function ({ orgId, events, isStagingData }) {
-    console.log({ isStagingData });
+    consoleLog({ isStagingData });
 
     const ENDPOINT = 'https://public-pensieve-stats.us-east4.staging.spresso.com/track';
 
@@ -17,7 +18,7 @@ export const track = function ({ orgId, events, isStagingData }) {
     };
 
     try {
-        console.log('FIRE', JSON.stringify(body, null, 2));
+        consoleLog('FIRE', JSON.stringify(body, null, 2));
         body = JSON.stringify(body);
 
         fetch?.(ENDPOINT, {
@@ -33,7 +34,7 @@ export const track = function ({ orgId, events, isStagingData }) {
             }
             // return res.json();
         });
-        // .then((data) => console.log(data));
+        // .then((data) => consoleLog(data));
     } catch (error) {
         console.error(error);
     }
