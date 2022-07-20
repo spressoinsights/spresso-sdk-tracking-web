@@ -33,7 +33,7 @@
 
 
     <title>
-      Home
+      EVENT_NAMES
     </title>
 
     <!--[if lt IE 9]>
@@ -99,69 +99,277 @@
 
     <div id="main" class="main-content">
       
+      <h1 id='page-title' class="page-title">
+        EVENT_NAMES
+      </h1>
+      
 
       
 
 
 
+
+<section>
+
+
+<header>
+    
+        
+        <h2>
+        
+        EVENT_NAMES
+        
+        </h2>
+        
+        
+    
+</header>
+
+
+<article>
+    <div class="container-overview">
+    
+        
+            <div class="description"><p>A list of event names that can be passed into <a href="SpressoSdk.html#queueEvent">SpressoSdk#queueEvent</a>.</p></div>
+        
+
+        
+
+
+
+    <h5 class="subsection-title">Properties</h5>
+
+    
+<div class="allow-overflow">
+<table class="props">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+        <th>Default</th>
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
     
 
+        <tr>
+            
+                <td class="name"><code>CREATE_ORDER</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
 
 
+            
+            </td>
 
+            
 
+            
+                <td class="default">
+                
+                    'CREATE_ORDER'
+                
+                </td>
+            
 
-
-
+            <td class="description last"><p>Requires the same <code>eventData</code> as <a href="SpressoSdk.html#trackCreateOrder">SpressoSdk#trackCreateOrder</a>.</p></td>
+        </tr>
 
     
 
+        <tr>
+            
+                <td class="name"><code>GLIMPSE_PLE</code></td>
+            
 
-    <section class="readme">
-        <article><h1>Spresso Web SDK</h1>
-<h2>Overview</h2>
-<p>Spresso Web SDK is a client-side JavaScript library you can install in your project to start sending event data from anywhere in your application.</p>
-<h3>1. Initialize the library in your project</h3>
-<p>Paste the HTML script tag snippet within the <code>&lt;head&gt;</code> tag of your page and initialize with your Org ID.</p>
-<pre class="prettyprint source"><code>&lt;script>
-    (function (options) {
-        window.SpressoSdk = window.SpressoSdk || { init: function(o) { SpressoSdk.options = o; } }
-        var s = document.createElement('script');
-        s.type = 'text/javascript';
-        s.async = true;
-        s.src = 'https://boxed-spresso-sdk-staging-gcp.boxed.com/tracking-web/v1.2.18-alpha/spresso.sdk.tracking.web.js';
-        s.onload = function() { window.SpressoSdk.init(options) }
-        var x = document.getElementsByTagName('script')[0];
-        x.parentNode.insertBefore(s, x);
-    })({ orgId: 'YOUR_ORG_ID' });
-&lt;/script>
-</code></pre>
-<p>If User ID is available, paste the HTML script tag snippet below to initialize with Org ID and User ID.</p>
-<pre class="prettyprint source"><code>&lt;script>
-    (function (options) {
-        window.SpressoSdk = window.SpressoSdk || { init: function(o) { SpressoSdk.options = o; } }
-        var s = document.createElement('script');
-        s.type = 'text/javascript';
-        s.async = true;
-        s.src = 'https://boxed-spresso-sdk-staging-gcp.boxed.com/tracking-web/v1.2.18-alpha/spresso.sdk.tracking.web.js';
-        s.onload = function() { window.SpressoSdk.init(options) }
-        var x = document.getElementsByTagName('script')[0];
-        x.parentNode.insertBefore(s, x);
-    })({ orgId: 'YOUR_ORG_ID', userId: 'USER_ID' });
-&lt;/script>
-</code></pre>
-<h3>2. Send Data</h3>
-<p>Let's get started by sending event data, for example, when a user views a Product Details Page (PDP).</p>
-<pre class="prettyprint source lang-javascript"><code>SpressoSdk.trackViewPDP({
-    variantId: 'some-id',
-    variantPrice: 1000000,
-    userId: 'awesome-customer-id',
-});
-</code></pre>
-<p>Click <a href="SpressoSdk.html">here</a> for all the events that you can send.</p></article>
-    </section>
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
 
 
+            
+            </td>
+
+            
+
+            
+                <td class="default">
+                
+                    'GLIMPSE_PLE'
+                
+                </td>
+            
+
+            <td class="description last"><p>Requires the same <code>eventData</code> as <a href="SpressoSdk.html#trackGlimpsePLE">SpressoSdk#trackGlimpsePLE</a>.</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>PAGE_VIEW</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+
+            
+                <td class="default">
+                
+                    'PAGE_VIEW'
+                
+                </td>
+            
+
+            <td class="description last"><p>Requires the same <code>eventData</code> as <a href="SpressoSdk.html#trackPageView">SpressoSdk#trackPageView</a>.</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>PURCHASE_VARIANT</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+
+            
+                <td class="default">
+                
+                    'PURCHASE_VARIANT'
+                
+                </td>
+            
+
+            <td class="description last"><p>Requires the same <code>eventData</code> as <a href="SpressoSdk.html#trackPurchaseVariant">SpressoSdk#trackPurchaseVariant</a>.</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>TAP_ADD_TO_CART</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+
+            
+                <td class="default">
+                
+                    'TAP_ADD_TO_CART'
+                
+                </td>
+            
+
+            <td class="description last"><p>Requires the same <code>eventData</code> as <a href="SpressoSdk.html#trackTapAddToCart">SpressoSdk#trackTapAddToCart</a>.</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>VIEW_PDP</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+
+            
+                <td class="default">
+                
+                    'VIEW_PDP'
+                
+                </td>
+            
+
+            <td class="description last"><p>Requires the same <code>eventData</code> as <a href="SpressoSdk.html#trackViewPDP">SpressoSdk#trackViewPDP</a>.</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+</div>
+
+
+
+
+
+
+
+        
+    
+    </div>
+
+    
+
+    
+
+    
+
+     
+
+    
+
+    
+
+    
+
+    
+
+    
+</article>
+
+</section>
 
 
 
