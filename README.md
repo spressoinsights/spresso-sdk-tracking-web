@@ -14,7 +14,7 @@ Paste the HTML script tag snippet within the `<head>` tag of your page and initi
         var s = document.createElement('script');
         s.type = 'text/javascript';
         s.async = true;
-        s.src = 'https://boxed-spresso-sdk-staging-gcp.boxed.com/tracking-web/v2.2.18-alpha/spresso.sdk.tracking.web.js';
+        s.src = 'https://boxed-spresso-sdk-staging-gcp.boxed.com/tracking-web/v2.2.19-alpha/spresso.sdk.tracking.web.js';
         s.onload = function() { window.SpressoSdk.init(options) }
         var x = document.getElementsByTagName('script')[0];
         x.parentNode.insertBefore(s, x);
@@ -30,7 +30,7 @@ If User ID is available, paste the HTML script tag snippet below to initialize w
         var s = document.createElement('script');
         s.type = 'text/javascript';
         s.async = true;
-        s.src = 'https://boxed-spresso-sdk-staging-gcp.boxed.com/tracking-web/v2.2.18-alpha/spresso.sdk.tracking.web.js';
+        s.src = 'https://boxed-spresso-sdk-staging-gcp.boxed.com/tracking-web/v2.2.19-alpha/spresso.sdk.tracking.web.js';
         s.onload = function() { window.SpressoSdk.init(options) }
         var x = document.getElementsByTagName('script')[0];
         x.parentNode.insertBefore(s, x);
