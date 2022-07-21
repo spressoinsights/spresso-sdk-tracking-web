@@ -85,7 +85,7 @@
   <body>
 
     <nav class="navbar" id="navbar">
-      <div class="navbar-heading" id="navbar-heading"><a href="index.html"><h2 class="navbar-heading-text">Getting Started</h2></a></div><div class="search-box" id="search-box"><div class="search-box-input-container"><input class="search-box-input" type="text" placeholder="Search..." id="search-box-input" /><svg class="search-icon" alt="search-icon"><use xlink:href="#search-icon"></use></svg></div><div class="search-item-container" id="search-item-container"><ul class="search-item-ul" id="search-item-ul"></ul></div></div><div class="sidebar-main-content" id="sidebar-main-content"><div class="accordion collapsed" id="1234682" > <h3 class="accordion-heading">Classes<svg><use xlink:href="#down-icon"></use></svg></h3><ul class="accordion-content"><li class="accordion collapsed child" id=7604313><div class="accordion-heading child"><a href="SpressoSdk.html">SpressoSdk</a><svg><use xlink:href="#down-icon"></use></svg></div><ul class='methods accordion-content'><li data-type='method'><a href="SpressoSdk.html#queueEvent">queueEvent</a></li><li data-type='method'><a href="SpressoSdk.html#registerGlimpsePLE">registerGlimpsePLE</a></li><li data-type='method'><a href="SpressoSdk.html#trackCreateOrder">trackCreateOrder</a></li><li data-type='method'><a href="SpressoSdk.html#trackGlimpsePLE">trackGlimpsePLE</a></li><li data-type='method'><a href="SpressoSdk.html#trackPageView">trackPageView</a></li><li data-type='method'><a href="SpressoSdk.html#trackPurchaseVariant">trackPurchaseVariant</a></li><li data-type='method'><a href="SpressoSdk.html#trackTapAddToCart">trackTapAddToCart</a></li><li data-type='method'><a href="SpressoSdk.html#trackViewPDP">trackViewPDP</a></li></ul></li></ul> </div><div class="accordion collapsed" id="4201051" > <h3 class="accordion-heading">Namespaces<svg><use xlink:href="#down-icon"></use></svg></h3><ul class="accordion-content"><li class="accordion-list" id=""><a href="EVENT_NAMES.html">EVENT_NAMES</a></li></ul> </div>
+      <div class="navbar-heading" id="navbar-heading"><a href="index.html"><h2 class="navbar-heading-text">Getting Started</h2></a></div><div class="search-box" id="search-box"><div class="search-box-input-container"><input class="search-box-input" type="text" placeholder="Search..." id="search-box-input" /><svg class="search-icon" alt="search-icon"><use xlink:href="#search-icon"></use></svg></div><div class="search-item-container" id="search-item-container"><ul class="search-item-ul" id="search-item-ul"></ul></div></div><div class="sidebar-main-content" id="sidebar-main-content"><div class="accordion collapsed" id="6276070" > <h3 class="accordion-heading">Classes<svg><use xlink:href="#down-icon"></use></svg></h3><ul class="accordion-content"><li class="accordion collapsed child" id=3212412><div class="accordion-heading child"><a href="SpressoSdk.html">SpressoSdk</a><svg><use xlink:href="#down-icon"></use></svg></div><ul class='methods accordion-content'><li data-type='method'><a href="SpressoSdk.html#queueEvent">queueEvent</a></li><li data-type='method'><a href="SpressoSdk.html#registerGlimpsePLE">registerGlimpsePLE</a></li><li data-type='method'><a href="SpressoSdk.html#trackCreateOrder">trackCreateOrder</a></li><li data-type='method'><a href="SpressoSdk.html#trackGlimpsePLE">trackGlimpsePLE</a></li><li data-type='method'><a href="SpressoSdk.html#trackPageView">trackPageView</a></li><li data-type='method'><a href="SpressoSdk.html#trackPurchaseVariant">trackPurchaseVariant</a></li><li data-type='method'><a href="SpressoSdk.html#trackTapAddToCart">trackTapAddToCart</a></li><li data-type='method'><a href="SpressoSdk.html#trackViewPDP">trackViewPDP</a></li></ul></li></ul> </div><div class="accordion collapsed" id="30983" > <h3 class="accordion-heading">Namespaces<svg><use xlink:href="#down-icon"></use></svg></h3><ul class="accordion-content"><li class="accordion-list" id=""><a href="EVENT_NAMES.html">EVENT_NAMES</a></li></ul> </div>
       
 
     </nav>
@@ -207,6 +207,10 @@
     
 
 
+
+    <div class="description">
+        <p>Generic method to track events. Click on <code>EVENT_NAMES</code> for a list of supported events.</p>
+    </div>
 
 
 
@@ -616,7 +620,7 @@
                 </td>
             
 
-            <td class="description last"><p>The customer's user ID. Defaults to <code>deviceId</code> for guests.</p></td>
+            <td class="description last"><p>The customer's user ID. Defaults to <code>deviceId</code> for guests, which is a randomly generated string stored in a cookie on the first script execution.</p></td>
         </tr>
 
     
@@ -881,7 +885,7 @@
 
             
 
-            <td class="description last"><p>The customer's user ID. Defaults to <code>deviceId</code> for guests.</p></td>
+            <td class="description last"><p>The customer's user ID. Defaults to <code>deviceId</code> for guests, which is a randomly generated string stored in a cookie on the first script execution.</p></td>
         </tr>
 
     
@@ -1072,7 +1076,7 @@
 
             
 
-            <td class="description last"><p>The customer's user ID. Defaults to <code>deviceId</code> for guests.</p></td>
+            <td class="description last"><p>The customer's user ID. Defaults to <code>deviceId</code> for guests, which is a randomly generated string stored in a cookie on the first script execution.</p></td>
         </tr>
 
     
@@ -1325,7 +1329,7 @@
 
             
 
-            <td class="description last"><p>The customer's user ID. Defaults to <code>deviceId</code> for guests.</p></td>
+            <td class="description last"><p>The customer's user ID. Defaults to <code>deviceId</code> for guests, which is a randomly generated string stored in a cookie on the first script execution.</p></td>
         </tr>
 
     
@@ -1485,7 +1489,7 @@
 
             
 
-            <td class="description last"><p>The customer's user ID. Defaults to <code>deviceId</code> for guests.</p></td>
+            <td class="description last"><p>The customer's user ID. Defaults to <code>deviceId</code> for guests, which is a randomly generated string stored in a cookie on the first script execution.</p></td>
         </tr>
 
     
@@ -1800,7 +1804,7 @@
 
             
 
-            <td class="description last"><p>The customer's user ID. Defaults to <code>deviceId</code> for guests.</p></td>
+            <td class="description last"><p>The customer's user ID. Defaults to <code>deviceId</code> for guests, which is a randomly generated string stored in a cookie on the first script execution.</p></td>
         </tr>
 
     
@@ -2054,7 +2058,7 @@ Should be used in addition to <a href="SpressoSdk.html#trackPageView">SpressoSdk
 
             
 
-            <td class="description last"><p>The customer's user ID. Defaults to <code>deviceId</code> for guests.</p></td>
+            <td class="description last"><p>The customer's user ID. Defaults to <code>deviceId</code> for guests, which is a randomly generated string stored in a cookie on the first script execution.</p></td>
         </tr>
 
     
