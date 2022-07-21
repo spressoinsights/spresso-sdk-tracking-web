@@ -85,7 +85,7 @@
   <body>
 
     <nav class="navbar" id="navbar">
-      <div class="navbar-heading" id="navbar-heading"><a href="index.html"><h2 class="navbar-heading-text">Getting Started</h2></a></div><div class="search-box" id="search-box"><div class="search-box-input-container"><input class="search-box-input" type="text" placeholder="Search..." id="search-box-input" /><svg class="search-icon" alt="search-icon"><use xlink:href="#search-icon"></use></svg></div><div class="search-item-container" id="search-item-container"><ul class="search-item-ul" id="search-item-ul"></ul></div></div><div class="sidebar-main-content" id="sidebar-main-content"><div class="accordion collapsed" id="1688166" > <h3 class="accordion-heading">Classes<svg><use xlink:href="#down-icon"></use></svg></h3><ul class="accordion-content"><li class="accordion collapsed child" id=9777501><div class="accordion-heading child"><a href="SpressoSdk.html">SpressoSdk</a><svg><use xlink:href="#down-icon"></use></svg></div><ul class='methods accordion-content'><li data-type='method'><a href="SpressoSdk.html#queueEvent">queueEvent</a></li><li data-type='method'><a href="SpressoSdk.html#registerGlimpsePLE">registerGlimpsePLE</a></li><li data-type='method'><a href="SpressoSdk.html#trackCreateOrder">trackCreateOrder</a></li><li data-type='method'><a href="SpressoSdk.html#trackGlimpsePLE">trackGlimpsePLE</a></li><li data-type='method'><a href="SpressoSdk.html#trackPageView">trackPageView</a></li><li data-type='method'><a href="SpressoSdk.html#trackPurchaseVariant">trackPurchaseVariant</a></li><li data-type='method'><a href="SpressoSdk.html#trackTapAddToCart">trackTapAddToCart</a></li><li data-type='method'><a href="SpressoSdk.html#trackViewPDP">trackViewPDP</a></li></ul></li></ul> </div><div class="accordion collapsed" id="9666921" > <h3 class="accordion-heading">Namespaces<svg><use xlink:href="#down-icon"></use></svg></h3><ul class="accordion-content"><li class="accordion-list" id=""><a href="EVENT_NAMES.html">EVENT_NAMES</a></li></ul> </div>
+      <div class="navbar-heading" id="navbar-heading"><a href="index.html"><h2 class="navbar-heading-text">Getting Started</h2></a></div><div class="search-box" id="search-box"><div class="search-box-input-container"><input class="search-box-input" type="text" placeholder="Search..." id="search-box-input" /><svg class="search-icon" alt="search-icon"><use xlink:href="#search-icon"></use></svg></div><div class="search-item-container" id="search-item-container"><ul class="search-item-ul" id="search-item-ul"></ul></div></div><div class="sidebar-main-content" id="sidebar-main-content"><div class="accordion collapsed" id="1234682" > <h3 class="accordion-heading">Classes<svg><use xlink:href="#down-icon"></use></svg></h3><ul class="accordion-content"><li class="accordion collapsed child" id=7604313><div class="accordion-heading child"><a href="SpressoSdk.html">SpressoSdk</a><svg><use xlink:href="#down-icon"></use></svg></div><ul class='methods accordion-content'><li data-type='method'><a href="SpressoSdk.html#queueEvent">queueEvent</a></li><li data-type='method'><a href="SpressoSdk.html#registerGlimpsePLE">registerGlimpsePLE</a></li><li data-type='method'><a href="SpressoSdk.html#trackCreateOrder">trackCreateOrder</a></li><li data-type='method'><a href="SpressoSdk.html#trackGlimpsePLE">trackGlimpsePLE</a></li><li data-type='method'><a href="SpressoSdk.html#trackPageView">trackPageView</a></li><li data-type='method'><a href="SpressoSdk.html#trackPurchaseVariant">trackPurchaseVariant</a></li><li data-type='method'><a href="SpressoSdk.html#trackTapAddToCart">trackTapAddToCart</a></li><li data-type='method'><a href="SpressoSdk.html#trackViewPDP">trackViewPDP</a></li></ul></li></ul> </div><div class="accordion collapsed" id="4201051" > <h3 class="accordion-heading">Namespaces<svg><use xlink:href="#down-icon"></use></svg></h3><ul class="accordion-content"><li class="accordion-list" id=""><a href="EVENT_NAMES.html">EVENT_NAMES</a></li></ul> </div>
       
 
     </nav>
@@ -388,6 +388,10 @@
     
 
 
+
+    <div class="description">
+        <p>Registers a listener that invokes <code>trackGlimpsePLE</code> on the first appearance of a Product List Entity (PLE) within either the browser viewport or a bounding rectangle (if specified).</p>
+    </div>
 
 
 
@@ -769,6 +773,10 @@
 
 
 
+    <div class="description">
+        <p>Tracks when a user places a successful order.</p>
+    </div>
+
 
 
 
@@ -955,6 +963,10 @@
     
 
 
+
+    <div class="description">
+        <p>Tracks when a user views a Product List Element (PLE). Should only fire when a PLE first becomes visible in the browser viewport.</p>
+    </div>
 
 
 
@@ -1205,6 +1217,10 @@
 
 
 
+    <div class="description">
+        <p>Tracks when a user navigates to any page on the site. Should only fire once on fresh page load or after a SPA transition.</p>
+    </div>
+
 
 
 
@@ -1360,6 +1376,10 @@
     
 
 
+
+    <div class="description">
+        <p>Tracks when a user places a successful order. Should be invoked once for every unique product variant in the order.</p>
+    </div>
 
 
 
@@ -1672,6 +1692,10 @@
 
 
 
+    <div class="description">
+        <p>Tracks when a user adds a product variant to cart. Should fire everytime a user clicks on a link/button to add product variant to cart.</p>
+    </div>
+
 
 
 
@@ -1922,7 +1946,7 @@
 
 
     <div class="description">
-        <p>Tracks when a user navigates to a Product Display Page. Should only fire once on fresh page load or after a SPA transition.
+        <p>Tracks when a user navigates to a Product Display Page (PDP). Should only fire once on fresh page load or after a SPA transition.
 Should be used in addition to <a href="SpressoSdk.html#trackPageView">SpressoSdk#trackPageView</a>.</p>
     </div>
 

@@ -92,6 +92,7 @@ class SpressoSdk {
     }
 
     /**
+     * Tracks when a user navigates to any page on the site. Should only fire once on fresh page load or after a SPA transition.
      * @param {object} eventData
      * @param {string} [eventData.userId] - The customer's user ID. Defaults to `deviceId` for guests.
      */
@@ -100,7 +101,7 @@ class SpressoSdk {
     }
 
     /**
-     * Tracks when a user navigates to a Product Display Page. Should only fire once on fresh page load or after a SPA transition.
+     * Tracks when a user navigates to a Product Display Page (PDP). Should only fire once on fresh page load or after a SPA transition.
      * Should be used in addition to {@link SpressoSdk#trackPageView}.
      * @param {object} eventData
      * @param {string} [eventData.userId] - The customer's user ID. Defaults to `deviceId` for guests.
@@ -113,6 +114,7 @@ class SpressoSdk {
     }
 
     /**
+     * Registers a listener that invokes `trackGlimpsePLE` on the first appearance of a Product List Entity (PLE) within either the browser viewport or a bounding rectangle (if specified).
      * @param {object} eventData
      * @param {HTMLElement} [eventData.root=null] - The parent container of the PLE elements, whose bounding rectangle will be considered the viewport. Defaults to browser viewport.
      * @param {HTMLElement} eventData.target - The PLE element to be glimpsed.
@@ -132,6 +134,7 @@ class SpressoSdk {
     }
 
     /**
+     * Tracks when a user views a Product List Element (PLE). Should only fire when a PLE first becomes visible in the browser viewport. 
      * @param {object} eventData
      * @param {string} [eventData.userId] - The customer's user ID. Defaults to `deviceId` for guests.
      * @param {string} eventData.variantId - Variant ID.
@@ -143,6 +146,7 @@ class SpressoSdk {
     }
 
     /**
+	 * Tracks when a user adds a product variant to cart. Should fire everytime a user clicks on a link/button to add product variant to cart.
      * @param {object} eventData
      * @param {string} [eventData.userId] - The customer's user ID. Defaults to `deviceId` for guests.
      * @param {string} eventData.variantId - Variant ID.
@@ -154,6 +158,7 @@ class SpressoSdk {
     }
 
     /**
+	 * Tracks when a user places a successful order. Should be invoked once for every unique product variant in the order. 
      * @param {object} eventData
      * @param {string} [eventData.userId] - The customer's user ID. Defaults to `deviceId` for guests.
      * @param {string} eventData.variantId - Variant ID.
@@ -167,6 +172,7 @@ class SpressoSdk {
     }
 
     /**
+	 * Tracks when a user places a successful order. 
      * @param {object} eventData
      * @param {string} [eventData.userId] - The customer's user ID. Defaults to `deviceId` for guests.
      * @param {string} eventData.orderId - The customer's order ID.
