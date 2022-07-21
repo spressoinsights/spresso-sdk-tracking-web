@@ -28,7 +28,7 @@ const getMetaProps = function ({ userId }) {
  * @property {string} TAP_ADD_TO_CART='TAP_ADD_TO_CART' - Requires the same `eventData` as {@link SpressoSdk#trackTapAddToCart}.
  * @property {string} VIEW_PDP='VIEW_PDP' - Requires the same `eventData` as {@link SpressoSdk#trackViewPDP}.
  */
- export const EVENT_NAMES = {
+export const EVENT_NAMES = {
     CREATE_ORDER: 'CREATE_ORDER',
     GLIMPSE_PLE: 'GLIMPSE_PLE',
     PAGE_VIEW: 'PAGE_VIEW',
@@ -98,7 +98,7 @@ export const EventFactory = {
     },
 
     [EVENT_NAMES.PURCHASE_VARIANT]: {
-        createEvent: function ({ variantId, variantPriceTotal, variantReport, orderId, thestralFeatures, ...otherProps }) {
+        createEvent: function ({ variantId, variantPriceTotal, variantQuantity, variantReport, orderId, thestralFeatures, ...otherProps }) {
             return {
                 event: 'spressoPurchaseVariant',
                 ...getRootProps(),
@@ -106,6 +106,7 @@ export const EventFactory = {
                     ...getMetaProps(otherProps),
                     variantId,
                     variantPriceTotal,
+                    variantQuantity,
                     variantReport,
                     orderId,
                     // thestralFeatures,

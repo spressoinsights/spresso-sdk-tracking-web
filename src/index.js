@@ -158,6 +158,7 @@ class SpressoSdk {
      * @param {string} [eventData.userId] - The customer's user ID. Defaults to `deviceId` for guests.
      * @param {string} eventData.variantId - Variant ID.
      * @param {number} eventData.variantPriceTotal - Variant price total (includes tax and shipping).
+     * @param {number} eventData.variantQuantity - Variant quantity.
      * @param {object} eventData.variantReport - Variant report.
      * @param {string} eventData.orderId - The customer's order ID.
      */
