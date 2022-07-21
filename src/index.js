@@ -36,15 +36,15 @@ class SpressoSdk {
     }
 
     /**
-	 * Generic method to track events. Click on `EVENT_NAMES` for a list of supported events. 
+	 * Generic method to track events. See {@link EVENT_NAMES} for a list of supported events. 
      * @example
      * SpressoSdk.queueEvent('VIEW_PDP', {
      * 	variantId: 'some-id',
      * 	variantPrice: 100000
      * });
      * @param {object} data
-     * @param {EVENT_NAMES} data.eventName - Click on `EVENT_NAMES` for a list of possible values.
-     * @param {object} data.eventData - Click on `EVENT_NAMES` for required `eventData` properties.
+     * @param {EVENT_NAMES} data.eventName - See {@link EVENT_NAMES} for a list of possible values.
+     * @param {object} data.eventData - See {@link EVENT_NAMES} for required `eventData` properties.
      */
     queueEvent({ eventName, eventData = {} }) {
         const { userId } = this.options;
