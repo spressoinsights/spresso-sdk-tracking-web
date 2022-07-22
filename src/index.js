@@ -36,7 +36,7 @@ class SpressoSdk {
     }
 
     /**
-	 * Generic method to track events. See {@link EVENT_NAMES} for a list of supported events. 
+     * Generic method to track events. See {@link EVENT_NAMES} for a list of supported events.
      * @example
      * SpressoSdk.queueEvent('VIEW_PDP', {
      * 	variantId: 'some-id',
@@ -95,7 +95,7 @@ class SpressoSdk {
     /**
      * Tracks when a user navigates to any page on the site. Should only fire once on fresh page load or after a SPA transition.
      * @param {object} eventData
-     * @param {string} [eventData.userId] - The customer's user ID. Defaults to `deviceId` for guests, which is a randomly generated string stored in a cookie on the first script execution. 
+     * @param {string} [eventData.userId] - The customer's user ID. Defaults to `deviceId` for guests, which is a randomly generated string stored in a cookie on the first script execution.
      */
     trackPageView(eventData = {}) {
         this.queueEvent({ eventName: EVENT_NAMES.PAGE_VIEW, eventData });
@@ -105,7 +105,7 @@ class SpressoSdk {
      * Tracks when a user navigates to a Product Display Page (PDP). Should only fire once on fresh page load or after a SPA transition.
      * Should be used in addition to {@link SpressoSdk#trackPageView}.
      * @param {object} eventData
-     * @param {string} [eventData.userId] - The customer's user ID. Defaults to `deviceId` for guests, which is a randomly generated string stored in a cookie on the first script execution. 
+     * @param {string} [eventData.userId] - The customer's user ID. Defaults to `deviceId` for guests, which is a randomly generated string stored in a cookie on the first script execution.
      * @param {string} eventData.variantId - Variant ID.
      * @param {number} eventData.variantPrice - Variant price.
      * @param {object} eventData.variantReport - Variant report.
@@ -120,7 +120,7 @@ class SpressoSdk {
      * @param {HTMLElement} [eventData.root=null] - The parent container of the PLE elements, whose bounding rectangle will be considered the viewport. Defaults to browser viewport.
      * @param {HTMLElement} eventData.target - The PLE element to be glimpsed.
      * @param {number} [eventData.glimpseThreshold=1] - The area of the PLE element that's visible in the viewport, expressed as a ratio, to trigger the event.
-     * @param {string} [eventData.userId] - The customer's user ID. Defaults to `deviceId` for guests, which is a randomly generated string stored in a cookie on the first script execution. 
+     * @param {string} [eventData.userId] - The customer's user ID. Defaults to `deviceId` for guests, which is a randomly generated string stored in a cookie on the first script execution.
      * @param {string} eventData.variantId - Variant ID.
      * @param {number} eventData.variantPrice - Variant price.
      * @param {object} eventData.variantReport - Variant report.
@@ -135,9 +135,9 @@ class SpressoSdk {
     }
 
     /**
-     * Tracks when a user views a Product List Element (PLE). Should only fire when a PLE first becomes visible in the browser viewport. 
+     * Tracks when a user views a Product List Element (PLE). Should only fire when a PLE first becomes visible in the browser viewport.
      * @param {object} eventData
-     * @param {string} [eventData.userId] - The customer's user ID. Defaults to `deviceId` for guests, which is a randomly generated string stored in a cookie on the first script execution. 
+     * @param {string} [eventData.userId] - The customer's user ID. Defaults to `deviceId` for guests, which is a randomly generated string stored in a cookie on the first script execution.
      * @param {string} eventData.variantId - Variant ID.
      * @param {number} eventData.variantPrice - Variant price.
      * @param {object} eventData.variantReport - Variant report.
@@ -147,9 +147,9 @@ class SpressoSdk {
     }
 
     /**
-	 * Tracks when a user adds a product variant to cart. Should fire everytime a user clicks on a link/button to add product variant to cart.
+     * Tracks when a user adds a product variant to cart. Should fire everytime a user clicks on a link/button to add product variant to cart.
      * @param {object} eventData
-     * @param {string} [eventData.userId] - The customer's user ID. Defaults to `deviceId` for guests, which is a randomly generated string stored in a cookie on the first script execution. 
+     * @param {string} [eventData.userId] - The customer's user ID. Defaults to `deviceId` for guests, which is a randomly generated string stored in a cookie on the first script execution.
      * @param {string} eventData.variantId - Variant ID.
      * @param {number} eventData.variantPrice - Variant price.
      * @param {object} eventData.variantReport - Variant report.
@@ -159,11 +159,11 @@ class SpressoSdk {
     }
 
     /**
-	 * Tracks when a user places a successful order. Should be invoked once for every unique product variant in the order. 
+     * Tracks when a user places a successful order. Should be invoked once for every unique product variant in the order.
      * @param {object} eventData
-     * @param {string} [eventData.userId] - The customer's user ID. Defaults to `deviceId` for guests, which is a randomly generated string stored in a cookie on the first script execution. 
+     * @param {string} [eventData.userId] - The customer's user ID. Defaults to `deviceId` for guests, which is a randomly generated string stored in a cookie on the first script execution.
      * @param {string} eventData.variantId - Variant ID.
-     * @param {number} eventData.variantPriceTotal - Variant price total (includes tax and shipping).
+     * @param {number} eventData.variantTotalPrice - Variant price total (includes tax and shipping).
      * @param {number} eventData.variantQuantity - Variant quantity.
      * @param {object} eventData.variantReport - Variant report.
      * @param {string} eventData.orderId - The customer's order ID.
@@ -173,9 +173,9 @@ class SpressoSdk {
     }
 
     /**
-	 * Tracks when a user places a successful order. 
+     * Tracks when a user places a successful order.
      * @param {object} eventData
-     * @param {string} [eventData.userId] - The customer's user ID. Defaults to `deviceId` for guests, which is a randomly generated string stored in a cookie on the first script execution. 
+     * @param {string} [eventData.userId] - The customer's user ID. Defaults to `deviceId` for guests, which is a randomly generated string stored in a cookie on the first script execution.
      * @param {string} eventData.orderId - The customer's order ID.
      */
     trackCreateOrder(eventData = {}) {

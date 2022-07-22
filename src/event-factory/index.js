@@ -98,14 +98,14 @@ export const EventFactory = {
     },
 
     [EVENT_NAMES.PURCHASE_VARIANT]: {
-        createEvent: function ({ variantId, variantPriceTotal, variantQuantity, variantReport, orderId, thestralFeatures, ...otherProps }) {
+        createEvent: function ({ variantId, variantTotalPrice, variantQuantity, variantReport, orderId, thestralFeatures, ...otherProps }) {
             return {
                 event: 'spressoPurchaseVariant',
                 ...getRootProps(),
                 properties: {
                     ...getMetaProps(otherProps),
                     variantId,
-                    variantPriceTotal,
+                    variantTotalPrice,
                     variantQuantity,
                     variantReport,
                     orderId,
