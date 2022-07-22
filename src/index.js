@@ -36,7 +36,7 @@ class SpressoSdk {
     }
 
     /**
-     * Generic method to track events. See {@link EVENT_NAMES} for a list of supported events.
+     * Generic method to send event data. See {@link EVENT_NAMES} for a list of supported events.
      * @example
      * SpressoSdk.queueEvent('VIEW_PDP', {
      * 	variantId: 'some-id',
@@ -115,7 +115,7 @@ class SpressoSdk {
     }
 
     /**
-     * Registers a listener that invokes `trackGlimpsePLE` on the first appearance of a Product List Entity (PLE) within either the browser viewport or a bounding rectangle (if specified).
+     * Registers a listener that invokes {@link SpressoSdk#trackGlimpsePLE} on the first appearance of a Product List Entity (PLE) within either the browser viewport or a bounding rectangle (if specified).
      * @param {object} eventData
      * @param {HTMLElement} [eventData.root=null] - The parent container of the PLE elements, whose bounding rectangle will be considered the viewport. Defaults to browser viewport.
      * @param {HTMLElement} eventData.target - The PLE element to be glimpsed.
