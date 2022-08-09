@@ -32,6 +32,7 @@ export = async () => {
     const protectedResources = true
 
     const gcpProjectName = await spresso_infra.requireOutputValue('gcpProjectName')
+    const gcsRegion = 'US'
     const region = 'us-east4';
     const gcpDnsComponent = await spresso_infra.requireOutputValue('gcpDnsComponent')
     const gcpPublicZoneName = gcpDnsComponent.publicDnsZoneName
@@ -41,7 +42,7 @@ export = async () => {
     //Create GCS
     const spressoSdkTrackingWebGCS = new GoogleCloudStorageComponent('spresso-sdk-tracking-web', {
         gcpProjectName: gcpProjectName,
-        region: region,
+        region: gcsRegion,
         expose_https: true,
         grant_all_view: true,
         backend_description: 'Webapp backend assets',
