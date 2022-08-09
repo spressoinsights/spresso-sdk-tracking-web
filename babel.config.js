@@ -17,6 +17,7 @@ module.exports = function (api) {
                 // debug: true,
             },
         ],
+        // '@babel/preset-typescript',
     ];
 
     let plugins = [];
