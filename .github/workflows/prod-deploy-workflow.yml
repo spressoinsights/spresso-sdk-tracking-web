@@ -2,7 +2,7 @@ name: deploy-workflow
 on:
     push:
         tags:
-            - v**
+            - v**-alpha
 jobs:
     deploy-job:
         runs-on: ubuntu-latest
