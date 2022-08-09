@@ -1,0 +1,22 @@
+name: Deploy spacelift
+on:
+  push:
+    branches: [staging]
+jobs:
+  deploy-spacelift:
+    name: Deploy spacelift
+    runs-on: ubuntu-latest   
+    timeout-minutes: 20
+    steps:
+      - name: Install spacectl
+        run: |
+          cd /tmp/ && wget https://github.com/spacelift-io/spacectl/releases/download/v0.10.0/spacectl_0.10.0_linux_amd64.zip
+          unzip spacectl_0.10.0_linux_amd64.zip
+          sudo mv ./spacectl /usr/local/bin/  
+      - name: Run spacectl deploy
+        run: |
+           spacectl stack deploy --id giddyinc-spresso-sdk-tracking-web-${GITHUB_REF##*/} --tail
+        env:
+          SPACELIFT_API_ENDPOINT: ${{ secrets.SPACELIFT_API_ENDPOINT }} 
+          SPACELIFT_API_KEY_ID: ${{ secrets.SPACELIFT_API_KEY_ID }} 
+          SPACELIFT_API_KEY_SECRET: ${{ secrets.SPACELIFT_API_KEY_SECRET }}       
