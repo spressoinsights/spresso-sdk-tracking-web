@@ -29,6 +29,8 @@ jobs:
               with:
                   path: './dist/spresso.sdk.tracking.web.js'
                   destination: 'spresso-saas-staging-spresso-sdk-tracking-web/tracking-web/${{ env.GITHUB_SHA }}'
+              env:
+                GITHUB_SHA: ${{ env.GITHUB_SHA }}
             - id: 'update-docs'
               name: 'Update Docs'
               run: npm run docs:clear-and-build
