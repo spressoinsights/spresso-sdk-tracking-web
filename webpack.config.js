@@ -52,9 +52,8 @@ module.exports = {
             port: WEBPACK_DEV_SERVER_PORT,
             devMiddleware: {
                 stats: {
-                    colors: true,
-                    errors: true,
-                    warnings: true,
+                    preset: 'normal',
+                    errorDetails: true,
                 },
             },
         },
