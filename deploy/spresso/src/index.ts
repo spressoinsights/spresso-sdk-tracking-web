@@ -46,8 +46,6 @@ export = async () => {
         grant_all_view: true,
         backend_description: 'Webapp backend assets',
         protectedResources: protectedResources,
-    },{
-        parent: this,
     });
 
     //Create CDN for spresso-sdk-tracking-web
@@ -56,8 +54,6 @@ export = async () => {
         baseDomain: baseDomainName,
         publicDnsZoneName: gcpPublicZoneName,
         privateDnsZoneName: gcpPrivateZoneName,
-    },{
-        parent: this,
     });
 
     const privateRecordSetName = spressoSdkTrackingWebRecordSet.privateRecordSetName.apply(privateRecordSetName => privateRecordSetName.slice(0,-1));
@@ -71,7 +67,6 @@ export = async () => {
         isSSL: true,
         backendBucketSelfLink: spressoSdkTrackingWebGCS.backendBucketSelfLink,
     },{
-        parent: this,
         dependsOn: [
             spressoSdkTrackingWebRecordSet,
         ],
@@ -87,8 +82,6 @@ export = async () => {
         isSecret: false,
         team: 'web',
         appName: 'spresso-sdk-tracking-web',
-    },{
-        parent: this,
     });
 
     return {}
