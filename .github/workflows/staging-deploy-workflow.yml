@@ -18,7 +18,7 @@ jobs:
             - run: npm install --include=dev
             - run: npm run build
             - name: Set release version
-              run: echo "RELEASE_VERSION=${GITHUB_SHA}" >> $GITHUB_ENV
+              run: echo "RELEASE_VERSION=${GITHUB_SHA}"
             - id: 'auth'
               uses: 'google-github-actions/auth@v0'
               with:
@@ -28,7 +28,7 @@ jobs:
               uses: 'google-github-actions/upload-cloud-storage@v0'
               with:
                   path: './dist/spresso.sdk.tracking.web.js'
-                  destination: 'spresso-saas-staging-spresso-sdk-tracking-web/tracking-web/${{ env.GITHUB_SHA }}'
+                  destination: "spresso-saas-staging-spresso-sdk-tracking-web/tracking-web/${GITHUB_SHA}"
             - id: 'update-docs'
               name: 'Update Docs'
               run: npm run docs:clear-and-build
