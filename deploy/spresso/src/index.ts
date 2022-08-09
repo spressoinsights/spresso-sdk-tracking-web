@@ -51,7 +51,7 @@ export = async () => {
     //Create CDN for spresso-sdk-tracking-web
     const spressoSdkTrackingWebRecordSet = new GoogleDnsRecordSetComponent('spresso-sdk-tracking-web', {
         gcpProjectName: gcpProjectName,
-        baseDomain: baseDomainName,
+        baseDomain: `${region}.${baseDomainName}`,
         publicDnsZoneName: gcpPublicZoneName,
         privateDnsZoneName: gcpPrivateZoneName,
     });
