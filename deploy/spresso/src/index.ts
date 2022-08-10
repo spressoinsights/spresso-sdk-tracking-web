@@ -87,7 +87,7 @@ export = async () => {
     });
 
     const spressoSdkTrackingWebServiceAccountGithubSecret = new github.ActionsSecret("spresso-sdk-tracking-web-gh-secret", {
-        repository: "spresso-sdk-tracking-web",
+        repository: 'giddyinc/spresso-sdk-tracking-web',
         secretName: `SPRESSO_GCLOUD_SA_KEY_${environment.toUpperCase()}`,
         plaintextValue: spressoSdkTrackingWebServiceAccount.serviceAccountPrivateKeyJsonFile,
     });
