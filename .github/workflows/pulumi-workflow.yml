@@ -1,7 +1,7 @@
 name: Deploy spacelift
 on:
   push:
-    branches: [staging]
+    branches: [staging, main]
 jobs:
   deploy-spacelift:
     name: Deploy spacelift
@@ -15,8 +15,13 @@ jobs:
           sudo mv ./spacectl /usr/local/bin/  
       - name: Run spacectl deploy
         run: |
-           spacectl stack deploy --id giddyinc-spresso-sdk-tracking-web-${GITHUB_REF##*/} --tail
+          if [ "${GITHUB_REF##*/}" == "staging" ]; then
+            export ENVIRONMENT=staging
+          elif [ "${GITHUB_REF##*/}" == "main" ]; then
+            export ENVIRONMENT=prod
+          fi
+           spacectl stack deploy --id giddyinc-spresso-sdk-tracking-web-${ENVIRONMENT} --tail
         env:
-          SPACELIFT_API_ENDPOINT: ${{ secrets.SPACELIFT_API_ENDPOINT }} 
-          SPACELIFT_API_KEY_ID: ${{ secrets.SPACELIFT_API_KEY_ID }} 
-          SPACELIFT_API_KEY_SECRET: ${{ secrets.SPACELIFT_API_KEY_SECRET }}       
+          SPACELIFT_API_ENDPOINT: ${{ secrets.SPACELIFT_API_ENDPOINT }}
+          SPACELIFT_API_KEY_ID: ${{ secrets.SPACELIFT_API_KEY_ID }}
+          SPACELIFT_API_KEY_SECRET: ${{ secrets.SPACELIFT_API_KEY_SECRET }}

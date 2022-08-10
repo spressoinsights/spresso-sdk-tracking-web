@@ -1,4 +1,5 @@
 import * as pulumi from '@pulumi/pulumi';
+import * as github from '@pulumi/github';
 import { GoogleDnsRecordSetComponent } from '@boxed/spresso-infra/dist/google/dnsrecordset'
 import { GoogleCloudStorageComponent } from '@boxed/spresso-infra/dist/google/gcs'
 import { GoogleELBComponent } from '@boxed/spresso-infra/dist/google/elb';
@@ -79,10 +80,16 @@ export = async () => {
         gcpProjectName: gcpProjectName,
         gcpRole: 'roles/storage.admin',
         secretPrefix: 'SPRESSO_WEB',
-        isKey: false,
+        isKey: true,
         isSecret: false,
         team: 'web',
         appName: 'spresso-sdk-tracking-web',
+    });
+
+    const spressoSdkTrackingWebServiceAccountGithubSecret = new github.ActionsSecret("spresso-sdk-tracking-web-gh-secret", {
+        repository: "spresso-sdk-tracking-web",
+        secretName: `SPRESSO_GCLOUD_SA_KEY_${environment.toUpperCase()}`,
+        plaintextValue: spressoSdkTrackingWebServiceAccount.serviceAccountPrivateKeyJsonFile,
     });
 
     return {}
