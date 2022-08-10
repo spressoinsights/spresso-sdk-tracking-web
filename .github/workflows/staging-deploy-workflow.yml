@@ -1,8 +1,7 @@
 name: deploy-workflow
 on:
-    push:
-        tags:
-            - v**
+  push:
+    branches: [staging]
 jobs:
     deploy-job:
         runs-on: ubuntu-latest
@@ -19,23 +18,16 @@ jobs:
             - run: npm install --include=dev
             - run: npm run build
             - name: Set release version
-              run: echo "RELEASE_VERSION=${GITHUB_REF#refs/*/}" >> $GITHUB_ENV
+              run: echo "RELEASE_VERSION=${GITHUB_SHA}" >> $GITHUB_ENV
             - id: 'auth'
               uses: 'google-github-actions/auth@v0'
               with:
-                  credentials_json: '${{ secrets.GCLOUD_SA_KEY }}'
+                  credentials_json: '${{ secrets.SPRESSO_GCLOUD_SA_KEY_STAGING }}'
             - id: 'upload-file'
               name: 'Publish SDK to Gcloud'
               uses: 'google-github-actions/upload-cloud-storage@v0'
               with:
                   path: './dist/spresso.sdk.tracking.web.js'
-                  destination: 'spresso-sdk/tracking-web/${{ env.RELEASE_VERSION }}'
-            - id: 'update-docs'
-              name: 'Update Docs'
-              run: npm run docs:clear-and-build
-            - id: 'publish-docs'
-              name: 'Publish Docs'
-              uses: stefanzweifel/git-auto-commit-action@v4
-              with:
-                branch: main
-                commit_message: Automated docs publish
+                  destination: 'spresso-saas-staging-spresso-sdk-tracking-web/${{ env.RELEASE_VERSION }}'
+              env:
+                GITHUB_SHA: ${{ env.GITHUB_SHA }}

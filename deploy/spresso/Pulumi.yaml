@@ -1,0 +1,7 @@
+name: spresso-sdk-tracking-web
+description: Deploy for spresso-sdk-tracking-web app
+config: pulumi
+runtime: 
+  name: nodejs
+backend:
+  url: gs://spresso-saas-pulumi
