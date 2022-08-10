@@ -34,7 +34,7 @@ class SpressoSdk {
         this.eventsQueue = [];
         this.timerId = null;
         this.orgId = (isBrowser() && window?.SpressoSdk?.options?.orgId) || null;
-        this.options = (isBrowser() && window?.SpressoSdk?.options);
+        this.options = isBrowser() && window?.SpressoSdk?.options;
         this.EXECUTE_DELAY = 3000;
 
         consoleLog('SpressoSdk CONSTRUCTED');

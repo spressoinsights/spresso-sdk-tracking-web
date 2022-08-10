@@ -1,7 +1,9 @@
 const path = require('path');
+const NodemonPlugin = require('nodemon-webpack-plugin');
 const TsconfigPathsPlugin = require('tsconfig-paths-webpack-plugin');
 
 const isDev = !process.env.NODE_ENV || process.env.NODE_ENV === 'development';
+const useNodemon = process.env.USE_NODEMON === 'true';
 
 const WEBPACK_DEV_SERVER_PORT = 3002;
 
@@ -12,7 +14,7 @@ const stats = {
     errorDetails: true,
 };
 
-console.log({ 'process.env.NODE_ENV': process.env.NODE_ENV });
+console.log({ 'process.env.NODE_ENV': process.env.NODE_ENV, useNodemon });
 
 module.exports = {
     mode: isDev ? 'development' : 'production',
@@ -67,6 +69,21 @@ module.exports = {
             }),
         ],
     },
+
+    plugins: [
+        useNodemon &&
+            new NodemonPlugin({
+                // only runs on `dev:prod-mode`
+                exec: 'serve',
+                script: 'dist',
+                args: [`--listen=${WEBPACK_DEV_SERVER_PORT}`],
+                watch: ['./dist'],
+                ext: 'js',
+                env: {
+                    NODE_ENV: 'production',
+                },
+            }),
+    ].filter(Boolean),
 
     stats,
 
