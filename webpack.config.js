@@ -87,13 +87,13 @@ module.exports = {
 
     stats,
 
-    ...(isDev && {
-        devServer: {
-            hot: true,
-            port: WEBPACK_DEV_SERVER_PORT,
-            devMiddleware: {
-                stats,
-            },
-        },
-    }),
+    devServer: isDev
+        ? {
+              hot: true,
+              port: WEBPACK_DEV_SERVER_PORT,
+              devMiddleware: {
+                  stats,
+              },
+          }
+        : {},
 };
