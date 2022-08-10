@@ -28,6 +28,6 @@ jobs:
               uses: 'google-github-actions/upload-cloud-storage@v0'
               with:
                   path: './dist/spresso.sdk.tracking.web.js'
-                  destination: 'spresso-saas-staging-spresso-sdk-tracking-web/tracking-web/${{ env.RELEASE_VERSION }}'
+                  destination: 'spresso-saas-staging-spresso-sdk-tracking-web/${{ env.RELEASE_VERSION }}'
               env:
                 GITHUB_SHA: ${{ env.GITHUB_SHA }}

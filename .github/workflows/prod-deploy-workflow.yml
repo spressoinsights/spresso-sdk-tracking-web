@@ -29,7 +29,7 @@ jobs:
               uses: 'google-github-actions/upload-cloud-storage@v0'
               with:
                   path: './dist/spresso.sdk.tracking.web.js'
-                  destination: 'spresso-saas-prod-spresso-sdk-tracking-web/tracking-web/${{ env.RELEASE_VERSION }}'
+                  destination: 'spresso-saas-prod-spresso-sdk-tracking-web/${{ env.RELEASE_VERSION }}'
             - id: 'update-docs'
               name: 'Update Docs'
               run: npm run docs:clear-and-build
