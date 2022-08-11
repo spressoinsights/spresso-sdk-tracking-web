@@ -1,0 +1,40 @@
+{
+  "compilerOptions": {
+      "rootDir": "src",
+      "baseUrl": ".",
+      "strict": true,
+      "outDir": "bin",
+      "target": "es2017",
+      "module": "commonjs",
+      "moduleResolution": "node",
+      "sourceMap": true,
+      "experimentalDecorators": true,
+      "pretty": true,
+      "noFallthroughCasesInSwitch": true,
+      "noImplicitReturns": true,
+      "forceConsistentCasingInFileNames": true,
+      // Copied in
+      "allowJs": false,
+      "noImplicitThis": true,
+      "noImplicitAny": false,
+      "strictNullChecks": false,
+      "suppressImplicitAnyIndexErrors": true,
+      "allowUnusedLabels": true,
+      "noStrictGenericChecks": true,
+      "alwaysStrict": true,
+      "esModuleInterop": true,
+      "allowSyntheticDefaultImports": true,
+      "resolveJsonModule": true,
+      "types": ["jest", "node"],
+  },
+  "include": [
+      "src/**/*",
+  ],
+  "exclude": [
+      "node_modules",
+      "**/node_modules/*",
+      "build",
+      "scripts",
+      "test"
+    ]
+}
