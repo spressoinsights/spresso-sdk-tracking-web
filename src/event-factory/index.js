@@ -43,7 +43,7 @@ export const EventFactory = {
     [EVENT_NAMES.PAGE_VIEW]: {
         createEvent: function ({ ...otherProps }) {
             return {
-                event: 'spressoPageView',
+                event: 'spresso_page_view',
                 ...getRootProps(),
                 properties: {
                     ...getMetaProps(otherProps),
@@ -56,7 +56,7 @@ export const EventFactory = {
     [EVENT_NAMES.VIEW_PDP]: {
         createEvent: function ({ variantId, variantPrice, variantReport, ...otherProps }) {
             return {
-                event: 'spressoViewPDP',
+                event: 'spresso_view_pdp',
                 ...getRootProps(),
                 properties: {
                     ...getMetaProps(otherProps),
@@ -71,7 +71,7 @@ export const EventFactory = {
     [EVENT_NAMES.GLIMPSE_PLE]: {
         createEvent: function ({ variantId, variantPrice, variantReport, ...otherProps }) {
             return {
-                event: 'spressoGlimpsePle',
+                event: 'spresso_glimpse_ple',
                 ...getRootProps(),
                 properties: {
                     ...getMetaProps(otherProps),
@@ -86,7 +86,7 @@ export const EventFactory = {
     [EVENT_NAMES.TAP_ADD_TO_CART]: {
         createEvent: function ({ variantId, variantPrice, variantReport, thestralFeatures, ...otherProps }) {
             return {
-                event: 'spressoTapAddToCart',
+                event: 'spresso_tap_add_to_cart',
                 ...getRootProps(),
                 properties: {
                     ...getMetaProps(otherProps),
@@ -102,7 +102,7 @@ export const EventFactory = {
     [EVENT_NAMES.PURCHASE_VARIANT]: {
         createEvent: function ({ variantId, variantTotalPrice, variantQuantity, variantReport, orderId, thestralFeatures, ...otherProps }) {
             return {
-                event: 'spressoPurchaseVariant',
+                event: 'spresso_purchase_variant',
                 ...getRootProps(),
                 properties: {
                     ...getMetaProps(otherProps),
@@ -120,7 +120,7 @@ export const EventFactory = {
     [EVENT_NAMES.CREATE_ORDER]: {
         createEvent: function ({ orderId, thestralFeatures, ...otherProps }) {
             return {
-                event: 'spressoCreateOrder',
+                event: 'spresso_create_order',
                 ...getRootProps(),
                 properties: {
                     ...getMetaProps(otherProps),
