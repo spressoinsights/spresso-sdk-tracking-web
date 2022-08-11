@@ -1,6 +1,4 @@
-const path = require('path');
-
-const isDev = process.env.NODE_ENV !== 'production';
+const isDev = !process.env.NODE_ENV || process.env.NODE_ENV === 'development';
 
 console.log('using babel.config.js');
 

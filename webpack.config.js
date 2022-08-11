@@ -48,6 +48,7 @@ module.exports = {
                         // Use Babel to handle browser compatibility
                         loader: 'babel-loader',
                         options: {
+                            envName: isDev ? 'development' : 'production', // transpile code in prod mode for staging/production builds
                             cacheDirectory: true,
                             cacheCompression: !isDev, // https://javascript.plainenglish.io/how-to-improve-webpack-performance-7637db26fa5f
                             configFile: path.resolve(__dirname, 'babel.config.js'),
