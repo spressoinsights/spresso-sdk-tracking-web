@@ -17,7 +17,7 @@ declare global {
 type TOptions = {
     orgId: string;
     userId: string;
-    isStagingData: boolean;
+    useStaging: boolean;
 }
 
 /**
