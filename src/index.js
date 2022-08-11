@@ -66,9 +66,9 @@ class SpressoSdk {
 
     // fires API call
     execute() {
-        const { orgId, isStagingData } = this.options;
+        const { orgId, useStaging } = this.options;
         const queuedEvents = this.flushQueue();
-        track({ orgId, events: queuedEvents, isStagingData });
+        track({ orgId, events: queuedEvents, useStaging });
     }
 
     executeLater() {
