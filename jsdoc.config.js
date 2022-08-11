@@ -14,7 +14,7 @@ module.exports = {
 
     opts: {
         recurse: true,
-        readme: './README.md',
+        readme: './docs/README.md',
         destination: 'docs/',
         template: 'node_modules/better-docs',
     },

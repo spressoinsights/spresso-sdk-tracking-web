@@ -1,53 +1,27 @@
 # Spresso Web SDK
 
-## Overview
+## Development
 
-Spresso Web SDK is a client-side JavaScript library you can install in your project to start sending event data from anywhere in your application.
-### 1. Initialize the library in your project
+`npm run dev` bundles and serves the SDK on: `http://localhost:3002/spresso.sdk.tracking.web.js`. 
+`npm run dev:prod-mode` does the same but as if `NODE_ENV === 'production'`, i.e., no sourcemap and logging in browser console. 
 
-Paste the HTML script tag snippet within the `<head>` tag of your page and initialize with your Org ID.
-
+### Developer workflow
+- Create branch from `main` into `feature/SPRS-1234`.
+- PR feature branch to `staging`. 
+- Test locally on webapp by changing the script `src` in `components/misc/spresso-web-sdk` to: 
 ```
-<script>
-    (function (options) {
-        window.SpressoSdk = window.SpressoSdk || { init: function(o) { SpressoSdk.options = o; } }
-        var s = document.createElement('script');
-        s.type = 'text/javascript';
-        s.async = true;
-        s.src = 'https://spresso-sdk-tracking-web.us-east4.prod.spresso.com/v3.3.21-alpha/spresso.sdk.tracking.web.js';
-        s.onload = function() { window.SpressoSdk.init(options) }
-        var x = document.getElementsByTagName('script')[0];
-        x.parentNode.insertBefore(s, x);
-    })({ orgId: 'YOUR_ORG_ID' });
-</script>
-```
+http://localhost:3002/spresso.sdk.tracking.web.js
+``` 
 
-If User ID is available, paste the HTML script tag snippet below to initialize with Org ID and User ID. 
-```
-<script>
-    (function (options) {
-        window.SpressoSdk = window.SpressoSdk || { init: function(o) { SpressoSdk.options = o; } }
-        var s = document.createElement('script');
-        s.type = 'text/javascript';
-        s.async = true;
-        s.src = 'https://spresso-sdk-tracking-web.us-east4.prod.spresso.com/v3.3.21-alpha/spresso.sdk.tracking.web.js';
-        s.onload = function() { window.SpressoSdk.init(options) }
-        var x = document.getElementsByTagName('script')[0];
-        x.parentNode.insertBefore(s, x);
-    })({ orgId: 'YOUR_ORG_ID', userId: 'USER_ID' });
-</script>
-```
+<hr>
 
-### 2. Send Data
+## Build and deploy
 
-Let's get started by sending event data, for example, when a user views a Product Details Page (PDP).
+### Staging
+- Push/merge to `staging` branch will build/upload script to staging [Spresso GCP bucket](https://console.cloud.google.com/storage/browser/spresso-saas-staging-spresso-sdk-tracking-web;tab=objects?forceOnBucketsSortingFiltering=false&project=spresso-saas-staging&prefix=&forceOnObjectsSortingFiltering=false), nested under the folder named the last commit hash pushed to `staging`. 
 
-```javascript
-SpressoSdk.trackViewPDP({
-    variantId: 'some-id',
-    variantPrice: 1000000,
-    userId: 'awesome-customer-id',
-});
-```
-
-Click [here](SpressoSdk.html) for all the events that you can send. 
+### Production
+- Push/merge to `main` branch will NOT build/upload script. 
+- Update the version in `package.json`. 
+- Creating a new release (equals the `package.json` version) on `main` will build/upload script to production [Spresso GCP bucket](https://console.cloud.google.com/storage/browser/spresso-saas-prod-spresso-sdk-tracking-web?project=spresso-saas-prod&pageState=(%22StorageObjectListTable%22:(%22f%22:%22%255B%255D%22))&prefix=&forceOnObjectsSortingFiltering=false), nested under the folder named the release version. 
+- A new release tag will also re-publish the docs. 
