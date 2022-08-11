@@ -4,10 +4,10 @@ import { consoleLog } from 'utils/debug';
 
 const isDev = !process.env.NODE_ENV || process.env.NODE_ENV === 'development';
 
-export const track = function ({ orgId, events, isStagingData }) {
-    consoleLog({ isStagingData });
+export const track = function ({ orgId, events, useStaging }) {
+    consoleLog({ useStaging });
 
-    const ENDPOINT = 'https://public-pensieve-stats.us-east4.staging.spresso.com/track';
+    const ENDPOINT = useStaging ? 'https://public-pensieve-stats.us-east4.staging.spresso.com/track' : 'https://public-pensieve-stats.us-east4.prod.spresso.com/track';
 
     if (!isBrowser() || !events?.length) {
         return;
