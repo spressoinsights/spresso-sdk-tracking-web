@@ -37,7 +37,10 @@ jobs:
             - id: 'publish-docs'
               name: 'Publish Docs'
               run: |
+                git add docs -f
                 git status
+                git commit -m 'Automated docs publish'
+                git push
             # - id: 'publish-docs'
             #   name: 'Publish Docs'
             #   uses: stefanzweifel/git-auto-commit-action@v4
