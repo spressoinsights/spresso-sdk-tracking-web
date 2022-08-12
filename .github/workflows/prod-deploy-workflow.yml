@@ -41,4 +41,4 @@ jobs:
                 git add docs -f
                 git status
                 git commit -m 'Automated docs publish'
-                git push origin HEAD:refs/tags/${{ env.RELEASE_VERSION }}
+                git push origin HEAD:refs/heads/HEAD
