@@ -1,6 +1,6 @@
 {
     "compilerOptions": {
-        "outDir": "./dist/",
+        "outDir": "./dist",
         "sourceMap": false,
         "noImplicitAny": true,
         "module": "es6",
@@ -10,6 +10,9 @@
         "skipLibCheck": true,
         "strict": false,
         "declaration": false,
+        "noImplicitReturns": true,
+        "noFallthroughCasesInSwitch": true,
+		"noImplicitThis": true,
         "baseUrl": ".",
         "paths": {
             "utils/*": ["src/utils/*/index"],

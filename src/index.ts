@@ -14,7 +14,7 @@ declare global {
     }
 }
 
-type TOptions = {
+interface IOptions {
     orgId: string;
     userId: string;
     useStaging: boolean;
@@ -24,7 +24,7 @@ type TOptions = {
  * Instantiated on page load. Accessible on `window.SpressoSdk`.
  */
 class SpressoSdk {
-    options: TOptions;
+    options: IOptions;
     orgId: string;
     eventsQueue: Array<object>;
     timerId: number;
@@ -40,7 +40,7 @@ class SpressoSdk {
         consoleLog('SpressoSdk CONSTRUCTED');
     }
 
-    init(options: TOptions) {
+    init(options: IOptions) {
         this.orgId = options?.orgId;
         this.options = options;
 
