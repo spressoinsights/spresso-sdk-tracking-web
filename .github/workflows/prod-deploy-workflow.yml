@@ -34,7 +34,10 @@ jobs:
             - id: 'update-docs'
               name: 'Update Docs'
               run: npm run docs:clear-and-build
-            - run: echo "HELLO WORLD"
+            - id: 'publish-docs'
+              name: 'Publish Docs'
+              run: |
+                git status
             # - id: 'publish-docs'
             #   name: 'Publish Docs'
             #   uses: stefanzweifel/git-auto-commit-action@v4
