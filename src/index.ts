@@ -4,22 +4,44 @@ import { track } from 'utils/api';
 import { EventFactory, EVENT_NAMES } from 'event-factory';
 import { consoleLog } from 'utils/debug';
 
+declare global {
+    interface Window {
+        SpressoSdk: SpressoSdk;
+    }
+
+    interface globalThis {
+        SpressoSdk: SpressoSdk;
+    }
+}
+
+interface IOptions {
+    orgId: string;
+    userId: string;
+    useStaging: boolean;
+}
+
 /**
  * Instantiated on page load. Accessible on `window.SpressoSdk`.
  */
 class SpressoSdk {
+    options: IOptions;
+    orgId: string;
+    eventsQueue: Array<object>;
+    timerId: number;
+    EXECUTE_DELAY: number;
+
     constructor() {
         this.eventsQueue = [];
         this.timerId = null;
         this.orgId = (isBrowser() && window?.SpressoSdk?.options?.orgId) || null;
-        this.options = (isBrowser() && window?.SpressoSdk?.options) || {};
-
+        this.options = isBrowser() && window?.SpressoSdk?.options;
         this.EXECUTE_DELAY = 3000;
+
         consoleLog('SpressoSdk CONSTRUCTED');
     }
 
-    init(options = {}) {
-        this.orgId = options.orgId;
+    init(options: IOptions) {
+        this.orgId = options?.orgId;
         this.options = options;
 
         initDeviceId();
@@ -46,7 +68,7 @@ class SpressoSdk {
      * @param {EVENT_NAMES} data.eventName - See {@link EVENT_NAMES} for a list of possible values.
      * @param {object} data.eventData - See {@link EVENT_NAMES} for required `eventData` properties.
      */
-    queueEvent({ eventName, eventData = {} }) {
+    queueEvent({ eventName, eventData = {} }: any) {
         const { userId } = this.options;
 
         let eventObj = EventFactory[eventName]?.createEvent?.({
@@ -72,13 +94,11 @@ class SpressoSdk {
     }
 
     executeLater() {
-        // consoleLog('execute later');
         this.timerId =
             isBrowser() &&
             window?.setTimeout?.(() => {
                 this.execute();
                 this.timerId = null;
-                // consoleLog('after timeout');
             }, this.EXECUTE_DELAY);
     }
 
@@ -125,7 +145,7 @@ class SpressoSdk {
      * @param {number} eventData.variantPrice - Variant price.
      * @param {object} eventData.variantReport - Variant report.
      */
-    registerGlimpsePLE({ root, target, glimpseThreshold, ...eventData } = {}) {
+    registerGlimpsePLE({ root, target, glimpseThreshold, ...eventData }: any = {}) {
         addIntersectionObserver({
             listener: () => this.trackGlimpsePLE(eventData),
             root,
