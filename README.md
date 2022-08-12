@@ -7,7 +7,7 @@
 `npm run dev:prod-mode` does the same but as if `NODE_ENV === 'production'`, i.e., no sourcemap and logging in browser console. 
 
 ### Developer workflow
-- Create branch from `main` into `feature/SPRS-XXXX`.
+- Create branch from `staging` into `feature/SPRS-XXXX`.
 - Test locally on webapp by changing the script `src` in `components/misc/spresso-web-sdk` to: 
 ```
 http://localhost:3002/spresso.sdk.tracking.web.js
