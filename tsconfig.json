@@ -1,0 +1,23 @@
+{
+    "compilerOptions": {
+        "outDir": "./dist",
+        "sourceMap": false,
+        "noImplicitAny": true,
+        "module": "es6",
+        "target": "es6",
+        "allowJs": true,
+        "allowSyntheticDefaultImports": true,
+        "skipLibCheck": true,
+        "strict": false,
+        "declaration": false,
+        "noImplicitReturns": true,
+        "noFallthroughCasesInSwitch": true,
+		"noImplicitThis": true,
+        "baseUrl": ".",
+        "paths": {
+            "utils/*": ["src/utils/*/index"],
+            "event-factory": ["src/event-factory/index"]
+        }
+    },
+    "include": ["src/**/*.ts", "src/**/*.js"]
+}

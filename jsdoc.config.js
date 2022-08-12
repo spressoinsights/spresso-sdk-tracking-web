@@ -2,25 +2,36 @@
 
 module.exports = {
     source: {
-        include: ['src', 'src/event-factory'],
+        include: ['src'],
+        includePattern: '\\.(jsx|js|ts|tsx)$',
     },
 
-    plugins: ['plugins/markdown'],
+    tags: {
+        allowUnknownTags: true,
+    },
+
+    plugins: ['plugins/markdown', 'node_modules/better-docs/typescript', 'node_modules/better-docs/category'],
 
     opts: {
-        readme: './README.md',
+        recurse: true,
+        readme: './docs/README.md',
         destination: 'docs/',
-        template: './node_modules/clean-jsdoc-theme',
-        theme_opts: {
-            theme: 'light',
-            favicon: 'https://app.spresso.com/public/favicon.svg',
-            title: 'Getting Started',
-        },
+        template: 'node_modules/better-docs',
     },
 
     templates: {
+        // search: true,
+
         default: {
             outputSourceFiles: false,
+        },
+
+        'better-docs': {
+            name: 'Spresso Web SDK Docs',
+            title: 'Sresso Web SDK Docs',
+            // logo: 'https://app.spresso.com/public/favicon.svg',
+            head: '<link rel="icon" type="image/svg+xml" href="https://app.spresso.com/public/favicon.svg" />',
+            navLinks: [{ label: 'GitHub', href: 'https://github.com/giddyinc/spresso-sdk-tracking-web' }],
         },
     },
 };
