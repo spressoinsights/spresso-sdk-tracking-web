@@ -1,130 +1,109 @@
 <!DOCTYPE html>
 <html lang="en">
 
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<head>
+  
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Sresso Web SDK Docs EVENT_NAMES</title>
 
-    <!-- Adding favicon -->
+  <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+  <script src="./build/entry.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+  <![endif]-->
+  <link href="https://fonts.googleapis.com/css?family=Roboto:100,400,700|Inconsolata,700" rel="stylesheet">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
+  <link type="text/css" rel="stylesheet" href="https://jmblog.github.io/color-themes-for-google-code-prettify/themes/tomorrow-night.min.css">
+  <link type="text/css" rel="stylesheet" href="styles/app.min.css">
+  <link type="text/css" rel="stylesheet" href="styles/iframe.css">
+  <link type="text/css" rel="stylesheet" href="">
+  <script async defer src="https://buttons.github.io/buttons.js"></script>
+
+  
+    <link rel="icon" type="image/svg+xml" href="https://app.spresso.com/public/favicon.svg" />
+  
+</head>
+
+
+
+<body class="layout small-header">
+    <div id="stickyNavbarOverlay"></div>
     
-    <link rel="icon" href="https://app.spresso.com/public/favicon.svg" />
-    
 
-    <!-- Adding meta -->
-    
-
-    <!-- Adding external script-->
-    
-
-    <!-- Adding external style-->
-    
-
-    <!-- Adding scripts-->
-    
-
-    <!-- Adding style-->
-    
-
-    <!-- Adding overlay script-->
-    
-
-    <!-- Adding overlay style-->
-    
-
-
-    <title>
-      EVENT_NAMES
-    </title>
-
-    <!--[if lt IE 9]>
-      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
-    <![endif]-->
-    <link type="text/css" rel="stylesheet" href="styles/third-party/ionicons.min.css">
-    <link type="text/css" rel="stylesheet" href="styles/third-party/prettify-tomorrow.css">
-    <link type="text/css" rel="stylesheet" href="styles/reset.css">
-    <link type="text/css" rel="stylesheet" href="styles/clean-jsdoc-theme-base.css">
-    <link type="text/css" rel="stylesheet" href="styles/clean-jsdoc-theme-light.css">
-    
-    <svg aria-hidden="true" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
-    style="display:none">
-    <defs>
-        <symbol id="copy-icon" viewbox="0 0 488.3 488.3">
-            <g>
-                <path
-                    d="M314.25,85.4h-227c-21.3,0-38.6,17.3-38.6,38.6v325.7c0,21.3,17.3,38.6,38.6,38.6h227c21.3,0,38.6-17.3,38.6-38.6V124    C352.75,102.7,335.45,85.4,314.25,85.4z M325.75,449.6c0,6.4-5.2,11.6-11.6,11.6h-227c-6.4,0-11.6-5.2-11.6-11.6V124    c0-6.4,5.2-11.6,11.6-11.6h227c6.4,0,11.6,5.2,11.6,11.6V449.6z" />
-                <path
-                    d="M401.05,0h-227c-21.3,0-38.6,17.3-38.6,38.6c0,7.5,6,13.5,13.5,13.5s13.5-6,13.5-13.5c0-6.4,5.2-11.6,11.6-11.6h227    c6.4,0,11.6,5.2,11.6,11.6v325.7c0,6.4-5.2,11.6-11.6,11.6c-7.5,0-13.5,6-13.5,13.5s6,13.5,13.5,13.5c21.3,0,38.6-17.3,38.6-38.6    V38.6C439.65,17.3,422.35,0,401.05,0z" />
-            </g>
-        </symbol>
-        <symbol id='search-icon' viewBox="0 0 512 512">
-            <g>
-                <g>
-                    <path
-                        d="M225.474,0C101.151,0,0,101.151,0,225.474c0,124.33,101.151,225.474,225.474,225.474    c124.33,0,225.474-101.144,225.474-225.474C450.948,101.151,349.804,0,225.474,0z M225.474,409.323    c-101.373,0-183.848-82.475-183.848-183.848S124.101,41.626,225.474,41.626s183.848,82.475,183.848,183.848    S326.847,409.323,225.474,409.323z" />
-                </g>
-            </g>
-            <g>
-                <g>
-                    <path
-                        d="M505.902,476.472L386.574,357.144c-8.131-8.131-21.299-8.131-29.43,0c-8.131,8.124-8.131,21.306,0,29.43l119.328,119.328    c4.065,4.065,9.387,6.098,14.715,6.098c5.321,0,10.649-2.033,14.715-6.098C514.033,497.778,514.033,484.596,505.902,476.472z" />
-                </g>
-            </g>
-        </symbol>
-        <symbol id="down-icon" viewBox="0 0 16 16">
-            <path 
-                fill-rule="evenodd" 
-                clip-rule="evenodd" 
-                d="M12.7803 6.21967C13.0732 6.51256 13.0732 6.98744 12.7803 7.28033L8.53033 11.5303C8.23744 11.8232 7.76256 11.8232 7.46967 11.5303L3.21967 7.28033C2.92678 6.98744 2.92678 6.51256 3.21967 6.21967C3.51256 5.92678 3.98744 5.92678 4.28033 6.21967L8 9.93934L11.7197 6.21967C12.0126 5.92678 12.4874 5.92678 12.7803 6.21967Z"
-            >
-            </path>
-        </symbol>
-    </defs>
-</svg>
-  </head>
-
-  <body>
-
-    <nav class="navbar" id="navbar">
-      <div class="navbar-heading" id="navbar-heading"><a href="index.html"><h2 class="navbar-heading-text">Getting Started</h2></a></div><div class="search-box" id="search-box"><div class="search-box-input-container"><input class="search-box-input" type="text" placeholder="Search..." id="search-box-input" /><svg class="search-icon" alt="search-icon"><use xlink:href="#search-icon"></use></svg></div><div class="search-item-container" id="search-item-container"><ul class="search-item-ul" id="search-item-ul"></ul></div></div><div class="sidebar-main-content" id="sidebar-main-content"><div class="accordion collapsed" id="2361902" > <h3 class="accordion-heading">Classes<svg><use xlink:href="#down-icon"></use></svg></h3><ul class="accordion-content"><li class="accordion collapsed child" id=3927709><div class="accordion-heading child"><a href="SpressoSdk.html">SpressoSdk</a><svg><use xlink:href="#down-icon"></use></svg></div><ul class='methods accordion-content'><li data-type='method'><a href="SpressoSdk.html#queueEvent">queueEvent</a></li><li data-type='method'><a href="SpressoSdk.html#registerGlimpsePLE">registerGlimpsePLE</a></li><li data-type='method'><a href="SpressoSdk.html#trackCreateOrder">trackCreateOrder</a></li><li data-type='method'><a href="SpressoSdk.html#trackGlimpsePLE">trackGlimpsePLE</a></li><li data-type='method'><a href="SpressoSdk.html#trackPageView">trackPageView</a></li><li data-type='method'><a href="SpressoSdk.html#trackPurchaseVariant">trackPurchaseVariant</a></li><li data-type='method'><a href="SpressoSdk.html#trackTapAddToCart">trackTapAddToCart</a></li><li data-type='method'><a href="SpressoSdk.html#trackViewPDP">trackViewPDP</a></li></ul></li></ul> </div><div class="accordion collapsed" id="9237258" > <h3 class="accordion-heading">Namespaces<svg><use xlink:href="#down-icon"></use></svg></h3><ul class="accordion-content"><li class="accordion-list" id=""><a href="EVENT_NAMES.html">EVENT_NAMES</a></li></ul> </div>
-      
-
-    </nav>
-    <div class="navbar-ham" id="navbar-ham">
-      <div>
-        <div class="first"></div>
-        <div class="second"></div>
-        <div class="third"></div>
-      </div>
+<div class="top-nav">
+    <div class="inner">
+        <a id="hamburger" role="button" class="navbar-burger" aria-label="menu" aria-expanded="false">
+            <span aria-hidden="true"></span>
+            <span aria-hidden="true"></span>
+            <span aria-hidden="true"></span>
+        </a>
+        <div class="logo">
+            
+             
+                <a href="index.html">
+                    <h1 class="navbar-item">Spresso Web SDK Docs</h1>
+                </a>
+            
+        </div>
+        <div class="menu">
+            
+            <div class="navigation">
+                <a
+                    href="index.html"
+                    class="link"
+                >
+                    Documentation
+                </a>
+                
+                 
+                    
+                        <a
+                            class="link user-link "
+                            href="https://github.com/giddyinc/spresso-sdk-tracking-web"
+                        >
+                            GitHub
+                        </a>
+                    
+                
+                
+            </div>
+        </div>
     </div>
-
-    <div id="main" class="main-content">
-      
-      <h1 id='page-title' class="page-title">
-        EVENT_NAMES
-      </h1>
-      
-
-      
+</div>
+    <div id="main">
+        <div
+            class="sidebar "
+            id="sidebarNav"
+        >
+            
+            <nav>
+                
+                    <h2><a href="index.html">Documentation</a></h2><div class="category"><h3>Namespaces</h3><ul><li><a href="EVENT_NAMES.html">EVENT_NAMES</a></li></ul><h3>Classes</h3><ul><li><a href="SpressoSdk.html">SpressoSdk</a></li></ul></div>
+                
+            </nav>
+        </div>
+        <div class="core" id="main-content-wrapper">
+            <div class="content">
+                <header class="page-title">
+                    <p>Namespace</p>
+                    <h1>EVENT_NAMES</h1>
+                </header>
+                
 
 
 
 
 <section>
 
-
 <header>
     
-        
-        <h2>
-        
-        EVENT_NAMES
-        
-        </h2>
-        
+        <h2>EVENT_NAMES</h2>
         
     
 </header>
-
 
 <article>
     <div class="container-overview">
@@ -136,227 +115,259 @@
         
 
 
-
-    <h5 class="subsection-title">Properties</h5>
+    <h5 class="subsection-title">Properties:</h5>
 
     
-<div class="allow-overflow">
-<table class="props">
-    <thead>
-    <tr>
+<div class="table-container">
+    <table class="props table">
+        <thead>
+        <tr>
+            
+            <th>Name</th>
+            
+
+            <th>Type</th>
+
+            
+
+            
+            <th>Default</th>
+            
+
+            <th class="last">Description</th>
+        </tr>
+        </thead>
+
+        <tbody>
         
-        <th>Name</th>
+            
+<tr class="deep-level-0">
+    
+        <td class="name"><code>CREATE_ORDER</code></td>
+    
+
+    <td class="type">
+    
         
+<code class="param-type">string</code>
 
-        <th>Type</th>
+
+    
+    </td>
+
+    
+
+    
+        <td class="default">
+        
+            'CREATE_ORDER'
+        
+        </td>
+    
+
+    <td class="description last"><p>Requires the same <code>eventData</code> as <a href="SpressoSdk.html#trackCreateOrder">SpressoSdk#trackCreateOrder</a>.</p></td>
+</tr>
 
         
+            
+<tr class="deep-level-0">
+    
+        <td class="name"><code>GLIMPSE_PLE</code></td>
+    
+
+    <td class="type">
+    
+        
+<code class="param-type">string</code>
+
+
+    
+    </td>
+
+    
+
+    
+        <td class="default">
+        
+            'GLIMPSE_PLE'
+        
+        </td>
+    
+
+    <td class="description last"><p>Requires the same <code>eventData</code> as <a href="SpressoSdk.html#trackGlimpsePLE">SpressoSdk#trackGlimpsePLE</a>.</p></td>
+</tr>
 
         
-        <th>Default</th>
+            
+<tr class="deep-level-0">
+    
+        <td class="name"><code>PAGE_VIEW</code></td>
+    
+
+    <td class="type">
+    
         
+<code class="param-type">string</code>
 
-        <th class="last">Description</th>
-    </tr>
-    </thead>
 
-    <tbody>
     
-
-        <tr>
-            
-                <td class="name"><code>CREATE_ORDER</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">string</span>
-
-
-            
-            </td>
-
-            
-
-            
-                <td class="default">
-                
-                    'CREATE_ORDER'
-                
-                </td>
-            
-
-            <td class="description last"><p>Requires the same <code>eventData</code> as <a href="SpressoSdk.html#trackCreateOrder">SpressoSdk#trackCreateOrder</a>.</p></td>
-        </tr>
+    </td>
 
     
 
-        <tr>
-            
-                <td class="name"><code>GLIMPSE_PLE</code></td>
-            
+    
+        <td class="default">
+        
+            'PAGE_VIEW'
+        
+        </td>
+    
 
-            <td class="type">
+    <td class="description last"><p>Requires the same <code>eventData</code> as <a href="SpressoSdk.html#trackPageView">SpressoSdk#trackPageView</a>.</p></td>
+</tr>
+
+        
             
-                
-<span class="param-type">string</span>
+<tr class="deep-level-0">
+    
+        <td class="name"><code>PURCHASE_VARIANT</code></td>
+    
+
+    <td class="type">
+    
+        
+<code class="param-type">string</code>
 
 
-            
-            </td>
-
-            
-
-            
-                <td class="default">
-                
-                    'GLIMPSE_PLE'
-                
-                </td>
-            
-
-            <td class="description last"><p>Requires the same <code>eventData</code> as <a href="SpressoSdk.html#trackGlimpsePLE">SpressoSdk#trackGlimpsePLE</a>.</p></td>
-        </tr>
+    
+    </td>
 
     
 
-        <tr>
-            
-                <td class="name"><code>PAGE_VIEW</code></td>
-            
+    
+        <td class="default">
+        
+            'PURCHASE_VARIANT'
+        
+        </td>
+    
 
-            <td class="type">
+    <td class="description last"><p>Requires the same <code>eventData</code> as <a href="SpressoSdk.html#trackPurchaseVariant">SpressoSdk#trackPurchaseVariant</a>.</p></td>
+</tr>
+
+        
             
-                
-<span class="param-type">string</span>
+<tr class="deep-level-0">
+    
+        <td class="name"><code>TAP_ADD_TO_CART</code></td>
+    
+
+    <td class="type">
+    
+        
+<code class="param-type">string</code>
 
 
-            
-            </td>
-
-            
-
-            
-                <td class="default">
-                
-                    'PAGE_VIEW'
-                
-                </td>
-            
-
-            <td class="description last"><p>Requires the same <code>eventData</code> as <a href="SpressoSdk.html#trackPageView">SpressoSdk#trackPageView</a>.</p></td>
-        </tr>
+    
+    </td>
 
     
 
-        <tr>
-            
-                <td class="name"><code>PURCHASE_VARIANT</code></td>
-            
+    
+        <td class="default">
+        
+            'TAP_ADD_TO_CART'
+        
+        </td>
+    
 
-            <td class="type">
+    <td class="description last"><p>Requires the same <code>eventData</code> as <a href="SpressoSdk.html#trackTapAddToCart">SpressoSdk#trackTapAddToCart</a>.</p></td>
+</tr>
+
+        
             
-                
-<span class="param-type">string</span>
+<tr class="deep-level-0">
+    
+        <td class="name"><code>VIEW_PDP</code></td>
+    
+
+    <td class="type">
+    
+        
+<code class="param-type">string</code>
 
 
-            
-            </td>
-
-            
-
-            
-                <td class="default">
-                
-                    'PURCHASE_VARIANT'
-                
-                </td>
-            
-
-            <td class="description last"><p>Requires the same <code>eventData</code> as <a href="SpressoSdk.html#trackPurchaseVariant">SpressoSdk#trackPurchaseVariant</a>.</p></td>
-        </tr>
+    
+    </td>
 
     
 
-        <tr>
-            
-                <td class="name"><code>TAP_ADD_TO_CART</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">string</span>
-
-
-            
-            </td>
-
-            
-
-            
-                <td class="default">
-                
-                    'TAP_ADD_TO_CART'
-                
-                </td>
-            
-
-            <td class="description last"><p>Requires the same <code>eventData</code> as <a href="SpressoSdk.html#trackTapAddToCart">SpressoSdk#trackTapAddToCart</a>.</p></td>
-        </tr>
-
+    
+        <td class="default">
+        
+            'VIEW_PDP'
+        
+        </td>
     
 
-        <tr>
-            
-                <td class="name"><code>VIEW_PDP</code></td>
-            
+    <td class="description last"><p>Requires the same <code>eventData</code> as <a href="SpressoSdk.html#trackViewPDP">SpressoSdk#trackViewPDP</a>.</p></td>
+</tr>
 
-            <td class="type">
-            
-                
-<span class="param-type">string</span>
-
-
-            
-            </td>
-
-            
-
-            
-                <td class="default">
-                
-                    'VIEW_PDP'
-                
-                </td>
-            
-
-            <td class="description last"><p>Requires the same <code>eventData</code> as <a href="SpressoSdk.html#trackViewPDP">SpressoSdk#trackViewPDP</a>.</p></td>
-        </tr>
-
-    
-    </tbody>
-</table>
+        
+        </tbody>
+    </table>
 </div>
 
 
 
+<dl class="details">
 
+    
 
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    
+
+    
+
+    
+
+    
+</dl>
 
 
         
     
     </div>
-
+    
     
 
     
 
     
 
-     
+    
+
+    
 
     
 
@@ -374,37 +385,26 @@
 
 
 
+            </div>
+            
+            <footer class="footer">
+                <div class="content has-text-centered">
+                    <p>Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.6.10</a></p>
+                    <p class="sidebar-created-by">
+                        <a href="https://github.com/SoftwareBrothers/better-docs" target="_blank">BetterDocs theme</a> provided with <i class="fas fa-heart"></i> by
+                        <a href="http://softwarebrothers.co" target="_blank">SoftwareBrothers - JavaScript Development Agency</a>
+                    </p>
+                </div>
+            </footer>
+            
+        </div>
+        <div id="side-nav" class="side-nav">
+        </div>
     </div>
-
-    <footer class="footer" id="footer">
-      
-    </footer>
-
-    <script src="scripts/third-party/prettify.js"></script>
-    <script src="scripts/third-party/lang-css.js"></script>
-    <script type="text/javascript" src="scripts/misc.js"></script>
-
-    <script>prettyPrint();</script>
-    <script src="scripts/linenumber.js"></script>
-    <script src="scripts/fix-code-block.js"></script>
-    <script src="scripts/fix-navbar.js"></script>
-    
-      <script src="scripts/search.js"></script>
-      <script src="scripts/third-party/fuse.js"></script>
-      <script>
-        var list = [{"title":"SpressoSdk","link":"<a href=\"SpressoSdk.html\">SpressoSdk</a>"},{"title":"SpressoSdk#queueEvent","link":"<a href=\"SpressoSdk.html#queueEvent\">SpressoSdk &rtrif; queueEvent</a>"},{"title":"SpressoSdk#registerGlimpsePLE","link":"<a href=\"SpressoSdk.html#registerGlimpsePLE\">SpressoSdk &rtrif; registerGlimpsePLE</a>"},{"title":"SpressoSdk#trackCreateOrder","link":"<a href=\"SpressoSdk.html#trackCreateOrder\">SpressoSdk &rtrif; trackCreateOrder</a>"},{"title":"SpressoSdk#trackGlimpsePLE","link":"<a href=\"SpressoSdk.html#trackGlimpsePLE\">SpressoSdk &rtrif; trackGlimpsePLE</a>"},{"title":"SpressoSdk#trackPageView","link":"<a href=\"SpressoSdk.html#trackPageView\">SpressoSdk &rtrif; trackPageView</a>"},{"title":"SpressoSdk#trackPurchaseVariant","link":"<a href=\"SpressoSdk.html#trackPurchaseVariant\">SpressoSdk &rtrif; trackPurchaseVariant</a>"},{"title":"SpressoSdk#trackTapAddToCart","link":"<a href=\"SpressoSdk.html#trackTapAddToCart\">SpressoSdk &rtrif; trackTapAddToCart</a>"},{"title":"SpressoSdk#trackViewPDP","link":"<a href=\"SpressoSdk.html#trackViewPDP\">SpressoSdk &rtrif; trackViewPDP</a>"},{"title":"EVENT_NAMES","link":"<a href=\"EVENT_NAMES.html\">EVENT_NAMES</a>"}];
-        var options = 
-          setupSearch(list, options)
-      </script>
-    
-
-    
-
-    
-
-    
+<script src="scripts/app.min.js"></script>
+<script>PR.prettyPrint();</script>
+<script src="scripts/linenumber.js"> </script>
 
 
-  </body>
-
+</body>
 </html>
