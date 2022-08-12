@@ -1,4 +1,4 @@
-name: deploy-workflow
+name: prod-deploy-workflow
 on:
     push:
       tags:

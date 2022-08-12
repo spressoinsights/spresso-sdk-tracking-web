@@ -1,4 +1,4 @@
-name: deploy-workflow
+name: staging-deploy-workflow
 on:
   push:
     branches: [staging]
