@@ -13,6 +13,10 @@
 http://localhost:3002/spresso.sdk.tracking.web.js
 ``` 
 
+### Updating docs
+- Run `npm run docs` will build the docs locally in watch mode. 
+- Open `./docs/index.html` in your browser. 
+
 ## Build and deploy
 
 ### Staging
