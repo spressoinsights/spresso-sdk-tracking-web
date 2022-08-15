@@ -30,7 +30,7 @@ export interface IEventData {
     variantTotalPrice?: number;
 }
 
-interface IEventObject extends IRootProps {
+export interface IEventObject extends IRootProps {
     event: string;
     properties: IMetaProps &
         IEventData & {
