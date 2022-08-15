@@ -1,10 +1,9 @@
 import { v4 as uuidv4 } from 'uuid';
-// const { v4: uuidv4 } = require('uuid');
 import { writeCookie, readCookie, removeCookie } from 'utils/cookie';
 
 const setDeviceId = function () {
     const deviceId = uuidv4();
-    writeCookie({ name: 'spressoDeviceId', value: deviceId });
+    writeCookie({ name: 'spressoDeviceId', value: deviceId, domain: '' });
     return deviceId;
 };
 
@@ -20,4 +19,33 @@ export const initDeviceId = function () {
     }
 
     return deviceId;
+};
+
+export interface IRootProps {
+    uid: string;
+    utcTimestampMs: number;
+    timezoneOffset: number;
+}
+
+export const getRootProps = function (): IRootProps {
+    const currentTimestamp = new Date();
+
+    return {
+        uid: uuidv4(),
+        utcTimestampMs: currentTimestamp.getTime(),
+        timezoneOffset: currentTimestamp.getTimezoneOffset() * 60 * 1000, // convert to milliseconds
+    };
+};
+
+export interface IMetaProps {
+    deviceId: string;
+    userId: string;
+}
+
+export const getMetaProps = function ({ userId }: any): IMetaProps {
+    const deviceId = getDeviceId();
+    return {
+        deviceId,
+        userId: userId || deviceId,
+    };
 };

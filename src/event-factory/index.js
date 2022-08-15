@@ -1,24 +1,4 @@
-import { v4 as uuidv4 } from 'uuid';
-import { getDeviceId } from 'utils/properties';
 import { getCurrentUrl } from 'utils/browser';
-
-const getRootProps = function () {
-    const currentTimestamp = new Date();
-
-    return {
-        uid: uuidv4(),
-        utcTimestampMs: currentTimestamp.getTime(),
-        timezoneOffset: currentTimestamp.getTimezoneOffset() * 60 * 1000, // convert to milliseconds
-    };
-};
-
-const getMetaProps = function ({ userId }) {
-    const deviceId = getDeviceId();
-    return {
-        deviceId,
-        userId: userId || deviceId,
-    };
-};
 
 /**
  * A list of event names that can be passed into {@link SpressoSdk#queueEvent}.
