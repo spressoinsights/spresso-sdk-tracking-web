@@ -58,7 +58,7 @@ class SpressoSdk {
      * @param {EVENT_NAMES} data.eventName - See {@link EVENT_NAMES} for a list of possible values.
      * @param {object} data.eventData - See {@link EVENT_NAMES} for required `eventData` properties.
      */
-    queueEvent({ eventName, eventData = {} }: any) {
+    queueEvent({ eventName, eventData = {} }: IQueueEvent) {
         const { userId } = this.options;
 
         let eventObj = EventFactory[eventName]?.createEvent?.({
@@ -205,6 +205,11 @@ declare global {
     interface globalThis {
         SpressoSdk: SpressoSdk;
     }
+}
+
+interface IQueueEvent {
+    eventName: string;
+    eventData: IEventData;
 }
 
 interface IRegisterGlimpsePLE extends IEventData {
