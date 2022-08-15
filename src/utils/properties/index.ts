@@ -1,5 +1,6 @@
 import { v4 as uuidv4 } from 'uuid';
 import { writeCookie, readCookie, removeCookie } from 'utils/cookie';
+import { IEventData } from 'event-factory';
 
 const setDeviceId = function () {
     const deviceId = uuidv4();
@@ -42,7 +43,7 @@ export interface IMetaProps {
     userId: string;
 }
 
-export const getMetaProps = function ({ userId }: any): IMetaProps {
+export const getMetaProps = function ({ userId }: IEventData): IMetaProps {
     const deviceId = getDeviceId();
     return {
         deviceId,

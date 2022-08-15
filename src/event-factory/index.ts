@@ -1,5 +1,5 @@
 import { getCurrentUrl } from 'utils/browser';
-import { getMetaProps, getRootProps } from 'utils/properties';
+import { getMetaProps, getRootProps, IRootProps, IMetaProps } from 'utils/properties';
 
 /**
  * A list of event names that can be passed into {@link SpressoSdk#queueEvent}.
@@ -20,18 +20,23 @@ export const EVENT_NAMES = {
     VIEW_PDP: 'VIEW_PDP',
 };
 
-interface IEventData {
+export interface IEventData {
+    orderId?: string;
     userId?: string;
     variantId?: string;
     variantPrice?: number;
-    variantReport?: any;
-    thestralFeatures?: any;
-    orderId?: string;
-    variantTotalPrice?: number;
     variantQuantity?: number;
+    variantReport?: any;
+    variantTotalPrice?: number;
 }
 
-interface IEventObject {}
+interface IEventObject extends IRootProps {
+    event: string;
+    properties: IMetaProps &
+        IEventData & {
+            page?: string;
+        };
+}
 
 interface IEventFactory {
     [EVENT_CONSTANT: string]: {
@@ -84,7 +89,7 @@ export const EventFactory: IEventFactory = {
     },
 
     [EVENT_NAMES.TAP_ADD_TO_CART]: {
-        createEvent: function ({ variantId, variantPrice, variantReport, thestralFeatures, ...otherProps }) {
+        createEvent: function ({ variantId, variantPrice, variantReport, ...otherProps }) {
             return {
                 event: 'spresso_tap_add_to_cart',
                 ...getRootProps(),
@@ -93,14 +98,13 @@ export const EventFactory: IEventFactory = {
                     variantId,
                     variantPrice,
                     variantReport,
-                    // thestralFeatures,
                 },
             };
         },
     },
 
     [EVENT_NAMES.PURCHASE_VARIANT]: {
-        createEvent: function ({ variantId, variantTotalPrice, variantQuantity, variantReport, orderId, thestralFeatures, ...otherProps }) {
+        createEvent: function ({ variantId, variantTotalPrice, variantQuantity, variantReport, orderId, ...otherProps }) {
             return {
                 event: 'spresso_purchase_variant',
                 ...getRootProps(),
@@ -111,21 +115,19 @@ export const EventFactory: IEventFactory = {
                     variantQuantity,
                     variantReport,
                     orderId,
-                    // thestralFeatures,
                 },
             };
         },
     },
 
     [EVENT_NAMES.CREATE_ORDER]: {
-        createEvent: function ({ orderId, thestralFeatures, ...otherProps }) {
+        createEvent: function ({ orderId, ...otherProps }) {
             return {
                 event: 'spresso_create_order',
                 ...getRootProps(),
                 properties: {
                     ...getMetaProps(otherProps),
                     orderId,
-                    // thestralFeatures,
                 },
             };
         },
