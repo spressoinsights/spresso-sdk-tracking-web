@@ -2,12 +2,9 @@ export const writeCookie = function ({ name, value, days = 730 /** 2 years */, d
     let date = new Date();
     date.setTime(date.getTime() + days * 24 * 60 * 60 * 1000);
     let expires = `; expires=${date.toUTCString()}`;
-    // let expires = '; expires=' + date.toUTCString();
     let cookieValue = `${name}=${value}${expires}; path=${path}`;
-    // let cookieValue = name + '=' + value + expires + '; path=' + path;
     if (domain) {
         cookieValue += `; domain=${domain}`;
-        // cookieValue += '; domain=' + domain;
     }
 
     if (typeof document !== 'undefined') {
