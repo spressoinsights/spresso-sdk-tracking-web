@@ -1,4 +1,5 @@
 import { getCurrentUrl } from 'utils/browser';
+import { getMetaProps, getRootProps } from 'utils/properties';
 
 /**
  * A list of event names that can be passed into {@link SpressoSdk#queueEvent}.
@@ -19,7 +20,26 @@ export const EVENT_NAMES = {
     VIEW_PDP: 'VIEW_PDP',
 };
 
-export const EventFactory = {
+interface IEventData {
+    userId?: string;
+    variantId?: string;
+    variantPrice?: number;
+    variantReport?: any;
+    thestralFeatures?: any;
+    orderId?: string;
+    variantTotalPrice?: number;
+    variantQuantity?: number;
+}
+
+interface IEventObject {}
+
+interface IEventFactory {
+    [EVENT_CONSTANT: string]: {
+        createEvent: (eventData: IEventData) => IEventObject;
+    };
+}
+
+export const EventFactory: IEventFactory = {
     [EVENT_NAMES.PAGE_VIEW]: {
         createEvent: function ({ ...otherProps }) {
             return {

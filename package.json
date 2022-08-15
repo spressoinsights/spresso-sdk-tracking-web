@@ -4,9 +4,11 @@
     "description": "Spresso Analytics Web SDK",
     "main": "index.js",
     "scripts": {
+        "reset": "rimraf dist node_modules/.cache",
         "start": "webpack serve",
+        "prestart-prod-mode": "npm run reset",
         "start-prod-mode": "NODE_ENV=production USE_NODEMON=true webpack --watch",
-        "prebuild": "rimraf dist",
+        "prebuild": "npm run reset",
         "build": "webpack --progress=profile",
         "dev:mb": "mb",
         "dev:setup": "babel-node ./test/setup/index.js",
