@@ -1,11 +1,13 @@
 import { addBeforeUnloadListener, addIntersectionObserver, isBrowser } from 'utils/browser';
 import { initDeviceId } from 'utils/properties';
 import { track } from 'utils/api';
-import { EventFactory, IEventData, IEventObject, TEventName } from 'event-factory';
+import { EventFactory, IEventData, IEventObject, TEventNameLiteral } from 'event-factory';
 import { consoleLog } from 'utils/debug';
 
 /**
- * Instantiated on page load. Accessible on `window.SpressoSdk`.
+ * @classdesc Instantiated as the global variable `window.SpressoSdk` on page load.
+ * @class
+ * @hideconstructor
  */
 class SpressoSdk {
     options: IOptions;
@@ -42,15 +44,15 @@ class SpressoSdk {
     }
 
     /**
-     * Generic method to send event data. See {@link TEventNameMap} for a list of supported events.
+     * Generic method to send event data. See {@link TEventName} for a list of supported events.
      * @example
      * SpressoSdk.queueEvent('VIEW_PDP', {
      * 	variantId: 'some-id',
      * 	variantPrice: 100000
      * });
      * @param {object} data
-     * @param {TEventNameMap} data.eventName - See {@link TEventNameMap} for a list of possible values.
-     * @param {object} data.eventData - See {@link TEventNameMap} for required `eventData` properties.
+     * @param {TEventName} data.eventName - See {@link TEventName} for a list of possible values.
+     * @param {object} data.eventData - See {@link TEventName} for required `eventData` properties.
      */
     queueEvent({ eventName, eventData = {} }: IQueueEvent) {
         const { userId } = this.options;
@@ -198,7 +200,7 @@ interface IOptions {
 }
 
 interface IQueueEvent {
-    eventName: TEventName;
+    eventName: TEventNameLiteral;
     eventData: IEventData;
 }
 

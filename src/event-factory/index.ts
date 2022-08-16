@@ -110,9 +110,11 @@ export interface IEventObject extends IRootProps {
 }
 
 /**
+ * @memberof SpressoSdk
+ * @alias TEventName
  * A list of event names that can be passed into {@link SpressoSdk#queueEvent}.
  */
-type TEventNameMap = {
+type TEventName = {
     /**
      * Requires the same `eventData` as {@link SpressoSdk#trackCreateOrder}.
      */
@@ -140,9 +142,9 @@ type TEventNameMap = {
 };
 
 type TEventFactory = {
-    [Property in keyof TEventNameMap]: {
+    [Property in keyof TEventName]: {
         createEvent: (eventData: IEventData) => IEventObject;
     };
 };
 
-export type TEventName = keyof TEventNameMap;
+export type TEventNameLiteral = keyof TEventName;
