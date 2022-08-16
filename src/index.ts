@@ -1,24 +1,8 @@
 import { addBeforeUnloadListener, addIntersectionObserver, isBrowser } from 'utils/browser';
 import { initDeviceId } from 'utils/properties';
 import { track } from 'utils/api';
-import { EventFactory, EVENT_NAMES } from 'event-factory';
+import { EventFactory, EVENT_NAMES, IEventData, IEventObject } from 'event-factory';
 import { consoleLog } from 'utils/debug';
-
-declare global {
-    interface Window {
-        SpressoSdk: SpressoSdk;
-    }
-
-    interface globalThis {
-        SpressoSdk: SpressoSdk;
-    }
-}
-
-interface IOptions {
-    orgId: string;
-    userId: string;
-    useStaging: boolean;
-}
 
 /**
  * Instantiated on page load. Accessible on `window.SpressoSdk`.
@@ -26,7 +10,7 @@ interface IOptions {
 class SpressoSdk {
     options: IOptions;
     orgId: string;
-    eventsQueue: Array<object>;
+    eventsQueue: Array<IEventObject>;
     timerId: number;
     EXECUTE_DELAY: number;
 
@@ -51,7 +35,7 @@ class SpressoSdk {
         return this;
     }
 
-    flushQueue() {
+    flushQueue(): Array<IEventObject> {
         const previousQueue = this.eventsQueue;
         this.eventsQueue = [];
         return previousQueue;
@@ -68,7 +52,7 @@ class SpressoSdk {
      * @param {EVENT_NAMES} data.eventName - See {@link EVENT_NAMES} for a list of possible values.
      * @param {object} data.eventData - See {@link EVENT_NAMES} for required `eventData` properties.
      */
-    queueEvent({ eventName, eventData = {} }: any) {
+    queueEvent({ eventName, eventData = {} }: IQueueEvent) {
         const { userId } = this.options;
 
         let eventObj = EventFactory[eventName]?.createEvent?.({
@@ -117,7 +101,7 @@ class SpressoSdk {
      * @param {object} eventData
      * @param {string} [eventData.userId] - The customer's user ID. Defaults to `deviceId` for guests, which is a randomly generated string stored in a cookie on the first script execution.
      */
-    trackPageView(eventData = {}) {
+    trackPageView(eventData: IEventData = {}) {
         this.queueEvent({ eventName: EVENT_NAMES.PAGE_VIEW, eventData });
     }
 
@@ -130,7 +114,7 @@ class SpressoSdk {
      * @param {number} eventData.variantPrice - Variant price.
      * @param {object} eventData.variantReport - Variant report.
      */
-    trackViewPDP(eventData = {}) {
+    trackViewPDP(eventData: IEventData = {}) {
         this.queueEvent({ eventName: EVENT_NAMES.VIEW_PDP, eventData });
     }
 
@@ -145,12 +129,16 @@ class SpressoSdk {
      * @param {number} eventData.variantPrice - Variant price.
      * @param {object} eventData.variantReport - Variant report.
      */
-    registerGlimpsePLE({ root, target, glimpseThreshold, ...eventData }: any = {}) {
+    registerGlimpsePLE({ root, target, glimpseThreshold, ...eventData }: IRegisterGlimpsePLE) {
+        if (!(target instanceof HTMLElement)) {
+            consoleLog('registerGlimpsePLE: `target` is not a valid `HTMLELement`.');
+        }
+
         addIntersectionObserver({
             listener: () => this.trackGlimpsePLE(eventData),
-            root,
+            root: root instanceof HTMLElement ? root : null,
             target,
-            threshold: glimpseThreshold,
+            threshold: glimpseThreshold || 1,
         });
     }
 
@@ -162,7 +150,7 @@ class SpressoSdk {
      * @param {number} eventData.variantPrice - Variant price.
      * @param {object} eventData.variantReport - Variant report.
      */
-    trackGlimpsePLE(eventData = {}) {
+    trackGlimpsePLE(eventData: IEventData = {}) {
         this.queueEvent({ eventName: EVENT_NAMES.GLIMPSE_PLE, eventData });
     }
 
@@ -174,7 +162,7 @@ class SpressoSdk {
      * @param {number} eventData.variantPrice - Variant price.
      * @param {object} eventData.variantReport - Variant report.
      */
-    trackTapAddToCart(eventData = {}) {
+    trackTapAddToCart(eventData: IEventData = {}) {
         this.queueEvent({ eventName: EVENT_NAMES.TAP_ADD_TO_CART, eventData });
     }
 
@@ -188,7 +176,7 @@ class SpressoSdk {
      * @param {object} eventData.variantReport - Variant report.
      * @param {string} eventData.orderId - The customer's order ID.
      */
-    trackPurchaseVariant(eventData = {}) {
+    trackPurchaseVariant(eventData: IEventData = {}) {
         this.queueEvent({ eventName: EVENT_NAMES.PURCHASE_VARIANT, eventData });
     }
 
@@ -198,8 +186,35 @@ class SpressoSdk {
      * @param {string} [eventData.userId] - The customer's user ID. Defaults to `deviceId` for guests, which is a randomly generated string stored in a cookie on the first script execution.
      * @param {string} eventData.orderId - The customer's order ID.
      */
-    trackCreateOrder(eventData = {}) {
+    trackCreateOrder(eventData: IEventData = {}) {
         this.queueEvent({ eventName: EVENT_NAMES.CREATE_ORDER, eventData });
+    }
+}
+
+interface IOptions {
+    orgId: string;
+    userId: string;
+    useStaging: boolean;
+}
+
+interface IQueueEvent {
+    eventName: string;
+    eventData: IEventData;
+}
+
+interface IRegisterGlimpsePLE extends IEventData {
+    root?: HTMLElement | null;
+    target: HTMLElement;
+    glimpseThreshold?: number;
+}
+
+declare global {
+    interface Window {
+        SpressoSdk: SpressoSdk;
+    }
+
+    interface globalThis {
+        SpressoSdk: SpressoSdk;
     }
 }
 

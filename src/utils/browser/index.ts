@@ -1,26 +1,23 @@
-export const isBrowser = function () {
+export function isBrowser(): boolean {
     return typeof window !== 'undefined';
-};
+}
 
-export const addBeforeUnloadListener = function (listener) {
+export function addBeforeUnloadListener(listener: IListener) {
     isBrowser() &&
         window?.addEventListener?.('beforeunload', () => {
             listener();
             window.removeEventListener('beforeunload', listener);
         });
-};
+}
 
-export const addIntersectionObserver = function ({ listener, root, target, threshold = 1 }) {
-    if (
-        !isBrowser() ||
-        typeof IntersectionObserver !== 'function' ||
-        typeof HTMLElement === 'undefined' ||
-        !(target instanceof HTMLElement)
-    ) {
+export function addIntersectionObserver(options: IIntersectionObserverOptions) {
+    const { listener, root = null, target, threshold = 1 } = options;
+
+    if (!isBrowser() || typeof IntersectionObserver !== 'function' || typeof HTMLElement === 'undefined' || !(target instanceof HTMLElement)) {
         return;
     }
 
-    const executeListener = (entries, observer) => {
+    const executeListener: IntersectionObserverCallback = (entries, observer) => {
         entries.forEach((entry) => {
             if (entry?.isIntersecting) {
                 typeof listener === 'function' && listener();
@@ -34,9 +31,9 @@ export const addIntersectionObserver = function ({ listener, root, target, thres
         threshold,
     });
     observer?.observe?.(target);
-};
+}
 
-export const addPageViewListener = function (listener) {
+export function addPageViewListener(listener: IListener) {
     // https://dirask.com/posts/JavaScript-on-location-changed-event-on-url-changed-event-DKeyZj
 
     let pushState = isBrowser() && window?.history?.pushState;
@@ -73,8 +70,19 @@ export const addPageViewListener = function (listener) {
         window.removeEventListener('pageview', listener);
         // console.log('removed');
     });
-};
+}
 
-export const getCurrentUrl = function () {
+export function getCurrentUrl(): string {
     return isBrowser() ? window.location.href : '';
-};
+}
+
+interface IListener {
+    (): any;
+}
+
+interface IIntersectionObserverOptions {
+    listener: IListener;
+    root?: HTMLElement | null;
+    target: HTMLElement;
+    threshold?: number;
+}
