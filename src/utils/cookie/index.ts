@@ -1,4 +1,4 @@
-export const writeCookie = function ({ name, value, days = 730 /** 2 years */, domain, path = '/' }) {
+export function writeCookie({ name, value, days = 730 /** 2 years */, domain, path = '/' }: IWriteCookieOptions) {
     let date = new Date();
     date.setTime(date.getTime() + days * 24 * 60 * 60 * 1000);
     let expires = `; expires=${date.toUTCString()}`;
@@ -10,9 +10,9 @@ export const writeCookie = function ({ name, value, days = 730 /** 2 years */, d
     if (typeof document !== 'undefined') {
         document.cookie = cookieValue;
     }
-};
+}
 
-export const readCookie = function (name) {
+export function readCookie(name: string) {
     const allCookie = `${typeof document !== 'undefined' ? document.cookie : ''}`;
     const index = allCookie.indexOf(name);
 
@@ -28,10 +28,18 @@ export const readCookie = function (name) {
     }
 
     return allCookie.substring(index + name.length + 1, ind1);
-};
+}
 
-export const removeCookie = function (name) {
+export function removeCookie(name: string) {
     if (readCookie(name)) {
         writeCookie({ name, value: '', days: -1 });
     }
-};
+}
+
+interface IWriteCookieOptions {
+    name: string;
+    value: string;
+    days?: number;
+    domain?: string;
+    path?: string;
+}
