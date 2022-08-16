@@ -5,7 +5,7 @@ import { EventFactory, EVENT_NAMES, IEventData, IEventObject } from 'event-facto
 import { consoleLog } from 'utils/debug';
 
 /**
- * Instantiated on page load. Accessible on `window.SpressoSdk`. TEST
+ * Instantiated on page load. Accessible on `window.SpressoSdk`.
  */
 class SpressoSdk {
     options: IOptions;
