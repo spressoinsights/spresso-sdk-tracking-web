@@ -1,10 +1,10 @@
 name: prod-deploy-workflow
 on:
     push:
-      tags:
-          - v**
+        tags:
+            - v**
 jobs:
-    deploy-job:
+    build-and-deploy-sdk:
         runs-on: ubuntu-latest
         env:
             NODE_ENV: production
@@ -30,15 +30,3 @@ jobs:
               with:
                   path: './dist/spresso.sdk.tracking.web.js'
                   destination: 'spresso-saas-prod-spresso-sdk-tracking-web/${{ env.RELEASE_VERSION }}'
-            - id: 'update-docs'
-              name: 'Update Docs'
-              run: npm run docs:clear-and-build
-            - id: 'publish-docs'
-              name: 'Publish Docs'
-              run: |
-                git config user.name "github-actions[bot]"
-                git config user.email "github-actions[bot]@users.noreply.github.com"
-                git add docs -f
-                git status
-                git commit -m 'Automated docs publish'
-                git push origin HEAD:refs/heads/main
