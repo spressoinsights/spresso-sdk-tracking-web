@@ -15,7 +15,7 @@
         "dev:prod-mode": "run-p dev:mb dev:setup start-prod-mode",
         "dev": "run-p dev:mb dev:setup start",
         "docs:clear": "rimraf docs",
-        "docs:generate-readme": "node src/scripts/generate-readme/index.js",
+        "docs:generate-readme": "node scripts/generate-readme/index.js",
         "docs:build": "jsdoc -c jsdoc.config.js",
         "docs:clear-and-build": "run-s docs:clear docs:generate-readme docs:build",
         "docs": "nodemon --exec \"run-s docs:generate-readme docs:build\" --watch src --watch jsdoc.config.js --verbose --ext js,ts,md",
