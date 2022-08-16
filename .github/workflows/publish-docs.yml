@@ -1,13 +1,10 @@
 name: Publish docs
 on:
     push:
-        branches:
-            - feature/SPRS-421
-        # tags:
-        #     - v**
-
+        tags:
+            - v**
 jobs:
-    publish-job:
+    build-and-deploy-docs:
         runs-on: ubuntu-latest
         env:
             NODE_ENV: production

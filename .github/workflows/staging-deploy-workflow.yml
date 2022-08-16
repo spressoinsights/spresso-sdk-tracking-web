@@ -1,9 +1,9 @@
 name: staging-deploy-workflow
 on:
-  push:
-    branches: [staging]
+    push:
+        branches: [staging]
 jobs:
-    deploy-job:
+    build-and-deploy-sdk:
         runs-on: ubuntu-latest
         env:
             NODE_ENV: production
@@ -30,4 +30,4 @@ jobs:
                   path: './dist/spresso.sdk.tracking.web.js'
                   destination: 'spresso-saas-staging-spresso-sdk-tracking-web/${{ env.RELEASE_VERSION }}'
               env:
-                GITHUB_SHA: ${{ env.GITHUB_SHA }}
+                  GITHUB_SHA: ${{ env.GITHUB_SHA }}

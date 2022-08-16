@@ -4,7 +4,7 @@ on:
         tags:
             - v**
 jobs:
-    deploy-job:
+    build-and-deploy-sdk:
         runs-on: ubuntu-latest
         env:
             NODE_ENV: production
