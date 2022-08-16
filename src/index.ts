@@ -4,12 +4,6 @@ import { track } from 'utils/api';
 import { EventFactory, EVENT_NAMES, IEventData, IEventObject } from 'event-factory';
 import { consoleLog } from 'utils/debug';
 
-interface IOptions {
-    orgId: string;
-    userId: string;
-    useStaging: boolean;
-}
-
 /**
  * Instantiated on page load. Accessible on `window.SpressoSdk`.
  */
@@ -205,6 +199,12 @@ declare global {
     interface globalThis {
         SpressoSdk: SpressoSdk;
     }
+}
+
+interface IOptions {
+    orgId: string;
+    userId: string;
+    useStaging: boolean;
 }
 
 interface IQueueEvent {
