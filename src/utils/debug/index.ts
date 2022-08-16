@@ -1,7 +1,7 @@
 const isDebugMode = process.env.NODE_ENV !== 'production';
 
-export const consoleLog = function () {
+export function consoleLog(...args: Array<string | object>) {
     if (isDebugMode) {
-        console.log.apply(null, arguments);
+        console.log.apply(null, args);
     }
-};
+}

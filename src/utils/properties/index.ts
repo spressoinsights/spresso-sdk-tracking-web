@@ -2,17 +2,17 @@ import { v4 as uuidv4 } from 'uuid';
 import { writeCookie, readCookie, removeCookie } from 'utils/cookie';
 import { IEventData } from 'event-factory';
 
-const setDeviceId = function () {
+function setDeviceId() {
     const deviceId = uuidv4();
     writeCookie({ name: 'spressoDeviceId', value: deviceId, domain: '' });
     return deviceId;
-};
+}
 
-export const getDeviceId = function () {
+export function getDeviceId() {
     return readCookie('spressoDeviceId');
-};
+}
 
-export const initDeviceId = function () {
+export function initDeviceId() {
     let deviceId = getDeviceId();
 
     if (!deviceId || deviceId === '') {
@@ -20,7 +20,7 @@ export const initDeviceId = function () {
     }
 
     return deviceId;
-};
+}
 
 export interface IRootProps {
     uid: string;
@@ -28,7 +28,7 @@ export interface IRootProps {
     timezoneOffset: number;
 }
 
-export const getRootProps = function (): IRootProps {
+export function getRootProps(): IRootProps {
     const currentTimestamp = new Date();
 
     return {
@@ -36,17 +36,17 @@ export const getRootProps = function (): IRootProps {
         utcTimestampMs: currentTimestamp.getTime(),
         timezoneOffset: currentTimestamp.getTimezoneOffset() * 60 * 1000, // convert to milliseconds
     };
-};
+}
 
 export interface IMetaProps {
     deviceId: string;
     userId: string;
 }
 
-export const getMetaProps = function ({ userId }: IEventData): IMetaProps {
+export function getMetaProps({ userId }: IEventData): IMetaProps {
     const deviceId = getDeviceId();
     return {
         deviceId,
         userId: userId || deviceId,
     };
-};
+}
