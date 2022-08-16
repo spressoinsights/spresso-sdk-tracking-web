@@ -5,12 +5,6 @@ import { consoleLog } from 'utils/debug';
 
 const isDev = !process.env.NODE_ENV || process.env.NODE_ENV === 'development';
 
-interface ITrackOptions {
-    orgId: string;
-    events: Array<IEventObject>;
-    useStaging: boolean;
-}
-
 export function track({ orgId, events, useStaging }: ITrackOptions) {
     consoleLog({ useStaging });
 
@@ -48,4 +42,10 @@ export function track({ orgId, events, useStaging }: ITrackOptions) {
     } catch (error) {
         console.error(error);
     }
+}
+
+interface ITrackOptions {
+    orgId: string;
+    events: Array<IEventObject>;
+    useStaging: boolean;
 }

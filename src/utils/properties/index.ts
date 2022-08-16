@@ -22,12 +22,6 @@ export function initDeviceId() {
     return deviceId;
 }
 
-export interface IRootProps {
-    uid: string;
-    utcTimestampMs: number;
-    timezoneOffset: number;
-}
-
 export function getRootProps(): IRootProps {
     const currentTimestamp = new Date();
 
@@ -38,15 +32,21 @@ export function getRootProps(): IRootProps {
     };
 }
 
-export interface IMetaProps {
-    deviceId: string;
-    userId: string;
-}
-
 export function getMetaProps({ userId }: IEventData): IMetaProps {
     const deviceId = getDeviceId();
     return {
         deviceId,
         userId: userId || deviceId,
     };
+}
+
+export interface IRootProps {
+    uid: string;
+    utcTimestampMs: number;
+    timezoneOffset: number;
+}
+
+export interface IMetaProps {
+    deviceId: string;
+    userId: string;
 }

@@ -20,30 +20,6 @@ export const EVENT_NAMES = {
     VIEW_PDP: 'VIEW_PDP',
 };
 
-export interface IEventData {
-    orderId?: string;
-    userId?: string;
-    variantId?: string;
-    variantPrice?: number;
-    variantQuantity?: number;
-    variantReport?: any;
-    variantTotalPrice?: number;
-}
-
-export interface IEventObject extends IRootProps {
-    event: string;
-    properties: IMetaProps &
-        IEventData & {
-            page?: string;
-        };
-}
-
-interface IEventFactory {
-    [EVENT_CONSTANT: string]: {
-        createEvent: (eventData: IEventData) => IEventObject;
-    };
-}
-
 export const EventFactory: IEventFactory = {
     [EVENT_NAMES.PAGE_VIEW]: {
         createEvent: function ({ ...otherProps }) {
@@ -133,3 +109,27 @@ export const EventFactory: IEventFactory = {
         },
     },
 };
+
+export interface IEventData {
+    orderId?: string;
+    userId?: string;
+    variantId?: string;
+    variantPrice?: number;
+    variantQuantity?: number;
+    variantReport?: any;
+    variantTotalPrice?: number;
+}
+
+export interface IEventObject extends IRootProps {
+    event: string;
+    properties: IMetaProps &
+        IEventData & {
+            page?: string;
+        };
+}
+
+interface IEventFactory {
+    [EVENT_CONSTANT: string]: {
+        createEvent: (eventData: IEventData) => IEventObject;
+    };
+}

@@ -191,16 +191,6 @@ class SpressoSdk {
     }
 }
 
-declare global {
-    interface Window {
-        SpressoSdk: SpressoSdk;
-    }
-
-    interface globalThis {
-        SpressoSdk: SpressoSdk;
-    }
-}
-
 interface IOptions {
     orgId: string;
     userId: string;
@@ -216,6 +206,16 @@ interface IRegisterGlimpsePLE extends IEventData {
     root?: HTMLElement | null;
     target: HTMLElement;
     glimpseThreshold?: number;
+}
+
+declare global {
+    interface Window {
+        SpressoSdk: SpressoSdk;
+    }
+
+    interface globalThis {
+        SpressoSdk: SpressoSdk;
+    }
 }
 
 export default new SpressoSdk();
