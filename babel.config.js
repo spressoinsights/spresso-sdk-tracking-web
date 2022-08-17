@@ -3,7 +3,7 @@ const isDev = !process.env.NODE_ENV || process.env.NODE_ENV === 'development';
 console.log('using babel.config.js');
 
 module.exports = function (api) {
-    api.cache(true);
+    api.cache(false);
 
     let presets = [
         [

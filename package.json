@@ -9,7 +9,7 @@
         "prestart-prod-mode": "npm run reset",
         "start-prod-mode": "NODE_ENV=production USE_NODEMON=true webpack --watch",
         "prebuild": "npm run reset",
-        "build": "webpack --progress=profile",
+        "build": "webpack",
         "dev:mb": "mb",
         "dev:setup": "babel-node ./test/setup/index.js",
         "dev:prod-mode": "run-p dev:mb dev:setup start-prod-mode",
