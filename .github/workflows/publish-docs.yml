@@ -1,0 +1,31 @@
+name: Publish docs
+on:
+    push:
+        tags:
+            - v**
+jobs:
+    build-and-deploy-docs:
+        runs-on: ubuntu-latest
+        env:
+            NODE_ENV: production
+        steps:
+            - name: Checks out repo
+              uses: actions/checkout@v2
+            - name: Setup Node
+              uses: actions/setup-node@v2
+              with:
+                  node-version: '16.13.2'
+                  cache: 'npm' # https://github.com/actions/setup-node#caching-packages-dependencies
+            - run: npm install --include=dev
+            - id: 'build-docs'
+              name: Build Docs
+              run: npm run docs:clear-and-build
+            - name: Deploy Docs
+              uses: peaceiris/actions-gh-pages@v3
+              with:
+                  github_token: ${{ secrets.GITHUB_TOKEN }}
+                  publish_dir: ./docs
+                  publish_branch: docs
+                  user_name: 'github-actions[bot]'
+                  user_email: 'github-actions[bot]@users.noreply.github.com'
+                  commit_message: Automated docs publish
