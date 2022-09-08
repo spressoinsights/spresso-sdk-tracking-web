@@ -25,6 +25,7 @@ export const EventFactory: TEventFactory = {
                     utmPurpose: parsedQueryParameters?.utm_purpose,
                     utmAdId: parsedQueryParameters?.utm_ad_id,
                     utmExperiment: parsedQueryParameters?.utm_experiment,
+                    referrerUrl: typeof document !== 'undefined' ? document.referrer : '',
                 },
             };
         },
@@ -157,10 +158,23 @@ export const EventFactory: TEventFactory = {
     },
 };
 
-export interface IEventData extends IVariantEventData, IOrderEventData {
+export interface IEventData extends IPageEventData, IVariantEventData, IOrderEventData {
     userId?: string;
     postalCode?: string;
     remoteAddress?: string;
+}
+
+export interface IPageEventData {
+    utmMedium?: string;
+    utmSource?: string;
+    utmCampaign?: string;
+    utmTerm?: string;
+    utmTarget?: string;
+    utmPurpose?: string;
+    utmAdId?: string;
+    utmExperiment?: string;
+    referrerUrl?: string;
+    queryParameters?: string;
 }
 
 export interface IVariantEventData {

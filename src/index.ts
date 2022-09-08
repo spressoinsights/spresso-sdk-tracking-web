@@ -55,11 +55,13 @@ class SpressoSdk {
      * @param {object} data.eventData - See {@link TEventName} for required `eventData` properties.
      */
     queueEvent({ eventName, eventData = {} }: IQueueEvent) {
-        const { userId } = this.options;
+        const { userId, postalCode, remoteAddress } = this.options;
 
         let eventObj = EventFactory[eventName]?.createEvent?.({
             ...eventData,
             ...(userId && { userId }),
+            ...(postalCode && { postalCode }),
+            ...(remoteAddress && { remoteAddress }),
         });
 
         if (typeof eventObj === 'object') {
@@ -173,6 +175,7 @@ class SpressoSdk {
      * @param {object} eventData
      * @param {string} [eventData.userId] - The customer's user ID. Defaults to `deviceId` for guests, which is a randomly generated string stored in a cookie on the first script execution.
      * @param {string} eventData.variantSku - The unique identifier of the product variant.
+     * @param {string} eventData.variantName - The name of the product variant.
      * @param {number} eventData.variantPrice - The unit selling price of the variant.
      */
     trackTapAddToCart(eventData: IEventData = {}) {
@@ -222,7 +225,9 @@ class SpressoSdk {
 
 interface IOptions {
     orgId: string;
-    userId: string;
+    userId?: string;
+    postalCode?: string;
+    remoteAddress?: string;
     useStaging: boolean;
 }
 

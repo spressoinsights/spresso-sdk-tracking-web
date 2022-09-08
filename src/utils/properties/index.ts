@@ -38,11 +38,10 @@ export function getMetaProps({ userId, postalCode, remoteAddress }: IEventData):
     return {
         deviceId,
         userId: userId || deviceId,
-        isLoggedIn: userId !== deviceId,
+        isLoggedIn: Boolean(userId),
         page: getCurrentUrl(),
         postalCode,
-        remoteAddress,
-        referrerUrl: typeof document !== 'undefined' ? document.referrer : '',
+        remoteAddress: remoteAddress || '',
         userAgent: typeof navigator !== 'undefined' ? navigator.userAgent : '',
     };
 }
@@ -60,6 +59,5 @@ export interface IMetaProps {
     page: string;
     postalCode?: string;
     remoteAddress?: string;
-    referrerUrl: string;
     userAgent: string;
 }
