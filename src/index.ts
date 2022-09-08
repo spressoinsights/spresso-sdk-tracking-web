@@ -30,8 +30,6 @@ class SpressoSdk {
         this.orgId = options?.orgId;
         this.options = options;
 
-        console.log('init', { options });
-
         initDeviceId();
         addBeforeUnloadListener(this.executeNow.bind(this));
 
@@ -58,8 +56,6 @@ class SpressoSdk {
      */
     queueEvent({ eventName, eventData = {} }: IQueueEvent) {
         const { userId, postalCode, remoteAddress } = this.options;
-
-		console.log('queueEvent', {remoteAddress})
 
         let eventObj = EventFactory[eventName]?.createEvent?.({
             ...eventData,

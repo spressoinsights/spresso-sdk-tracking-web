@@ -34,8 +34,6 @@ export function getRootProps(): IRootProps {
 }
 
 export function getMetaProps({ userId, postalCode, remoteAddress }: IEventData): IMetaProps {
-    console.log('getMetaProps', { remoteAddress });
-
     const deviceId = getDeviceId();
     return {
         deviceId,
