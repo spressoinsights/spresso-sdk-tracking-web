@@ -1,153 +1,196 @@
-import { getCurrentUrl } from 'utils/browser';
+import { parseQueryParams, getQueryParameters } from 'utils/browser';
 import { getMetaProps, getRootProps, IRootProps, IMetaProps } from 'utils/properties';
 
 export const EventFactory: TEventFactory = {
     ['PAGE_VIEW']: {
-        createEvent: function ({
-            utmMedium,
-            utmSource,
-            utmCampaign,
-            utmTerm,
-            utmTarget,
-            utmPurpose,
-            utmAdId,
-            utmExperiment,
-            postalCode,
-            remoteAddress,
-            referrerUrl,
-            userAgent,
-            queryParameters,
-            ...otherProps
-        }) {
+        createEvent: function ({ postalCode, remoteAddress, ...otherProps }) {
+            const queryParameters = getQueryParameters();
+            let parsedQueryParameters: any;
+
+            if (queryParameters) {
+                parsedQueryParameters = parseQueryParams(queryParameters);
+            }
+
             return {
                 event: 'spresso_page_view',
                 ...getRootProps(),
                 properties: {
                     ...getMetaProps(otherProps),
-                    page: getCurrentUrl(),
-                    utmMedium,
-                    utmSource,
-                    utmCampaign,
-                    utmTerm,
-                    utmTarget,
-                    utmPurpose,
-                    utmAdId,
-                    utmExperiment,
-                    postalCode,
-                    remoteAddress,
-                    referrerUrl,
-                    userAgent,
                     queryParameters,
+                    utmMedium: parsedQueryParameters?.utm_medium,
+                    utmSource: parsedQueryParameters?.utm_source,
+                    utmCampaign: parsedQueryParameters?.utm_campaign,
+                    utmTerm: parsedQueryParameters?.utm_term,
+                    utmTarget: parsedQueryParameters?.utm_target,
+                    utmPurpose: parsedQueryParameters?.utm_purpose,
+                    utmAdId: parsedQueryParameters?.utm_ad_id,
+                    utmExperiment: parsedQueryParameters?.utm_experiment,
                 },
             };
         },
     },
 
     ['VIEW_PDP']: {
-        createEvent: function ({ variantId, variantPrice, variantReport, ...otherProps }) {
+        createEvent: function ({ variantSku, variantPrice, variantName, variantCost, inStock, ...otherProps }) {
             return {
                 event: 'spresso_view_pdp',
                 ...getRootProps(),
                 properties: {
                     ...getMetaProps(otherProps),
-                    variantId,
+                    variantSku,
                     variantPrice,
-                    variantReport,
+                    variantName,
+                    variantCost,
+                    inStock,
+                    queryParameters: getQueryParameters(),
                 },
             };
         },
     },
 
     ['GLIMPSE_PLE']: {
-        createEvent: function ({ variantId, variantPrice, variantReport, ...otherProps }) {
+        createEvent: function ({ variantSku, variantPrice, variantName, variantCost, inStock, ...otherProps }) {
             return {
                 event: 'spresso_glimpse_ple',
                 ...getRootProps(),
                 properties: {
                     ...getMetaProps(otherProps),
-                    variantId,
+                    variantSku,
                     variantPrice,
-                    variantReport,
+                    variantName,
+                    variantCost,
+                    inStock,
+                    queryParameters: getQueryParameters(),
                 },
             };
         },
     },
 
     ['TAP_ADD_TO_CART']: {
-        createEvent: function ({ variantId, variantPrice, variantReport, ...otherProps }) {
+        createEvent: function ({ variantSku, variantPrice, variantName, variantCost, inStock, ...otherProps }) {
             return {
                 event: 'spresso_tap_add_to_cart',
                 ...getRootProps(),
                 properties: {
                     ...getMetaProps(otherProps),
-                    variantId,
+                    variantSku,
                     variantPrice,
-                    variantReport,
+                    variantName,
+                    variantCost,
+                    inStock,
+                    queryParameters: getQueryParameters(),
                 },
             };
         },
     },
 
     ['PURCHASE_VARIANT']: {
-        createEvent: function ({ variantId, variantTotalPrice, variantQuantity, variantReport, orderId, ...otherProps }) {
+        createEvent: function ({
+            variantSku,
+            variantTotalPrice,
+            variantQuantity,
+            orderNumber,
+            variantName,
+            variantCost,
+            variantPrice,
+            variantStandardPrice,
+            ...otherProps
+        }) {
             return {
                 event: 'spresso_purchase_variant',
                 ...getRootProps(),
                 properties: {
                     ...getMetaProps(otherProps),
-                    variantId,
+                    variantSku,
                     variantTotalPrice,
                     variantQuantity,
-                    variantReport,
-                    orderId,
+                    orderNumber,
+                    variantName,
+                    variantCost,
+                    variantPrice,
+                    variantStandardPrice,
                 },
             };
         },
     },
 
     ['CREATE_ORDER']: {
-        createEvent: function ({ orderId, ...otherProps }) {
+        createEvent: function ({
+            orderNumber,
+            totalOrderPrice,
+            totalVariantQuantity,
+            totalVariantCost,
+            totalVariantPrice,
+            shippingInfoAddressLine1,
+            shippingInfoAddressLine2,
+            shippingInfoCity,
+            shippingInfoState,
+            shippingInfoPostalCode,
+            orderFees,
+            orderTax,
+            orderDeductions,
+            ...otherProps
+        }) {
             return {
                 event: 'spresso_create_order',
                 ...getRootProps(),
                 properties: {
                     ...getMetaProps(otherProps),
-                    orderId,
+                    orderNumber,
+                    totalOrderPrice,
+                    totalVariantQuantity,
+                    totalVariantCost,
+                    totalVariantPrice,
+                    shippingInfoAddressLine1,
+                    shippingInfoAddressLine2,
+                    shippingInfoCity,
+                    shippingInfoState,
+                    shippingInfoPostalCode,
+                    orderFees,
+                    orderTax,
+                    orderDeductions,
                 },
             };
         },
     },
 };
 
-export interface IEventData {
-    orderId?: string;
+export interface IEventData extends IVariantEventData, IOrderEventData {
     userId?: string;
-    variantId?: string;
-    variantPrice?: number;
-    variantQuantity?: number;
-    variantReport?: any;
-    variantTotalPrice?: number;
-    utmMedium?: string;
-    utmSource?: string;
-    utmCampaign?: string;
-    utmTerm?: string;
-    utmTarget?: string;
-    utmPurpose?: string;
-    utmAdId?: string;
-    utmExperiment?: string;
     postalCode?: string;
     remoteAddress?: string;
-    referrerUrl?: string;
-    userAgent?: string;
-    queryParameters?: string;
+}
+
+export interface IVariantEventData {
+    variantSku?: string;
+    variantName?: string;
+    variantPrice?: number;
+    variantStandardPrice?: number;
+    variantCost?: number;
+    variantQuantity?: number;
+    variantTotalPrice?: number;
+    inStock?: boolean;
+}
+
+export interface IOrderEventData {
+    orderNumber?: string;
+    totalOrderPrice?: number;
+    totalVariantQuantity?: string;
+    totalVariantCost?: number;
+    totalVariantPrice?: number;
+    shippingInfoAddressLine1?: string;
+    shippingInfoAddressLine2?: string;
+    shippingInfoCity?: string;
+    shippingInfoState?: string;
+    shippingInfoPostalCode?: string;
+    orderTax?: number;
+    orderFees?: number;
+    orderDeductions?: string;
 }
 
 export interface IEventObject extends IRootProps {
     event: string;
-    properties: IMetaProps &
-        IEventData & {
-            page?: string;
-        };
+    properties: IMetaProps & IEventData;
 }
 
 /**
