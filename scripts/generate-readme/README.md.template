@@ -44,7 +44,8 @@ Let's get started by sending event data, for example, when a user views a Produc
 
 ```javascript
 SpressoSdk.trackViewPDP({
-    variantId: 'some-id',
+    variantSku: 'some-id',
+    variantName: 'Awesome Product',
     variantPrice: 1000000,
     userId: 'awesome-customer-id',
 });
