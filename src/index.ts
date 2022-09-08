@@ -115,7 +115,12 @@ class SpressoSdk {
      * @param {object} eventData
      * @param {string} [eventData.userId] - The customer's user ID. Defaults to `deviceId` for guests, which is a randomly generated string stored in a cookie on the first script execution.
      * @param {string} eventData.variantSku - The unique identifier of the product variant.
-     * @param {number} eventData.variantPrice - Variant price.
+     * @param {string} eventData.variantName - The name of the product variant.
+     * @param {number} eventData.variantPrice - The unit selling price of the variant.
+     * @param {number} [eventData.variantCost] - The unit cost of the variant.
+     * @param {number} [eventData.inStock] - Variant's stock availability.
+     * @param {number} [eventData.postalCode] - The customer's postal code.
+     * @param {number} [eventData.remoteAddress] - The `'x-forwarded-for'` HTTP request header.
      */
     trackViewPDP(eventData: IEventData = {}) {
         this.queueEvent({ eventName: 'VIEW_PDP', eventData });
@@ -129,7 +134,11 @@ class SpressoSdk {
      * @param {number} [eventData.glimpseThreshold=1] - The area of the PLE element that's visible in the viewport, expressed as a ratio, to trigger the event.
      * @param {string} [eventData.userId] - The customer's user ID. Defaults to `deviceId` for guests, which is a randomly generated string stored in a cookie on the first script execution.
      * @param {string} eventData.variantSku - The unique identifier of the product variant.
-     * @param {number} eventData.variantPrice - Variant price.
+     * @param {string} eventData.variantName - The name of the product variant.
+     * @param {number} eventData.variantPrice - The unit selling price of the variant.
+     * @param {number} [eventData.variantCost] - The unit cost of the variant.
+     * @param {number} [eventData.postalCode] - The customer's postal code.
+     * @param {number} [eventData.remoteAddress] - The `'x-forwarded-for'` HTTP request header.
      */
     registerGlimpsePLE({ root, target, glimpseThreshold, ...eventData }: IRegisterGlimpsePLE) {
         if (!(target instanceof HTMLElement)) {
@@ -149,7 +158,11 @@ class SpressoSdk {
      * @param {object} eventData
      * @param {string} [eventData.userId] - The customer's user ID. Defaults to `deviceId` for guests, which is a randomly generated string stored in a cookie on the first script execution.
      * @param {string} eventData.variantSku - The unique identifier of the product variant.
-     * @param {number} eventData.variantPrice - Variant price.
+     * @param {string} eventData.variantName - The name of the product variant.
+     * @param {number} eventData.variantPrice - The unit selling price of the variant.
+     * @param {number} [eventData.variantCost] - The unit cost of the variant.
+     * @param {number} [eventData.postalCode] - The customer's postal code.
+     * @param {number} [eventData.remoteAddress] - The `'x-forwarded-for'` HTTP request header.
      */
     trackGlimpsePLE(eventData: IEventData = {}) {
         this.queueEvent({ eventName: 'GLIMPSE_PLE', eventData });
@@ -160,7 +173,7 @@ class SpressoSdk {
      * @param {object} eventData
      * @param {string} [eventData.userId] - The customer's user ID. Defaults to `deviceId` for guests, which is a randomly generated string stored in a cookie on the first script execution.
      * @param {string} eventData.variantSku - The unique identifier of the product variant.
-     * @param {number} eventData.variantPrice - Variant price.
+     * @param {number} eventData.variantPrice - The unit selling price of the variant.
      */
     trackTapAddToCart(eventData: IEventData = {}) {
         this.queueEvent({ eventName: 'TAP_ADD_TO_CART', eventData });
@@ -171,9 +184,13 @@ class SpressoSdk {
      * @param {object} eventData
      * @param {string} [eventData.userId] - The customer's user ID. Defaults to `deviceId` for guests, which is a randomly generated string stored in a cookie on the first script execution.
      * @param {string} eventData.variantSku - The unique identifier of the product variant.
-     * @param {number} eventData.variantTotalPrice - Variant price total (includes tax and shipping).
+     * @param {string} eventData.variantName - The name of the product variant.
+     * @param {number} [eventData.variantTotalPrice] - The extended total price of the variant inclusive of tax and shipping.
+     * @param {number} eventData.variantPrice - The unit selling price of the variant.
+     * @param {number} [eventData.variantStandardPrice] - The default base unit price of the variant not inclusive of price optimization or promotions.
+     * @param {number} [eventData.variantCost] - The unit cost of the variant.
      * @param {number} eventData.variantQuantity - Variant quantity.
-     * @param {string} eventData.orderId - The customer's order ID.
+     * @param {string} eventData.orderNumber - The unique identifier for the customer's order.
      */
     trackPurchaseVariant(eventData: IEventData = {}) {
         this.queueEvent({ eventName: 'PURCHASE_VARIANT', eventData });
@@ -183,7 +200,20 @@ class SpressoSdk {
      * Tracks when a user places a successful order.
      * @param {object} eventData
      * @param {string} [eventData.userId] - The customer's user ID. Defaults to `deviceId` for guests, which is a randomly generated string stored in a cookie on the first script execution.
-     * @param {string} eventData.orderId - The customer's order ID.
+     * @param {string} eventData.orderNumber - The unique identifier for the customer's order.
+     * @param {number} eventData.totalOrderPrice -  The total price of the order that a customer is paying for inclusive of tax and shipping.
+     * @param {number} [eventData.totalVariantQuantity] - The total quantity amount of the order.
+     * @param {number} [eventData.totalVariantCost] - The extended variant cost of the order.
+     * @param {number} [eventData.totalVariantPrice] - The extended selling price of the variant.
+     * @param {string} eventData.shippingInfoAddressLine1
+     * @param {string} eventData.shippingInfoAddressLine2
+     * @param {string} eventData.shippingInfoCity
+     * @param {string} eventData.shippingInfoState
+     * @param {string} eventData.shippingInfoPostalCode
+     * @param {string} eventData.shippingInfoCountry
+     * @param {number} [eventData.orderFees] - Any order-level fee such as shipping, delivery, convenience, service fees.
+     * @param {number} [eventData.orderTax]
+     * @param {Array<{ type: string, id: string, value: string }>} [eventData.orderDeductions] - An array of all promo codes or discounts or credits or loyalty promotions.
      */
     trackCreateOrder(eventData: IEventData = {}) {
         this.queueEvent({ eventName: 'CREATE_ORDER', eventData });

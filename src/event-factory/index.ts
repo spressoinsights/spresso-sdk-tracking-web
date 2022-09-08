@@ -38,8 +38,8 @@ export const EventFactory: TEventFactory = {
                 properties: {
                     ...getMetaProps(otherProps),
                     variantSku,
-                    variantPrice,
                     variantName,
+                    variantPrice,
                     variantCost,
                     inStock,
                     queryParameters: getQueryParameters(),
@@ -56,9 +56,9 @@ export const EventFactory: TEventFactory = {
                 properties: {
                     ...getMetaProps(otherProps),
                     variantSku,
-                    variantPrice,
                     variantName,
                     variantCost,
+                    variantPrice,
                     inStock,
                     queryParameters: getQueryParameters(),
                 },
@@ -74,9 +74,9 @@ export const EventFactory: TEventFactory = {
                 properties: {
                     ...getMetaProps(otherProps),
                     variantSku,
-                    variantPrice,
                     variantName,
                     variantCost,
+                    variantPrice,
                     inStock,
                     queryParameters: getQueryParameters(),
                 },
@@ -102,13 +102,13 @@ export const EventFactory: TEventFactory = {
                 properties: {
                     ...getMetaProps(otherProps),
                     variantSku,
-                    variantTotalPrice,
-                    variantQuantity,
-                    orderNumber,
                     variantName,
-                    variantCost,
+                    variantTotalPrice,
                     variantPrice,
                     variantStandardPrice,
+                    variantCost,
+                    variantQuantity,
+                    orderNumber,
                 },
             };
         },
@@ -126,6 +126,7 @@ export const EventFactory: TEventFactory = {
             shippingInfoCity,
             shippingInfoState,
             shippingInfoPostalCode,
+            shippingInfoCountry,
             orderFees,
             orderTax,
             orderDeductions,
@@ -146,6 +147,7 @@ export const EventFactory: TEventFactory = {
                     shippingInfoCity,
                     shippingInfoState,
                     shippingInfoPostalCode,
+                    shippingInfoCountry,
                     orderFees,
                     orderTax,
                     orderDeductions,
@@ -183,9 +185,10 @@ export interface IOrderEventData {
     shippingInfoCity?: string;
     shippingInfoState?: string;
     shippingInfoPostalCode?: string;
+    shippingInfoCountry?: string;
     orderTax?: number;
     orderFees?: number;
-    orderDeductions?: string;
+    orderDeductions?: Array<{ type: string; id: string; value: string }>;
 }
 
 export interface IEventObject extends IRootProps {
