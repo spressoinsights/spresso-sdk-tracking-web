@@ -3,7 +3,7 @@ import { getMetaProps, getRootProps, IRootProps, IMetaProps } from 'utils/proper
 
 export const EventFactory: TEventFactory = {
     ['PAGE_VIEW']: {
-        createEvent: function ({ postalCode, remoteAddress, ...otherProps }) {
+        createEvent: function ({ ...otherProps }) {
             const queryParameters = getQueryParameters();
             let parsedQueryParameters: any;
 
@@ -50,7 +50,7 @@ export const EventFactory: TEventFactory = {
     },
 
     ['GLIMPSE_PLE']: {
-        createEvent: function ({ variantSku, variantPrice, variantName, variantCost, inStock, ...otherProps }) {
+        createEvent: function ({ variantSku, variantPrice, variantName, variantCost, ...otherProps }) {
             return {
                 event: 'spresso_glimpse_ple',
                 ...getRootProps(),
@@ -60,7 +60,6 @@ export const EventFactory: TEventFactory = {
                     variantName,
                     variantCost,
                     variantPrice,
-                    inStock,
                     queryParameters: getQueryParameters(),
                 },
             };
@@ -68,7 +67,7 @@ export const EventFactory: TEventFactory = {
     },
 
     ['TAP_ADD_TO_CART']: {
-        createEvent: function ({ variantSku, variantPrice, variantName, variantCost, inStock, ...otherProps }) {
+        createEvent: function ({ variantSku, variantPrice, variantName, variantCost, ...otherProps }) {
             return {
                 event: 'spresso_tap_add_to_cart',
                 ...getRootProps(),
@@ -78,7 +77,6 @@ export const EventFactory: TEventFactory = {
                     variantName,
                     variantCost,
                     variantPrice,
-                    inStock,
                     queryParameters: getQueryParameters(),
                 },
             };

@@ -177,6 +177,9 @@ class SpressoSdk {
      * @param {string} eventData.variantSku - The unique identifier of the product variant.
      * @param {string} eventData.variantName - The name of the product variant.
      * @param {number} eventData.variantPrice - The unit selling price of the variant.
+     * @param {number} [eventData.variantCost] - The unit cost of the variant.
+     * @param {number} [eventData.postalCode] - The customer's postal code.
+     * @param {number} [eventData.remoteAddress] - The `'x-forwarded-for'` HTTP request header.
      */
     trackTapAddToCart(eventData: IEventData = {}) {
         this.queueEvent({ eventName: 'TAP_ADD_TO_CART', eventData });
