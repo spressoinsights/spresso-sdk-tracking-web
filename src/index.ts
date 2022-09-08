@@ -101,7 +101,19 @@ class SpressoSdk {
     /**
      * Tracks when a user navigates to any page on the site. Should only fire once on fresh page load or after a SPA transition.
      * @param {object} eventData
+     * @param {string} eventData.remoteAddress - The `'x-forwarded-for'` HTTP request header.
+     * @param {string} eventData.userAgent - The `user-agent` HTTP request header.
      * @param {string} [eventData.userId] - The customer's user ID. Defaults to `deviceId` for guests, which is a randomly generated string stored in a cookie on the first script execution.
+     * @param {string} [eventData.utmMedium]
+     * @param {string} [eventData.utmSource]
+     * @param {string} [eventData.utmCampaign]
+     * @param {string} [eventData.utmTerm]
+     * @param {string} [eventData.utmTarget]
+     * @param {string} [eventData.utmPurpose]
+     * @param {string} [eventData.utmAdId]
+     * @param {string} [eventData.utmExperiment]
+     * @param {string} [eventData.postalCode]
+     * @param {string} [eventData.queryParameters]
      */
     trackPageView(eventData: IEventData = {}) {
         this.queueEvent({ eventName: 'PAGE_VIEW', eventData });

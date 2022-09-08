@@ -37,6 +37,7 @@ export function getMetaProps({ userId }: IEventData): IMetaProps {
     return {
         deviceId,
         userId: userId || deviceId,
+        isLoggedIn: userId !== deviceId,
     };
 }
 
@@ -49,4 +50,5 @@ export interface IRootProps {
 export interface IMetaProps {
     deviceId: string;
     userId: string;
+    isLoggedIn: boolean;
 }

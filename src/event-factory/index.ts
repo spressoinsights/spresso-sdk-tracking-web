@@ -3,13 +3,41 @@ import { getMetaProps, getRootProps, IRootProps, IMetaProps } from 'utils/proper
 
 export const EventFactory: TEventFactory = {
     ['PAGE_VIEW']: {
-        createEvent: function ({ ...otherProps }) {
+        createEvent: function ({
+            utmMedium,
+            utmSource,
+            utmCampaign,
+            utmTerm,
+            utmTarget,
+            utmPurpose,
+            utmAdId,
+            utmExperiment,
+            postalCode,
+            remoteAddress,
+            referrerUrl,
+            userAgent,
+            queryParameters,
+            ...otherProps
+        }) {
             return {
                 event: 'spresso_page_view',
                 ...getRootProps(),
                 properties: {
                     ...getMetaProps(otherProps),
                     page: getCurrentUrl(),
+                    utmMedium,
+                    utmSource,
+                    utmCampaign,
+                    utmTerm,
+                    utmTarget,
+                    utmPurpose,
+                    utmAdId,
+                    utmExperiment,
+                    postalCode,
+                    remoteAddress,
+                    referrerUrl,
+                    userAgent,
+                    queryParameters,
                 },
             };
         },
@@ -99,6 +127,19 @@ export interface IEventData {
     variantQuantity?: number;
     variantReport?: any;
     variantTotalPrice?: number;
+    utmMedium?: string;
+    utmSource?: string;
+    utmCampaign?: string;
+    utmTerm?: string;
+    utmTarget?: string;
+    utmPurpose?: string;
+    utmAdId?: string;
+    utmExperiment?: string;
+    postalCode?: string;
+    remoteAddress?: string;
+    referrerUrl?: string;
+    userAgent?: string;
+    queryParameters?: string;
 }
 
 export interface IEventObject extends IRootProps {
