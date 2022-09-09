@@ -217,8 +217,10 @@ class SpressoSdk {
      * @param {number} [eventData.totalVariantQuantity] - The total quantity amount of the order.
      * @param {number} [eventData.totalVariantCost] - The extended variant cost of the order.
      * @param {number} [eventData.totalVariantPrice] - The extended selling price of the variant.
-     * @param {number} [eventData.orderFees] - Any order-level fee such as shipping, delivery, convenience, service fees.
      * @param {number} [eventData.orderTax] - Order-level taxes.
+     * @param {number} [eventData.totalOrderFees] - The total value of order-level fees such as shipping, delivery, convenience, service fees.
+     * @param {Array<{ type: string, id: string, value: number }>} [eventData.orderFees] - An array of order-level fees such as shipping, delivery, convenience, service fees.
+     * @param {number} [eventData.totalOrderDeductions] - The total value of promo codes or discounts or credits or loyalty promotions.
      * @param {Array<{ type: string, id: string, value: number }>} [eventData.orderDeductions] - An array of all promo codes or discounts or credits or loyalty promotions.
      * @param {string} [eventData.userId] - The customer's user ID. Defaults to `deviceId` for guests, which is a randomly generated string stored in a cookie on the first script execution.
      */
