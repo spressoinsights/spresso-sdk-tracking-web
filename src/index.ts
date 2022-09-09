@@ -222,7 +222,7 @@ class SpressoSdk {
      * @param {Array<{ type: string, id: string, value: number }>} [eventData.orderDeductions] - An array of all promo codes or discounts or credits or loyalty promotions.
      * @param {string} [eventData.userId] - The customer's user ID. Defaults to `deviceId` for guests, which is a randomly generated string stored in a cookie on the first script execution.
      */
-    trackCreateOrder(eventData: IEventData) {
+    trackCreateOrder(eventData: IEventData = {}) {
         this.queueEvent({ eventName: 'CREATE_ORDER', eventData });
     }
 }
