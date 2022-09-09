@@ -82,7 +82,7 @@ export function getQueryParameters(): string {
     return isBrowser() ? window.location.search : '';
 }
 
-export function parseQueryParams(params: string = ''): object {
+export function parseQueryParameters(params: string = ''): object {
     let search = params.substring(1);
     let parsedParams = {};
 

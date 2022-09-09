@@ -1,4 +1,4 @@
-import { parseQueryParams, getQueryParameters } from 'utils/browser';
+import { parseQueryParameters, getQueryParameters } from 'utils/browser';
 import { getMetaProps, getRootProps, IRootProps, IMetaProps } from 'utils/properties';
 
 export const EventFactory: TEventFactory = {
@@ -8,7 +8,7 @@ export const EventFactory: TEventFactory = {
             let parsedQueryParameters: any;
 
             if (queryParameters) {
-                parsedQueryParameters = parseQueryParams(queryParameters);
+                parsedQueryParameters = parseQueryParameters(queryParameters);
             }
 
             return {
