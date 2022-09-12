@@ -126,6 +126,8 @@ export const EventFactory: TEventFactory = {
             shippingInfoState,
             shippingInfoPostalCode,
             shippingInfoCountry,
+            shippingInfoFirstName,
+            shippingInfoLastName,
             orderFees,
             orderTax,
             orderDeductions,
@@ -147,6 +149,8 @@ export const EventFactory: TEventFactory = {
                     shippingInfoState,
                     shippingInfoPostalCode,
                     shippingInfoCountry,
+                    shippingInfoFirstName,
+                    shippingInfoLastName,
                     orderFees,
                     orderTax,
                     orderDeductions,
@@ -198,6 +202,8 @@ export interface IOrderEventData {
     shippingInfoState?: string;
     shippingInfoPostalCode?: string;
     shippingInfoCountry?: string;
+    shippingInfoFirstName?: string;
+    shippingInfoLastName?: string;
     orderTax?: number;
     orderFees?: number;
     orderDeductions?: Array<{ type: string; id: string; value: string }>;

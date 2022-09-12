@@ -214,6 +214,8 @@ class SpressoSdk {
      * @param {string} eventData.shippingInfoState
      * @param {string} eventData.shippingInfoPostalCode
      * @param {string} eventData.shippingInfoCountry
+     * @param {string} eventData.shippingInfoFirstName
+     * @param {string} eventData.shippingInfoLastName
      * @param {number} [eventData.totalVariantQuantity] - The total quantity amount of the order.
      * @param {number} [eventData.totalVariantCost] - The extended variant cost of the order.
      * @param {number} [eventData.totalVariantPrice] - The extended selling price of the variant.
