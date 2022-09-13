@@ -95,11 +95,12 @@ export const EventFactory: TEventFactory = {
             variantStandardPrice,
             ...otherProps
         }) {
+            const { postalCode, remoteAddress, ...otherMetaProps } = getMetaProps(otherProps);
             return {
                 event: 'spresso_purchase_variant',
                 ...getRootProps(),
                 properties: {
-                    ...getMetaProps(otherProps),
+                    ...otherMetaProps,
                     variantSku,
                     variantName,
                     variantTotalPrice,
@@ -133,11 +134,12 @@ export const EventFactory: TEventFactory = {
             orderDeductions,
             ...otherProps
         }) {
+            const { postalCode, remoteAddress, ...otherMetaProps } = getMetaProps(otherProps);
             return {
                 event: 'spresso_create_order',
                 ...getRootProps(),
                 properties: {
-                    ...getMetaProps(otherProps),
+                    ...otherMetaProps,
                     orderNumber,
                     totalOrderPrice,
                     totalVariantQuantity,
