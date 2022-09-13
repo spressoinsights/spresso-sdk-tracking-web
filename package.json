@@ -1,6 +1,6 @@
 {
     "name": "spresso-sdk-tracking-web",
-    "version": "3.3.30-beta",
+    "version": "4.3.30-beta",
     "description": "Spresso Analytics Web SDK",
     "main": "index.js",
     "scripts": {
@@ -9,7 +9,7 @@
         "prestart-prod-mode": "npm run reset",
         "start-prod-mode": "NODE_ENV=production USE_NODEMON=true webpack --watch",
         "prebuild": "npm run reset",
-        "build": "webpack --progress=profile",
+        "build": "webpack",
         "dev:mb": "mb",
         "dev:setup": "babel-node ./test/setup/index.js",
         "dev:prod-mode": "run-p dev:mb dev:setup start-prod-mode",

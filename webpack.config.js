@@ -1,4 +1,5 @@
 const path = require('path');
+const webpack = require('webpack');
 const NodemonPlugin = require('nodemon-webpack-plugin');
 const TsconfigPathsPlugin = require('tsconfig-paths-webpack-plugin');
 
@@ -12,6 +13,8 @@ const resolveExtensions = ['*', '.js', '.ts'];
 const stats = {
     preset: 'normal',
     errorDetails: true,
+    warnings: true,
+    modules: false,
 };
 
 console.log({ 'process.env.NODE_ENV': process.env.NODE_ENV, useNodemon });
@@ -35,6 +38,7 @@ module.exports = {
             type: 'umd', // enable browser or node import
             export: 'default',
         },
+        globalObject: 'this',
     },
 
     module: {
@@ -72,6 +76,9 @@ module.exports = {
     },
 
     plugins: [
+        // new webpack.ProgressPlugin({
+        //     profile: true,
+        // }),
         useNodemon &&
             new NodemonPlugin({
                 // only runs on `dev:prod-mode`

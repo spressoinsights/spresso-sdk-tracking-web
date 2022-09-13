@@ -1,3 +1,5 @@
+import { consoleLog } from 'utils/debug';
+
 export function isBrowser(): boolean {
     return typeof window !== 'undefined';
 }
@@ -74,6 +76,26 @@ export function addPageViewListener(listener: IListener) {
 
 export function getCurrentUrl(): string {
     return isBrowser() ? window.location.href : '';
+}
+
+export function getQueryParameters(): string {
+    return isBrowser() ? window.location.search : '';
+}
+
+export function parseQueryParameters(params: string = ''): object {
+    let search = params.substring(1);
+    let parsedParams = {};
+
+    if (search) {
+        try {
+            parsedParams = JSON.parse('{"' + search.replace(/&/g, '","').replace(/=/g, '":"') + '"}', function (key, value) {
+                return key === '' ? value : decodeURIComponent(value);
+            });
+        } catch (err) {
+            consoleLog({ msg: 'Error parsing search params', err });
+        }
+    }
+    return parsedParams;
 }
 
 interface IListener {
