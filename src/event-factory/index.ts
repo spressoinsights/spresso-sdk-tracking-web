@@ -129,8 +129,10 @@ export const EventFactory: TEventFactory = {
             shippingInfoCountry,
             shippingInfoFirstName,
             shippingInfoLastName,
-            orderFees,
             orderTax,
+            totalOrderFees,
+            orderFees,
+            totalOrderDeductions,
             orderDeductions,
             ...otherProps
         }) {
@@ -153,8 +155,10 @@ export const EventFactory: TEventFactory = {
                     shippingInfoCountry,
                     shippingInfoFirstName,
                     shippingInfoLastName,
-                    orderFees,
                     orderTax,
+                    totalOrderFees,
+                    orderFees,
+                    totalOrderDeductions,
                     orderDeductions,
                 },
             };
@@ -207,7 +211,9 @@ export interface IOrderEventData {
     shippingInfoFirstName?: string;
     shippingInfoLastName?: string;
     orderTax?: number;
+    totalOrderFees?: number;
     orderFees?: number;
+    totalOrderDeductions?: number;
     orderDeductions?: Array<{ type: string; id: string; value: string }>;
 }
 
