@@ -1,8 +1,9 @@
 name: Publish docs
 on:
-    push:
-        tags:
-            - v**
+    [push]
+    # push:
+    #     tags:
+    #         - v**
 jobs:
     build-and-deploy-docs:
         runs-on: ubuntu-latest
