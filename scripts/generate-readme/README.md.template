@@ -2,7 +2,9 @@
 
 ## Overview
 
-Spresso Web SDK is a client-side JavaScript library you can install in your project to start sending event data from anywhere in your application.
+Spresso Web SDK is a client-side JavaScript library you can install in your project to start sending event data from anywhere in your application. 
+ 
+Please use the latest version **<%= version %>**. 
 ### 1. Initialize the library in your project
 
 Paste the HTML script tag snippet within the `<head>` tag of your page and initialize with your Org ID.
