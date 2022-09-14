@@ -27,12 +27,12 @@ http://localhost:3002/spresso.sdk.tracking.web.js
 ### Staging
 
 -   PR feature branch to `staging`.
--   Push/merge to `staging` branch will build/upload script to staging [Spresso GCP bucket](https://console.cloud.google.com/storage/browser/spresso-saas-staging-spresso-sdk-tracking-web;tab=objects?forceOnBucketsSortingFiltering=false&project=spresso-saas-staging&prefix=&forceOnObjectsSortingFiltering=false), nested under the folder named the last commit hash pushed to `staging`.
+-   Push/merge to `staging` branch to build/upload script to staging [Spresso GCP bucket](https://console.cloud.google.com/storage/browser/spresso-saas-staging-spresso-sdk-tracking-web;tab=objects?forceOnBucketsSortingFiltering=false&project=spresso-saas-staging&prefix=&forceOnObjectsSortingFiltering=false), nested under the folder named the last commit hash pushed to `staging`.
 
 ### Production
 
 -   Update the version in `package.json`.
 -   PR `staging` branch to `main`.
 -   Push/merge to `main` branch will NOT build/upload script.
--   Create a new release tag (should equal the `package.json` version) on `main` will build/upload script to production [Spresso GCP bucket](<https://console.cloud.google.com/storage/browser/spresso-saas-prod-spresso-sdk-tracking-web?project=spresso-saas-prod&pageState=(%22StorageObjectListTable%22:(%22f%22:%22%255B%255D%22))&prefix=&forceOnObjectsSortingFiltering=false>), nested under the folder named the release version.
+-   Create a new release tag (should equal the `package.json` version) on `main` to build/upload script to production [Spresso GCP bucket](<https://console.cloud.google.com/storage/browser/spresso-saas-prod-spresso-sdk-tracking-web?project=spresso-saas-prod&pageState=(%22StorageObjectListTable%22:(%22f%22:%22%255B%255D%22))&prefix=&forceOnObjectsSortingFiltering=false>), nested under the folder named the release version.
 -   A new release tag will also re-publish the docs.
