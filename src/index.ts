@@ -103,8 +103,8 @@ class SpressoSdk {
     /**
      * Tracks when a user navigates to any page on the site. Should only fire once on fresh page load or after a SPA transition.
      * @param {object} eventData
+     * @param {string | null} eventData.userId - The customer's user ID. Pass in `null` value if the customer is not logged in.
      * @param {string} eventData.remoteAddress - The `'x-forwarded-for'` HTTP request header.
-     * @param {string} [eventData.userId] - The customer's user ID. Defaults to `deviceId` for guests, which is a randomly generated string stored in a cookie on the first script execution.
      * @param {string} [eventData.postalCode] - The customer's postal code.
      * @param {number} [eventData.remoteAddress] - The `'x-forwarded-for'` HTTP request header.
      */
@@ -116,12 +116,12 @@ class SpressoSdk {
      * Tracks when a user navigates to a Product Display Page (PDP). Should only fire once on fresh page load or after a SPA transition.
      * Should be used in addition to {@link SpressoSdk#trackPageView}.
      * @param {object} eventData
+     * @param {string | null} eventData.userId - The customer's user ID. Pass in `null` value if the customer is not logged in.
      * @param {string} eventData.variantSku - The unique identifier of the product variant.
      * @param {string} eventData.variantName - The name of the product variant.
      * @param {number} eventData.variantPrice - The unit selling price of the variant.
      * @param {number} [eventData.variantCost] - The unit cost of the variant.
      * @param {number} [eventData.inStock] - Variant's stock availability.
-     * @param {string} [eventData.userId] - The customer's user ID. Defaults to `deviceId` for guests, which is a randomly generated string stored in a cookie on the first script execution.
      * @param {number} [eventData.postalCode] - The customer's postal code.
      * @param {number} [eventData.remoteAddress] - The `'x-forwarded-for'` HTTP request header.
      */
@@ -135,11 +135,11 @@ class SpressoSdk {
      * @param {HTMLElement} [eventData.root=null] - The parent container of the PLE elements, whose bounding rectangle will be considered the viewport. Defaults to browser viewport.
      * @param {HTMLElement} eventData.target - The PLE element to be glimpsed.
      * @param {number} [eventData.glimpseThreshold=1] - The area of the PLE element that's visible in the viewport, expressed as a ratio, to trigger the event.
+     * @param {string | null} eventData.userId - The customer's user ID. Pass in `null` value if the customer is not logged in.
      * @param {string} eventData.variantSku - The unique identifier of the product variant.
      * @param {string} eventData.variantName - The name of the product variant.
      * @param {number} eventData.variantPrice - The unit selling price of the variant.
      * @param {number} [eventData.variantCost] - The unit cost of the variant.
-     * @param {string} [eventData.userId] - The customer's user ID. Defaults to `deviceId` for guests, which is a randomly generated string stored in a cookie on the first script execution.
      * @param {number} [eventData.postalCode] - The customer's postal code.
      * @param {number} [eventData.remoteAddress] - The `'x-forwarded-for'` HTTP request header.
      */
@@ -159,11 +159,11 @@ class SpressoSdk {
     /**
      * Tracks when a user views a Product List Element (PLE). Should only fire when a PLE first becomes visible in the browser viewport.
      * @param {object} eventData
+     * @param {string | null} eventData.userId - The customer's user ID. Pass in `null` value if the customer is not logged in.
      * @param {string} eventData.variantSku - The unique identifier of the product variant.
      * @param {string} eventData.variantName - The name of the product variant.
      * @param {number} eventData.variantPrice - The unit selling price of the variant.
      * @param {number} [eventData.variantCost] - The unit cost of the variant.
-     * @param {string} [eventData.userId] - The customer's user ID. Defaults to `deviceId` for guests, which is a randomly generated string stored in a cookie on the first script execution.
      * @param {number} [eventData.postalCode] - The customer's postal code.
      * @param {number} [eventData.remoteAddress] - The `'x-forwarded-for'` HTTP request header.
      */
@@ -174,11 +174,11 @@ class SpressoSdk {
     /**
      * Tracks when a user adds a product variant to cart. Should fire everytime a user clicks on a link/button to add product variant to cart.
      * @param {object} eventData
+     * @param {string | null} eventData.userId - The customer's user ID. Pass in `null` value if the customer is not logged in.
      * @param {string} eventData.variantSku - The unique identifier of the product variant.
      * @param {string} eventData.variantName - The name of the product variant.
      * @param {number} eventData.variantPrice - The unit selling price of the variant.
      * @param {number} [eventData.variantCost] - The unit cost of the variant.
-     * @param {string} [eventData.userId] - The customer's user ID. Defaults to `deviceId` for guests, which is a randomly generated string stored in a cookie on the first script execution.
      * @param {number} [eventData.postalCode] - The customer's postal code.
      * @param {number} [eventData.remoteAddress] - The `'x-forwarded-for'` HTTP request header.
      */
@@ -189,6 +189,7 @@ class SpressoSdk {
     /**
      * Tracks when a user places a successful order. Should be invoked once for every unique product variant in the order.
      * @param {object} eventData
+     * @param {string | null} eventData.userId - The customer's user ID. Pass in `null` value if the customer is not logged in.
      * @param {string} eventData.orderNumber - The unique identifier for the customer's order.
      * @param {string} eventData.variantSku - The unique identifier of the product variant.
      * @param {string} eventData.variantName - The name of the product variant.
@@ -197,7 +198,6 @@ class SpressoSdk {
      * @param {number} [eventData.variantStandardPrice] - The default base unit price of the variant not inclusive of price optimization or promotions.
      * @param {number} [eventData.variantCost] - The unit cost of the variant.
      * @param {number} [eventData.variantTotalPrice] - The extended total price of the variant inclusive of tax and shipping.
-     * @param {string} [eventData.userId] - The customer's user ID. Defaults to `deviceId` for guests, which is a randomly generated string stored in a cookie on the first script execution.
      */
     trackPurchaseVariant(eventData: IEventData = {}) {
         this.queueEvent({ eventName: 'PURCHASE_VARIANT', eventData });
@@ -206,6 +206,7 @@ class SpressoSdk {
     /**
      * Tracks when a user places a successful order.
      * @param {object} eventData
+     * @param {string | null} eventData.userId - The customer's user ID. Pass in `null` value if the customer is not logged in.
      * @param {string} eventData.orderNumber - The unique identifier for the customer's order.
      * @param {number} eventData.totalOrderPrice -  The total price of the order that a customer is paying for (inclusive of tax and shipping).
      * @param {string} eventData.shippingInfoAddressLine1
@@ -224,7 +225,6 @@ class SpressoSdk {
      * @param {Array<{ type: string, id: string, value: number }>} [eventData.orderFees] - An array of order-level fees such as shipping, delivery, convenience, service fees.
      * @param {number} [eventData.totalOrderDeductions] - The total value of promo codes or discounts or credits or loyalty promotions.
      * @param {Array<{ type: string, id: string, value: number }>} [eventData.orderDeductions] - An array of all promo codes or discounts or credits or loyalty promotions.
-     * @param {string} [eventData.userId] - The customer's user ID. Defaults to `deviceId` for guests, which is a randomly generated string stored in a cookie on the first script execution.
      */
     trackCreateOrder(eventData: IEventData = {}) {
         this.queueEvent({ eventName: 'CREATE_ORDER', eventData });
