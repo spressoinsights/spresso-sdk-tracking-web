@@ -4,4 +4,4 @@ config: pulumi
 runtime: 
   name: nodejs
 backend:
-  url: gs://spresso-saas-pulumi
+  url: s3://spresso-saas-pulumi
