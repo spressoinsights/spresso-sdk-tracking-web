@@ -27,9 +27,10 @@ module.exports = {
         },
 
         'better-docs': {
-            name: 'Spresso Web SDK Docs',
-            title: 'Spresso Web SDK Docs',
-            // logo: 'https://app.spresso.com/public/favicon.svg',
+            // name: 'Web Event SDK Documentation',
+            title: 'Spresso Web Event SDK',
+            logo: '/static/images/logo.jpeg',
+            css: '/static/styles/style.css',
             head: '<link rel="icon" type="image/svg+xml" href="https://app.spresso.com/public/favicon.svg" />',
             navLinks: [{ label: 'GitHub', href: 'https://github.com/giddyinc/spresso-sdk-tracking-web' }],
             hideGenerator: true,

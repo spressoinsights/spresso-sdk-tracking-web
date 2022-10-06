@@ -102,6 +102,8 @@ class SpressoSdk {
 
     /**
      * Tracks when a user navigates to any page on the site. Should only fire once on fresh page load or after a SPA transition.
+     *
+     * This is a mandatory event.
      * @param {object} eventData
      * @param {string | null} eventData.userId - The customer's user ID. Pass in `null` value if the customer is not logged in.
      * @param {string} eventData.remoteAddress - The `'x-forwarded-for'` HTTP request header.
@@ -115,6 +117,8 @@ class SpressoSdk {
     /**
      * Tracks when a user navigates to a Product Display Page (PDP). Should only fire once on fresh page load or after a SPA transition.
      * Should be used in addition to {@link SpressoSdk#trackPageView}.
+     *
+     * This is a mandatory event.
      * @param {object} eventData
      * @param {string | null} eventData.userId - The customer's user ID. Pass in `null` value if the customer is not logged in.
      * @param {string} eventData.variantSku - The unique identifier of the product variant.
@@ -131,6 +135,8 @@ class SpressoSdk {
 
     /**
      * Registers a listener that invokes {@link SpressoSdk#trackGlimpsePLE} on the first appearance of a Product List Entity (PLE) within either the browser viewport or a bounding rectangle (if specified).
+     *
+     * Note: do not use {@link SpressoSdk#trackGlimpsePLE} if you opt to use this method.
      * @param {object} eventData
      * @param {HTMLElement} [eventData.root=null] - The parent container of the PLE elements, whose bounding rectangle will be considered the viewport. Defaults to browser viewport.
      * @param {HTMLElement} eventData.target - The PLE element to be glimpsed.
@@ -158,6 +164,10 @@ class SpressoSdk {
 
     /**
      * Tracks when a user views a Product List Element (PLE). Should only fire when a PLE first becomes visible in the browser viewport.
+     *
+     * This is a mandatory event.
+     *
+     * Note: do not use this method if you opt to use {@link SpressoSdk#registerGlimpsePLE}.
      * @param {object} eventData
      * @param {string | null} eventData.userId - The customer's user ID. Pass in `null` value if the customer is not logged in.
      * @param {string} eventData.variantSku - The unique identifier of the product variant.
@@ -173,6 +183,8 @@ class SpressoSdk {
 
     /**
      * Tracks when a user adds a product variant to cart. Should fire everytime a user clicks on a link/button to add product variant to cart.
+     *
+     * This is a mandatory event.
      * @param {object} eventData
      * @param {string | null} eventData.userId - The customer's user ID. Pass in `null` value if the customer is not logged in.
      * @param {string} eventData.variantSku - The unique identifier of the product variant.
@@ -188,6 +200,8 @@ class SpressoSdk {
 
     /**
      * Tracks when a user places a successful order. Should be invoked once for every unique product variant in the order.
+     *
+     * This is a mandatory event.
      * @param {object} eventData
      * @param {string | null} eventData.userId - The customer's user ID. Pass in `null` value if the customer is not logged in.
      * @param {string} eventData.orderNumber - The unique identifier for the customer's order.
@@ -205,6 +219,8 @@ class SpressoSdk {
 
     /**
      * Tracks when a user places a successful order.
+     *
+     * This is a mandatory event.
      * @param {object} eventData
      * @param {string | null} eventData.userId - The customer's user ID. Pass in `null` value if the customer is not logged in.
      * @param {string} eventData.orderNumber - The unique identifier for the customer's order.
