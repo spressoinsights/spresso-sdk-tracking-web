@@ -1,8 +1,11 @@
-# Spresso Web SDK
+# Web Event SDK
 
-## Overview
+## Get Started
 
-Spresso Web SDK is a client-side JavaScript library you can install in your project to start sending event data from anywhere in your application.
+Web Event SDK is a client-side JavaScript library you can install in your project to start sending event data from anywhere in your application. 
+ 
+Please use the latest version **<%= version %>**. Click [here](SpressoSdk.html) for the full API reference. 
+
 ### 1. Initialize the library in your project
 
 Paste the HTML script tag snippet within the `<head>` tag of your page and initialize with your Org ID.
@@ -51,4 +54,4 @@ SpressoSdk.trackViewPDP({
 });
 ```
 
-Click [here](SpressoSdk.html) for all the events that you can send. 
+Click [here](SpressoSdk.html) for the full API reference.
