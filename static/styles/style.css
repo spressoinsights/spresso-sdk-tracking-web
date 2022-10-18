@@ -1,0 +1,19 @@
+/* div.logo {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+} */
+
+a.image {
+    height: 24px;
+}
+
+a.image > img {
+    height: 100%;
+    width: auto;
+}
+
+.page-title > h1 {
+    display: none;
+}
