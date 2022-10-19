@@ -1,8 +1,10 @@
 name: Publish docs
 on:
     push:
-        tags:
-            - v**
+      branches:
+        - "main"
+        # tags:
+        #     - v**
 jobs:
     build-and-deploy-docs:
         runs-on: ubuntu-latest
