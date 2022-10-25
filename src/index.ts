@@ -11,16 +11,16 @@ import { consoleLog } from 'utils/debug';
  */
 class SpressoSdk {
     options: IOptions;
-    orgId: string;
     eventsQueue: Array<IEventObject>;
     timerId: number;
     EXECUTE_DELAY: number;
+    ORG_ID: string;
     DEVICE_ID: string;
 
     constructor() {
         this.eventsQueue = [];
         this.timerId = null;
-        this.orgId = (isBrowser() && window?.SpressoSdk?.options?.orgId) || null;
+        this.ORG_ID = (isBrowser() && window?.SpressoSdk?.options?.orgId) || null;
         this.options = isBrowser() && window?.SpressoSdk?.options;
         this.EXECUTE_DELAY = 3000;
 
@@ -28,11 +28,15 @@ class SpressoSdk {
     }
 
     init(options: IOptions) {
-        this.orgId = options?.orgId;
         this.options = options;
+        this.ORG_ID = options?.orgId;
         this.DEVICE_ID = initDeviceId();
 
         addBeforeUnloadListener(this.executeNow.bind(this));
+
+        if (!this.ORG_ID) {
+            console.error(`[Spresso Event SDK] "orgId" is missing.`);
+        }
 
         consoleLog('SpressoSdk INITIALIZED');
         return this;
@@ -78,9 +82,13 @@ class SpressoSdk {
 
     // fires API call
     execute() {
-        const { orgId, useStaging } = this.options;
+        const { useStaging } = this.options;
         const queuedEvents = this.flushQueue();
-        track({ orgId, events: queuedEvents, useStaging });
+        if (!this.ORG_ID) {
+            console.error(`[Spresso Event SDK] "orgId" is missing.`);
+            return;
+        }
+        track({ orgId: this.ORG_ID, events: queuedEvents, useStaging });
     }
 
     executeLater() {
