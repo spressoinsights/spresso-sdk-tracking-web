@@ -110,7 +110,6 @@ class SpressoSdk {
      * @param {string | null} eventData.userId - The customer's user ID. Pass in `null` value if the customer is not logged in.
      * @param {string} eventData.remoteAddress - The `'x-forwarded-for'` HTTP request header.
      * @param {string} [eventData.postalCode] - The customer's postal code.
-     * @param {number} [eventData.remoteAddress] - The `'x-forwarded-for'` HTTP request header.
      */
     trackPageView(eventData: IEventData = {}) {
         this.queueEvent({ eventName: 'PAGE_VIEW', eventData });
