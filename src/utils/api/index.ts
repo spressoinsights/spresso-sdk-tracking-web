@@ -5,7 +5,7 @@ import { consoleLog } from 'utils/debug';
 
 const isDev = !process.env.NODE_ENV || process.env.NODE_ENV === 'development';
 
-export function track({ orgId, events, useStaging }: ITrackOptions) {
+export function track({ orgId, events, useStaging, errorCallback }: ITrackOptions) {
     consoleLog({ useStaging });
 
     let ENDPOINT = useStaging
@@ -41,6 +41,7 @@ export function track({ orgId, events, useStaging }: ITrackOptions) {
         // .then((data) => consoleLog(data));
     } catch (error) {
         console.error(error);
+        errorCallback?.(error);
     }
 }
 
@@ -48,4 +49,7 @@ interface ITrackOptions {
     orgId: string;
     events: Array<IEventObject>;
     useStaging: boolean;
+    errorCallback?: TErrorCallback;
 }
+
+export type TErrorCallback = (error: any) => any;

@@ -1,6 +1,6 @@
 import { addBeforeUnloadListener, addIntersectionObserver, isBrowser } from 'utils/browser';
 import { initDeviceId } from 'utils/properties';
-import { track } from 'utils/api';
+import { track, TErrorCallback } from 'utils/api';
 import { EventFactory, IEventData, IEventObject, TEventNameLiteral } from 'event-factory';
 import { consoleLog } from 'utils/debug';
 
@@ -16,6 +16,7 @@ class SpressoSdk {
     timerId: number;
     EXECUTE_DELAY: number;
     DEVICE_ID: string;
+    errorCallback?: TErrorCallback;
 
     constructor() {
         this.eventsQueue = [];
@@ -31,11 +32,14 @@ class SpressoSdk {
         this.options = options;
         this.orgId = options?.orgId;
         this.DEVICE_ID = initDeviceId();
+        this.errorCallback = options?.errorCallback;
 
         addBeforeUnloadListener(this.executeNow.bind(this));
 
         if (!this.orgId) {
-            console.error(`[Spresso Event SDK] "orgId" is missing.`);
+            const errorMessage = `[Spresso Event SDK] "orgId" is missing.`;
+            console.error(errorMessage);
+            this.errorCallback?.({ message: errorMessage });
         }
 
         consoleLog('SpressoSdk INITIALIZED');
@@ -85,10 +89,12 @@ class SpressoSdk {
         const { useStaging } = this.options;
         const queuedEvents = this.flushQueue();
         if (!this.orgId) {
-            console.error(`[Spresso Event SDK] "orgId" is missing.`);
+            const errorMessage = `[Spresso Event SDK] "orgId" is missing.`;
+            console.error(errorMessage);
+            this.errorCallback?.({ message: errorMessage });
             return;
         }
-        track({ orgId: this.orgId, events: queuedEvents, useStaging });
+        track({ orgId: this.orgId, events: queuedEvents, useStaging, errorCallback: this.errorCallback });
     }
 
     executeLater() {
@@ -261,7 +267,8 @@ interface IOptions {
     userId?: string;
     postalCode?: string;
     remoteAddress?: string;
-    useStaging: boolean;
+    useStaging?: boolean;
+    errorCallback?: TErrorCallback;
 }
 
 interface IQueueEvent {
