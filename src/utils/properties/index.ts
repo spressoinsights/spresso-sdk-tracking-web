@@ -45,7 +45,7 @@ export function getMetaProps({ userId, postalCode, remoteAddress, DEVICE_ID }: I
     return {
         deviceId,
         userId: userId || deviceId,
-        isLoggedIn: Boolean(userId),
+        isLoggedIn: Boolean(userId) && userId !== deviceId,
         page: getCurrentUrl(),
         postalCode,
         remoteAddress: remoteAddress || '',
