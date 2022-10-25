@@ -3,8 +3,11 @@ import { writeCookie, readCookie } from 'utils/cookie';
 import { getCurrentUrl } from 'utils/browser';
 import { IEventData } from 'event-factory';
 
-function setDeviceId() {
-    const deviceId = uuidv4();
+function setDeviceId(id?: string) {
+    let deviceId = id;
+    if (!deviceId) {
+        deviceId = uuidv4();
+    }
     writeCookie({ name: 'spressoDeviceId', value: deviceId, domain: '' });
     return deviceId;
 }
@@ -33,8 +36,12 @@ export function getRootProps(): IRootProps {
     };
 }
 
-export function getMetaProps({ userId, postalCode, remoteAddress }: IEventData): IMetaProps {
-    const deviceId = getDeviceId();
+export function getMetaProps({ userId, postalCode, remoteAddress, DEVICE_ID }: IEventData): IMetaProps {
+    let deviceId = getDeviceId();
+    if (!deviceId) {
+        deviceId = setDeviceId(DEVICE_ID);
+    }
+
     return {
         deviceId,
         userId: userId || deviceId,

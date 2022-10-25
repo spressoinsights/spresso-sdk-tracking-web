@@ -15,6 +15,7 @@ class SpressoSdk {
     eventsQueue: Array<IEventObject>;
     timerId: number;
     EXECUTE_DELAY: number;
+    DEVICE_ID: string;
 
     constructor() {
         this.eventsQueue = [];
@@ -29,8 +30,8 @@ class SpressoSdk {
     init(options: IOptions) {
         this.orgId = options?.orgId;
         this.options = options;
+        this.DEVICE_ID = initDeviceId();
 
-        initDeviceId();
         addBeforeUnloadListener(this.executeNow.bind(this));
 
         consoleLog('SpressoSdk INITIALIZED');
@@ -62,6 +63,7 @@ class SpressoSdk {
             ...(userId && { userId }),
             ...(postalCode && { postalCode }),
             ...(remoteAddress && { remoteAddress }),
+            DEVICE_ID: this.DEVICE_ID,
         });
 
         if (typeof eventObj === 'object') {

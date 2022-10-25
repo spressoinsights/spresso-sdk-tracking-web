@@ -170,6 +170,7 @@ export interface IEventData extends IPageEventData, IVariantEventData, IOrderEve
     userId?: string;
     postalCode?: string;
     remoteAddress?: string;
+    DEVICE_ID?: string;
 }
 
 export interface IPageEventData {
