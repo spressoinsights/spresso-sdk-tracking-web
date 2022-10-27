@@ -32,7 +32,7 @@ export const EventFactory: TEventFactory = {
     },
 
     ['VIEW_PDP']: {
-        createEvent: function ({ variantSku, variantPrice, variantName, variantCost, inStock, ...otherProps }) {
+        createEvent: function ({ variantSku, variantPrice, variantName, inStock, ...otherProps }) {
             return {
                 event: 'spresso_view_pdp',
                 ...getRootProps(),
@@ -41,7 +41,6 @@ export const EventFactory: TEventFactory = {
                     variantSku,
                     variantName,
                     variantPrice,
-                    variantCost,
                     inStock,
                     queryParameters: getQueryParameters(),
                 },
@@ -50,7 +49,7 @@ export const EventFactory: TEventFactory = {
     },
 
     ['GLIMPSE_PLE']: {
-        createEvent: function ({ variantSku, variantPrice, variantName, variantCost, ...otherProps }) {
+        createEvent: function ({ variantSku, variantPrice, variantName, ...otherProps }) {
             return {
                 event: 'spresso_glimpse_ple',
                 ...getRootProps(),
@@ -58,7 +57,6 @@ export const EventFactory: TEventFactory = {
                     ...getMetaProps(otherProps),
                     variantSku,
                     variantName,
-                    variantCost,
                     variantPrice,
                     queryParameters: getQueryParameters(),
                 },
@@ -67,7 +65,7 @@ export const EventFactory: TEventFactory = {
     },
 
     ['TAP_ADD_TO_CART']: {
-        createEvent: function ({ variantSku, variantPrice, variantName, variantCost, ...otherProps }) {
+        createEvent: function ({ variantSku, variantPrice, variantName, ...otherProps }) {
             return {
                 event: 'spresso_tap_add_to_cart',
                 ...getRootProps(),
@@ -75,7 +73,6 @@ export const EventFactory: TEventFactory = {
                     ...getMetaProps(otherProps),
                     variantSku,
                     variantName,
-                    variantCost,
                     variantPrice,
                     queryParameters: getQueryParameters(),
                 },
@@ -90,7 +87,6 @@ export const EventFactory: TEventFactory = {
             variantQuantity,
             orderNumber,
             variantName,
-            variantCost,
             variantPrice,
             variantStandardPrice,
             ...otherProps
@@ -106,7 +102,6 @@ export const EventFactory: TEventFactory = {
                     variantTotalPrice,
                     variantPrice,
                     variantStandardPrice,
-                    variantCost,
                     variantQuantity,
                     orderNumber,
                 },
@@ -119,7 +114,6 @@ export const EventFactory: TEventFactory = {
             orderNumber,
             totalOrderPrice,
             totalVariantQuantity,
-            totalVariantCost,
             totalVariantPrice,
             shippingInfoAddressLine1,
             shippingInfoAddressLine2,
@@ -145,7 +139,6 @@ export const EventFactory: TEventFactory = {
                     orderNumber,
                     totalOrderPrice,
                     totalVariantQuantity,
-                    totalVariantCost,
                     totalVariantPrice,
                     shippingInfoAddressLine1,
                     shippingInfoAddressLine2,
@@ -191,7 +184,6 @@ export interface IVariantEventData {
     variantName?: string;
     variantPrice?: number;
     variantStandardPrice?: number;
-    variantCost?: number;
     variantQuantity?: number;
     variantTotalPrice?: number;
     inStock?: boolean;
@@ -201,7 +193,6 @@ export interface IOrderEventData {
     orderNumber?: string;
     totalOrderPrice?: number;
     totalVariantQuantity?: string;
-    totalVariantCost?: number;
     totalVariantPrice?: number;
     shippingInfoAddressLine1?: string;
     shippingInfoAddressLine2?: string;

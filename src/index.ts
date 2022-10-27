@@ -139,7 +139,6 @@ class SpressoSdk {
      * @param {string} eventData.variantSku - The unique identifier of the product variant.
      * @param {string} eventData.variantName - The name of the product variant.
      * @param {number} eventData.variantPrice - The unit selling price of the variant.
-     * @param {number} [eventData.variantCost] - The unit cost of the variant.
      * @param {number} [eventData.inStock] - Variant's stock availability.
      * @param {number} [eventData.postalCode] - The customer's postal code.
      * @param {number} [eventData.remoteAddress] - The `'x-forwarded-for'` HTTP request header.
@@ -160,7 +159,6 @@ class SpressoSdk {
      * @param {string} eventData.variantSku - The unique identifier of the product variant.
      * @param {string} eventData.variantName - The name of the product variant.
      * @param {number} eventData.variantPrice - The unit selling price of the variant.
-     * @param {number} [eventData.variantCost] - The unit cost of the variant.
      * @param {number} [eventData.postalCode] - The customer's postal code.
      * @param {number} [eventData.remoteAddress] - The `'x-forwarded-for'` HTTP request header.
      */
@@ -188,7 +186,6 @@ class SpressoSdk {
      * @param {string} eventData.variantSku - The unique identifier of the product variant.
      * @param {string} eventData.variantName - The name of the product variant.
      * @param {number} eventData.variantPrice - The unit selling price of the variant.
-     * @param {number} [eventData.variantCost] - The unit cost of the variant.
      * @param {number} [eventData.postalCode] - The customer's postal code.
      * @param {number} [eventData.remoteAddress] - The `'x-forwarded-for'` HTTP request header.
      */
@@ -205,7 +202,6 @@ class SpressoSdk {
      * @param {string} eventData.variantSku - The unique identifier of the product variant.
      * @param {string} eventData.variantName - The name of the product variant.
      * @param {number} eventData.variantPrice - The unit selling price of the variant.
-     * @param {number} [eventData.variantCost] - The unit cost of the variant.
      * @param {number} [eventData.postalCode] - The customer's postal code.
      * @param {number} [eventData.remoteAddress] - The `'x-forwarded-for'` HTTP request header.
      */
@@ -225,7 +221,6 @@ class SpressoSdk {
      * @param {number} eventData.variantPrice - The unit selling price of the variant.
      * @param {number} eventData.variantQuantity - Variant quantity.
      * @param {number} [eventData.variantStandardPrice] - The default base unit price of the variant not inclusive of price optimization or promotions.
-     * @param {number} [eventData.variantCost] - The unit cost of the variant.
      * @param {number} [eventData.variantTotalPrice] - The extended total price of the variant inclusive of tax and shipping.
      */
     trackPurchaseVariant(eventData: IEventData = {}) {
@@ -249,7 +244,6 @@ class SpressoSdk {
      * @param {string} eventData.shippingInfoFirstName
      * @param {string} eventData.shippingInfoLastName
      * @param {number} [eventData.totalVariantQuantity] - The total quantity amount of the order.
-     * @param {number} [eventData.totalVariantCost] - The extended variant cost of the order.
      * @param {number} [eventData.totalVariantPrice] - The extended selling price of the variant.
      * @param {number} [eventData.orderTax] - Order-level taxes.
      * @param {number} [eventData.totalOrderFees] - The total value of order-level fees such as shipping, delivery, convenience, service fees.
