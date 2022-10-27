@@ -8,7 +8,7 @@ Please use the latest version **4.3.30-beta**. Click [here](SpressoSdk.html) for
 
 ### 1. Initialize the library in your project
 
-Paste the HTML script tag snippet within the `<head>` tag of your page and initialize with your Org ID. 
+Paste the HTML script tag snippet within the `<head>` tag of your page and initialize with your Org ID. Please be sure to use different Org IDs for test environments and production environments.
 
 ```
 <script>

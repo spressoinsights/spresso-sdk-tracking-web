@@ -120,7 +120,7 @@
 <p>Web Event SDK is a client-side JavaScript library you can install in your project to start sending event data from anywhere in your application.</p>
 <p>Please use the latest version <strong>4.3.30-beta</strong>. Click <a href="SpressoSdk.html">here</a> for the full API reference.</p>
 <h3>1. Initialize the library in your project</h3>
-<p>Paste the HTML script tag snippet within the <code>&lt;head&gt;</code> tag of your page and initialize with your Org ID.</p>
+<p>Paste the HTML script tag snippet within the <code>&lt;head&gt;</code> tag of your page and initialize with your Org ID. Please be sure to use different Org IDs for test environments and production environments.</p>
 <pre class="prettyprint source"><code>&lt;script>
     (function (options) {
         window.SpressoSdk = window.SpressoSdk || { init: function(o) { SpressoSdk.options = o; } }
