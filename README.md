@@ -4,8 +4,6 @@
 
 See the [docs](https://spressoinsights.github.io/spresso-sdk-tracking-web/) for more info.
 
-<br>
-
 ## Development
 
 `npm run dev` bundles and serves the SDK on: `http://localhost:3002/spresso.sdk.tracking.web.js`.
@@ -26,8 +24,6 @@ http://localhost:3002/spresso.sdk.tracking.web.js
 -   `npm run docs` will build the docs locally in watch mode.
 -   Open `./docs/index.html` in your browser.
 
-<br>
-
 ## Build and deploy
 
 ### Staging
@@ -43,13 +39,9 @@ http://localhost:3002/spresso.sdk.tracking.web.js
 -   Create a new release tag (must equal the `package.json` version) on `main` to build/upload script to production [Spresso GCP bucket](<https://console.cloud.google.com/storage/browser/spresso-saas-prod-spresso-sdk-tracking-web?project=spresso-saas-prod&pageState=(%22StorageObjectListTable%22:(%22f%22:%22%255B%255D%22))&prefix=&forceOnObjectsSortingFiltering=false>), nested under the folder named the release version.
 -   A new release tag will also re-publish the docs.
 
-<br>
-
 ## Author
 
 Spresso, developer@spresso.com
-
-<br>
 
 ## License
 
