@@ -176,7 +176,7 @@ class SpressoSdk {
     }
 
     /**
-     * Tracks when a user views a Product List Element (PLE). Should only fire when a PLE first becomes visible in the browser viewport.
+     * Tracks when a user views a variant Product List Element (PLE). Should only fire when a variant PLE first becomes visible in the browser viewport.
      *
      * This is a mandatory event.
      *
@@ -191,6 +191,54 @@ class SpressoSdk {
      */
     trackGlimpsePLE(eventData: IEventData = {}) {
         this.queueEvent({ eventName: 'GLIMPSE_PLE', eventData });
+    }
+
+    /**
+     * Registers a listener that invokes {@link SpressoSdk#trackGlimpseProductPLE} on the first appearance of a Product List Entity (PLE) within either the browser viewport or a bounding rectangle (if specified).
+     *
+     * Note: do not use {@link SpressoSdk#trackGlimpseProductPLE} if you opt to use this method.
+     * @param {object} eventData
+     * @param {HTMLElement} [eventData.root=null] - The parent container of the PLE elements, whose bounding rectangle will be considered the viewport. Defaults to browser viewport.
+     * @param {HTMLElement} eventData.target - The PLE element to be glimpsed.
+     * @param {number} [eventData.glimpseThreshold=1] - The area of the PLE element that's visible in the viewport, expressed as a ratio, to trigger the event.
+     * @param {string | null} eventData.userId - The customer's user ID. Pass in `null` value if the customer is not logged in.
+     * @param {string} eventData.productId - The unique identifier of the product.
+     * @param {string} eventData.productName - The name of the product.
+     * @param {number} eventData.minPriceRange - The price of the cheapest variant that belongs to the product.
+     * @param {number} eventData.maxPriceRange - The price of the most expensive  variant that belongs to the product.
+     * @param {string} [eventData.postalCode] - The customer's postal code.
+     * @param {string} [eventData.remoteAddress] - The `'x-forwarded-for'` HTTP request header.
+     */
+    registerGlimpseProductPLE({ root, target, glimpseThreshold, ...eventData }: IRegisterGlimpsePLE) {
+        if (!(target instanceof HTMLElement)) {
+            consoleLog('registerGlimpsePLE: `target` is not a valid `HTMLELement`.');
+        }
+
+        addIntersectionObserver({
+            listener: () => this.trackGlimpseProductPLE(eventData),
+            root: root instanceof HTMLElement ? root : null,
+            target,
+            threshold: glimpseThreshold || 1,
+        });
+    }
+
+    /**
+     * Tracks when a user views a product Product List Element (PLE). Should only fire when a product PLE first becomes visible in the browser viewport.
+     *
+     * This is an optional event.
+     *
+     * Note: do not use this method if you opt to use {@link SpressoSdk#registerGlimpsePLE}.
+     * @param {object} eventData
+     * @param {string | null} eventData.userId - The customer's user ID. Pass in `null` value if the customer is not logged in.
+     * @param {string} eventData.productId - The unique identifier of the product.
+     * @param {string} eventData.productName - The name of the product.
+     * @param {number} eventData.minPriceRange - The price of the cheapest variant that belongs to the product.
+     * @param {number} eventData.maxPriceRange - The price of the most expensive  variant that belongs to the product.
+     * @param {string} [eventData.postalCode] - The customer's postal code.
+     * @param {string} [eventData.remoteAddress] - The `'x-forwarded-for'` HTTP request header.
+     */
+    trackGlimpseProductPLE(eventData: IEventData = {}) {
+        this.queueEvent({ eventName: 'GLIMPSE_PRODUCT_PLE', eventData });
     }
 
     /**
