@@ -64,6 +64,23 @@ export const EventFactory: TEventFactory = {
         },
     },
 
+    ['GLIMPSE_PRODUCT_PLE']: {
+        createEvent: function ({ productId, productName, minPriceRange, maxPriceRange, ...otherProps }) {
+            return {
+                event: 'spresso_glimpse_product_ple',
+                ...getRootProps(),
+                properties: {
+                    ...getMetaProps(otherProps),
+                    productId,
+                    productName,
+                    minPriceRange,
+                    maxPriceRange,
+                    queryParameters: getQueryParameters(),
+                },
+            };
+        },
+    },
+
     ['TAP_ADD_TO_CART']: {
         createEvent: function ({ variantSku, variantPrice, variantName, ...otherProps }) {
             return {
@@ -159,7 +176,7 @@ export const EventFactory: TEventFactory = {
     },
 };
 
-export interface IEventData extends IPageEventData, IVariantEventData, IOrderEventData {
+export interface IEventData extends IPageEventData, IVariantEventData, IProductEventData, IOrderEventData {
     userId?: string;
     postalCode?: string;
     remoteAddress?: string;
@@ -187,6 +204,13 @@ export interface IVariantEventData {
     variantQuantity?: number;
     variantTotalPrice?: number;
     inStock?: boolean;
+}
+
+export interface IProductEventData {
+    productId?: string;
+    productName?: string;
+    minPriceRange?: number;
+    maxPriceRange?: number;
 }
 
 export interface IOrderEventData {
@@ -228,6 +252,10 @@ type TEventName = {
      * Requires the same `eventData` as {@link SpressoSdk#trackGlimpsePLE}.
      */
     GLIMPSE_PLE: string;
+    /**
+     * Requires the same `eventData` as {@link SpressoSdk#trackGlimpseProductPLE}.
+     */
+    GLIMPSE_PRODUCT_PLE: string;
     /**
      * Requires the same `eventData` as {@link SpressoSdk#trackPageView}.
      */
