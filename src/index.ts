@@ -139,9 +139,9 @@ class SpressoSdk {
      * @param {string} eventData.variantSku - The unique identifier of the product variant.
      * @param {string} eventData.variantName - The name of the product variant.
      * @param {number} eventData.variantPrice - The unit selling price of the variant.
-     * @param {number} [eventData.inStock] - Variant's stock availability.
-     * @param {number} [eventData.postalCode] - The customer's postal code.
-     * @param {number} [eventData.remoteAddress] - The `'x-forwarded-for'` HTTP request header.
+     * @param {boolean} [eventData.inStock] - Variant's stock availability.
+     * @param {string} [eventData.postalCode] - The customer's postal code.
+     * @param {string} [eventData.remoteAddress] - The `'x-forwarded-for'` HTTP request header.
      */
     trackViewPDP(eventData: IEventData = {}) {
         this.queueEvent({ eventName: 'VIEW_PDP', eventData });
@@ -159,8 +159,8 @@ class SpressoSdk {
      * @param {string} eventData.variantSku - The unique identifier of the product variant.
      * @param {string} eventData.variantName - The name of the product variant.
      * @param {number} eventData.variantPrice - The unit selling price of the variant.
-     * @param {number} [eventData.postalCode] - The customer's postal code.
-     * @param {number} [eventData.remoteAddress] - The `'x-forwarded-for'` HTTP request header.
+     * @param {string} [eventData.postalCode] - The customer's postal code.
+     * @param {string} [eventData.remoteAddress] - The `'x-forwarded-for'` HTTP request header.
      */
     registerGlimpsePLE({ root, target, glimpseThreshold, ...eventData }: IRegisterGlimpsePLE) {
         if (!(target instanceof HTMLElement)) {
@@ -186,8 +186,8 @@ class SpressoSdk {
      * @param {string} eventData.variantSku - The unique identifier of the product variant.
      * @param {string} eventData.variantName - The name of the product variant.
      * @param {number} eventData.variantPrice - The unit selling price of the variant.
-     * @param {number} [eventData.postalCode] - The customer's postal code.
-     * @param {number} [eventData.remoteAddress] - The `'x-forwarded-for'` HTTP request header.
+     * @param {string} [eventData.postalCode] - The customer's postal code.
+     * @param {string} [eventData.remoteAddress] - The `'x-forwarded-for'` HTTP request header.
      */
     trackGlimpsePLE(eventData: IEventData = {}) {
         this.queueEvent({ eventName: 'GLIMPSE_PLE', eventData });
@@ -202,8 +202,8 @@ class SpressoSdk {
      * @param {string} eventData.variantSku - The unique identifier of the product variant.
      * @param {string} eventData.variantName - The name of the product variant.
      * @param {number} eventData.variantPrice - The unit selling price of the variant.
-     * @param {number} [eventData.postalCode] - The customer's postal code.
-     * @param {number} [eventData.remoteAddress] - The `'x-forwarded-for'` HTTP request header.
+     * @param {string} [eventData.postalCode] - The customer's postal code.
+     * @param {string} [eventData.remoteAddress] - The `'x-forwarded-for'` HTTP request header.
      */
     trackTapAddToCart(eventData: IEventData = {}) {
         this.queueEvent({ eventName: 'TAP_ADD_TO_CART', eventData });
