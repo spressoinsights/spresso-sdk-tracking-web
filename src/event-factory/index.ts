@@ -41,7 +41,7 @@ export const EventFactory: TEventFactory = {
                     variantSku,
                     variantName,
                     variantPrice,
-                    inStock,
+                    inStock: Boolean(inStock),
                     queryParameters: getQueryParameters(),
                 },
             };
