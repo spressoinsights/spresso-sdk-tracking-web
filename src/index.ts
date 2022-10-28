@@ -12,10 +12,10 @@ import { consoleLog } from 'utils/debug';
 class SpressoSdk {
     options: IOptions;
     orgId: string;
+    deviceId: string;
     eventsQueue: Array<IEventObject>;
     timerId: number;
     EXECUTE_DELAY: number;
-    DEVICE_ID: string;
     errorCallback?: TErrorCallback;
 
     constructor() {
@@ -31,7 +31,7 @@ class SpressoSdk {
     init(options: IOptions) {
         this.options = options;
         this.orgId = options?.orgId;
-        this.DEVICE_ID = initDeviceId();
+        this.deviceId = initDeviceId();
         this.errorCallback = options?.errorCallback;
 
         addBeforeUnloadListener(this.executeNow.bind(this));
@@ -71,7 +71,7 @@ class SpressoSdk {
             ...(userId && { userId }),
             ...(postalCode && { postalCode }),
             ...(remoteAddress && { remoteAddress }),
-            DEVICE_ID: this.DEVICE_ID,
+            deviceId: this.deviceId,
         });
 
         if (typeof eventObj === 'object') {

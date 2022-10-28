@@ -180,7 +180,7 @@ export interface IEventData extends IPageEventData, IVariantEventData, IProductE
     userId?: string;
     postalCode?: string;
     remoteAddress?: string;
-    DEVICE_ID?: string;
+    deviceId?: string;
 }
 
 export interface IPageEventData {
