@@ -139,6 +139,7 @@ class SpressoSdk {
      * @param {string} eventData.variantSku - The unique identifier of the product variant.
      * @param {string} eventData.variantName - The name of the product variant.
      * @param {number} eventData.variantPrice - The unit selling price of the variant.
+     * @param {string} [eventData.productId] - The unique identifier of the product to which the variant belongs.
      * @param {boolean} [eventData.inStock] - Variant's stock availability.
      * @param {string} [eventData.postalCode] - The customer's postal code.
      * @param {string} [eventData.remoteAddress] - The `'x-forwarded-for'` HTTP request header.
@@ -159,6 +160,7 @@ class SpressoSdk {
      * @param {string} eventData.variantSku - The unique identifier of the product variant.
      * @param {string} eventData.variantName - The name of the product variant.
      * @param {number} eventData.variantPrice - The unit selling price of the variant.
+     * @param {string} [eventData.productId] - The unique identifier of the product to which the variant belongs.
      * @param {string} [eventData.postalCode] - The customer's postal code.
      * @param {string} [eventData.remoteAddress] - The `'x-forwarded-for'` HTTP request header.
      */
@@ -186,6 +188,7 @@ class SpressoSdk {
      * @param {string} eventData.variantSku - The unique identifier of the product variant.
      * @param {string} eventData.variantName - The name of the product variant.
      * @param {number} eventData.variantPrice - The unit selling price of the variant.
+     * @param {string} [eventData.productId] - The unique identifier of the product to which the variant belongs.
      * @param {string} [eventData.postalCode] - The customer's postal code.
      * @param {string} [eventData.remoteAddress] - The `'x-forwarded-for'` HTTP request header.
      */
@@ -250,6 +253,7 @@ class SpressoSdk {
      * @param {string} eventData.variantSku - The unique identifier of the product variant.
      * @param {string} eventData.variantName - The name of the product variant.
      * @param {number} eventData.variantPrice - The unit selling price of the variant.
+     * @param {string} [eventData.productId] - The unique identifier of the product to which the variant belongs.
      * @param {string} [eventData.postalCode] - The customer's postal code.
      * @param {string} [eventData.remoteAddress] - The `'x-forwarded-for'` HTTP request header.
      */

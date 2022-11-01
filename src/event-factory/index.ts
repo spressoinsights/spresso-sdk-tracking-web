@@ -32,7 +32,7 @@ export const EventFactory: TEventFactory = {
     },
 
     ['VIEW_PDP']: {
-        createEvent: function ({ variantSku, variantPrice, variantName, inStock, ...otherProps }) {
+        createEvent: function ({ variantSku, variantPrice, variantName, productId, inStock, ...otherProps }) {
             return {
                 event: 'spresso_view_pdp',
                 ...getRootProps(),
@@ -41,6 +41,7 @@ export const EventFactory: TEventFactory = {
                     variantSku,
                     variantName,
                     variantPrice,
+                    productId,
                     inStock: Boolean(inStock),
                     queryParameters: getQueryParameters(),
                 },
@@ -49,7 +50,7 @@ export const EventFactory: TEventFactory = {
     },
 
     ['GLIMPSE_PLE']: {
-        createEvent: function ({ variantSku, variantPrice, variantName, ...otherProps }) {
+        createEvent: function ({ variantSku, variantPrice, variantName, productId, ...otherProps }) {
             return {
                 event: 'spresso_glimpse_ple',
                 ...getRootProps(),
@@ -58,6 +59,7 @@ export const EventFactory: TEventFactory = {
                     variantSku,
                     variantName,
                     variantPrice,
+                    productId,
                     queryParameters: getQueryParameters(),
                 },
             };
@@ -82,7 +84,7 @@ export const EventFactory: TEventFactory = {
     },
 
     ['TAP_ADD_TO_CART']: {
-        createEvent: function ({ variantSku, variantPrice, variantName, ...otherProps }) {
+        createEvent: function ({ variantSku, variantPrice, variantName, productId, ...otherProps }) {
             return {
                 event: 'spresso_tap_add_to_cart',
                 ...getRootProps(),
@@ -91,6 +93,7 @@ export const EventFactory: TEventFactory = {
                     variantSku,
                     variantName,
                     variantPrice,
+                    productId,
                     queryParameters: getQueryParameters(),
                 },
             };
