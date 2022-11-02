@@ -12,7 +12,7 @@ See the [docs](https://spressoinsights.github.io/spresso-sdk-tracking-web/) for 
 
 ### Developer workflow
 
--   Create branch from `staging` into `feature/SPRS-XXXX`.
+-   Create branch from `main` into `feature/SPRS-XXXX`.
 -   Test locally on webapp by changing the script `src` in `components/misc/spresso-web-sdk` to:
 
 ```
