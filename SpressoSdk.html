@@ -757,13 +757,13 @@
     
 <tr class="deep-level-1">
   
-      <td class="name"><code>variantCost</code></td>
+      <td class="name"><code>productId</code></td>
   
 
   <td class="type">
   
       
-<code class="param-type">number</code>
+<code class="param-type">string</code>
 
 
   
@@ -787,7 +787,7 @@
       </td>
   
 
-  <td class="description last"><p>The unit cost of the variant.</p></td>
+  <td class="description last"><p>The unique identifier of the product to which the variant belongs.</p></td>
 </tr>
 
   
@@ -800,7 +800,7 @@
   <td class="type">
   
       
-<code class="param-type">number</code>
+<code class="param-type">string</code>
 
 
   
@@ -837,7 +837,533 @@
   <td class="type">
   
       
+<code class="param-type">string</code>
+
+
+  
+  </td>
+
+  
+      <td class="attributes">
+      
+          &lt;optional><br>
+      
+
+      
+
+      
+      </td>
+  
+
+  
+      <td class="default">
+      
+      </td>
+  
+
+  <td class="description last"><p>The <code>'x-forwarded-for'</code> HTTP request header.</p></td>
+</tr>
+
+  
+
+
+        
+        </tbody>
+    </table>
+</div>
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</div>
+            
+                <div class="member">
+
+
+    
+    <h4 class="name" id="registerGlimpseProductPLE">
+        <a class="href-link" href="#registerGlimpseProductPLE">#</a>
+        
+        <span class="code-name">
+            
+                registerGlimpseProductPLE<span class="signature">(eventData)</span><span class="type-signature"></span>
+            
+        </span>
+    </h4>
+    
+
+    
+    
+    <div class="description">
+        <p>Registers a listener that invokes <a href="SpressoSdk.html#trackGlimpseProductPLE">SpressoSdk#trackGlimpseProductPLE</a> on the first appearance of a Product List Entity (PLE) within either the browser viewport or a bounding rectangle (if specified).</p>
+<p>Note: do not use <a href="SpressoSdk.html#trackGlimpseProductPLE">SpressoSdk#trackGlimpseProductPLE</a> if you opt to use this method.</p>
+    </div>
+    
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+<div class="table-container">
+    <table class="params table">
+        <thead>
+        <tr>
+            
+            <th>Name</th>
+            
+
+            <th>Type</th>
+
+            
+            <th>Attributes</th>
+            
+
+            
+            <th>Default</th>
+            
+
+            <th class="last">Description</th>
+        </tr>
+        </thead>
+
+        <tbody>
+        
+
+            
+<tr class="deep-level-0">
+  
+      <td class="name"><code>eventData</code></td>
+  
+
+  <td class="type">
+  
+      
+<code class="param-type">object</code>
+
+
+  
+  </td>
+
+  
+      <td class="attributes">
+      
+
+      
+
+      
+      </td>
+  
+
+  
+      <td class="default">
+      
+      </td>
+  
+
+  <td class="description last"></td>
+</tr>
+
+  
+  
+    
+<tr class="deep-level-1">
+  
+      <td class="name"><code>root</code></td>
+  
+
+  <td class="type">
+  
+      
+<code class="param-type">HTMLElement</code>
+
+
+  
+  </td>
+
+  
+      <td class="attributes">
+      
+          &lt;optional><br>
+      
+
+      
+
+      
+      </td>
+  
+
+  
+      <td class="default">
+      
+          null
+      
+      </td>
+  
+
+  <td class="description last"><p>The parent container of the PLE elements, whose bounding rectangle will be considered the viewport. Defaults to browser viewport.</p></td>
+</tr>
+
+  
+    
+<tr class="deep-level-1">
+  
+      <td class="name"><code>target</code></td>
+  
+
+  <td class="type">
+  
+      
+<code class="param-type">HTMLElement</code>
+
+
+  
+  </td>
+
+  
+      <td class="attributes">
+      
+
+      
+
+      
+      </td>
+  
+
+  
+      <td class="default">
+      
+      </td>
+  
+
+  <td class="description last"><p>The PLE element to be glimpsed.</p></td>
+</tr>
+
+  
+    
+<tr class="deep-level-1">
+  
+      <td class="name"><code>glimpseThreshold</code></td>
+  
+
+  <td class="type">
+  
+      
 <code class="param-type">number</code>
+
+
+  
+  </td>
+
+  
+      <td class="attributes">
+      
+          &lt;optional><br>
+      
+
+      
+
+      
+      </td>
+  
+
+  
+      <td class="default">
+      
+          1
+      
+      </td>
+  
+
+  <td class="description last"><p>The area of the PLE element that's visible in the viewport, expressed as a ratio, to trigger the event.</p></td>
+</tr>
+
+  
+    
+<tr class="deep-level-1">
+  
+      <td class="name"><code>userId</code></td>
+  
+
+  <td class="type">
+  
+      
+<code class="param-type">string</code>
+|
+
+<code class="param-type">null</code>
+
+
+  
+  </td>
+
+  
+      <td class="attributes">
+      
+
+      
+
+      
+      </td>
+  
+
+  
+      <td class="default">
+      
+      </td>
+  
+
+  <td class="description last"><p>The customer's user ID. Pass in <code>null</code> value if the customer is not logged in.</p></td>
+</tr>
+
+  
+    
+<tr class="deep-level-1">
+  
+      <td class="name"><code>productId</code></td>
+  
+
+  <td class="type">
+  
+      
+<code class="param-type">string</code>
+
+
+  
+  </td>
+
+  
+      <td class="attributes">
+      
+
+      
+
+      
+      </td>
+  
+
+  
+      <td class="default">
+      
+      </td>
+  
+
+  <td class="description last"><p>The unique identifier of the product.</p></td>
+</tr>
+
+  
+    
+<tr class="deep-level-1">
+  
+      <td class="name"><code>productName</code></td>
+  
+
+  <td class="type">
+  
+      
+<code class="param-type">string</code>
+
+
+  
+  </td>
+
+  
+      <td class="attributes">
+      
+
+      
+
+      
+      </td>
+  
+
+  
+      <td class="default">
+      
+      </td>
+  
+
+  <td class="description last"><p>The name of the product.</p></td>
+</tr>
+
+  
+    
+<tr class="deep-level-1">
+  
+      <td class="name"><code>minPriceRange</code></td>
+  
+
+  <td class="type">
+  
+      
+<code class="param-type">number</code>
+
+
+  
+  </td>
+
+  
+      <td class="attributes">
+      
+
+      
+
+      
+      </td>
+  
+
+  
+      <td class="default">
+      
+      </td>
+  
+
+  <td class="description last"><p>The price of the cheapest variant that belongs to the product.</p></td>
+</tr>
+
+  
+    
+<tr class="deep-level-1">
+  
+      <td class="name"><code>maxPriceRange</code></td>
+  
+
+  <td class="type">
+  
+      
+<code class="param-type">number</code>
+
+
+  
+  </td>
+
+  
+      <td class="attributes">
+      
+
+      
+
+      
+      </td>
+  
+
+  
+      <td class="default">
+      
+      </td>
+  
+
+  <td class="description last"><p>The price of the most expensive  variant that belongs to the product.</p></td>
+</tr>
+
+  
+    
+<tr class="deep-level-1">
+  
+      <td class="name"><code>postalCode</code></td>
+  
+
+  <td class="type">
+  
+      
+<code class="param-type">string</code>
+
+
+  
+  </td>
+
+  
+      <td class="attributes">
+      
+          &lt;optional><br>
+      
+
+      
+
+      
+      </td>
+  
+
+  
+      <td class="default">
+      
+      </td>
+  
+
+  <td class="description last"><p>The customer's postal code.</p></td>
+</tr>
+
+  
+    
+<tr class="deep-level-1">
+  
+      <td class="name"><code>remoteAddress</code></td>
+  
+
+  <td class="type">
+  
+      
+<code class="param-type">string</code>
 
 
   
@@ -1400,39 +1926,6 @@
     
 <tr class="deep-level-1">
   
-      <td class="name"><code>totalVariantCost</code></td>
-  
-
-  <td class="type">
-  
-      
-<code class="param-type">number</code>
-
-
-  
-  </td>
-
-  
-      <td class="attributes">
-      
-          &lt;optional><br>
-      
-
-      
-
-      
-      </td>
-  
-
-  
-
-  <td class="description last"><p>The extended variant cost of the order.</p></td>
-</tr>
-
-  
-    
-<tr class="deep-level-1">
-  
       <td class="name"><code>totalVariantPrice</code></td>
   
 
@@ -1713,7 +2206,7 @@
     
     
     <div class="description">
-        <p>Tracks when a user views a Product List Element (PLE). Should only fire when a PLE first becomes visible in the browser viewport.</p>
+        <p>Tracks when a user views a variant Product List Element (PLE). Should only fire when a variant PLE first becomes visible in the browser viewport.</p>
 <p>This is a mandatory event.</p>
 <p>Note: do not use this method if you opt to use <a href="SpressoSdk.html#registerGlimpsePLE">SpressoSdk#registerGlimpsePLE</a>.</p>
     </div>
@@ -1914,13 +2407,13 @@
     
 <tr class="deep-level-1">
   
-      <td class="name"><code>variantCost</code></td>
+      <td class="name"><code>productId</code></td>
   
 
   <td class="type">
   
       
-<code class="param-type">number</code>
+<code class="param-type">string</code>
 
 
   
@@ -1940,7 +2433,7 @@
 
   
 
-  <td class="description last"><p>The unit cost of the variant.</p></td>
+  <td class="description last"><p>The unique identifier of the product to which the variant belongs.</p></td>
 </tr>
 
   
@@ -1953,7 +2446,7 @@
   <td class="type">
   
       
-<code class="param-type">number</code>
+<code class="param-type">string</code>
 
 
   
@@ -1986,7 +2479,387 @@
   <td class="type">
   
       
+<code class="param-type">string</code>
+
+
+  
+  </td>
+
+  
+      <td class="attributes">
+      
+          &lt;optional><br>
+      
+
+      
+
+      
+      </td>
+  
+
+  
+
+  <td class="description last"><p>The <code>'x-forwarded-for'</code> HTTP request header.</p></td>
+</tr>
+
+  
+
+
+        
+        </tbody>
+    </table>
+</div>
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</div>
+            
+                <div class="member">
+
+
+    
+    <h4 class="name" id="trackGlimpseProductPLE">
+        <a class="href-link" href="#trackGlimpseProductPLE">#</a>
+        
+        <span class="code-name">
+            
+                trackGlimpseProductPLE<span class="signature">(eventData)</span><span class="type-signature"></span>
+            
+        </span>
+    </h4>
+    
+
+    
+    
+    <div class="description">
+        <p>Tracks when a user views a product Product List Element (PLE). Should only fire when a product PLE first becomes visible in the browser viewport.</p>
+<p>This is an optional event.</p>
+<p>Note: do not use this method if you opt to use <a href="SpressoSdk.html#registerGlimpsePLE">SpressoSdk#registerGlimpsePLE</a>.</p>
+    </div>
+    
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+<div class="table-container">
+    <table class="params table">
+        <thead>
+        <tr>
+            
+            <th>Name</th>
+            
+
+            <th>Type</th>
+
+            
+            <th>Attributes</th>
+            
+
+            
+
+            <th class="last">Description</th>
+        </tr>
+        </thead>
+
+        <tbody>
+        
+
+            
+<tr class="deep-level-0">
+  
+      <td class="name"><code>eventData</code></td>
+  
+
+  <td class="type">
+  
+      
+<code class="param-type">object</code>
+
+
+  
+  </td>
+
+  
+      <td class="attributes">
+      
+
+      
+
+      
+      </td>
+  
+
+  
+
+  <td class="description last"></td>
+</tr>
+
+  
+  
+    
+<tr class="deep-level-1">
+  
+      <td class="name"><code>userId</code></td>
+  
+
+  <td class="type">
+  
+      
+<code class="param-type">string</code>
+|
+
+<code class="param-type">null</code>
+
+
+  
+  </td>
+
+  
+      <td class="attributes">
+      
+
+      
+
+      
+      </td>
+  
+
+  
+
+  <td class="description last"><p>The customer's user ID. Pass in <code>null</code> value if the customer is not logged in.</p></td>
+</tr>
+
+  
+    
+<tr class="deep-level-1">
+  
+      <td class="name"><code>productId</code></td>
+  
+
+  <td class="type">
+  
+      
+<code class="param-type">string</code>
+
+
+  
+  </td>
+
+  
+      <td class="attributes">
+      
+
+      
+
+      
+      </td>
+  
+
+  
+
+  <td class="description last"><p>The unique identifier of the product.</p></td>
+</tr>
+
+  
+    
+<tr class="deep-level-1">
+  
+      <td class="name"><code>productName</code></td>
+  
+
+  <td class="type">
+  
+      
+<code class="param-type">string</code>
+
+
+  
+  </td>
+
+  
+      <td class="attributes">
+      
+
+      
+
+      
+      </td>
+  
+
+  
+
+  <td class="description last"><p>The name of the product.</p></td>
+</tr>
+
+  
+    
+<tr class="deep-level-1">
+  
+      <td class="name"><code>minPriceRange</code></td>
+  
+
+  <td class="type">
+  
+      
 <code class="param-type">number</code>
+
+
+  
+  </td>
+
+  
+      <td class="attributes">
+      
+
+      
+
+      
+      </td>
+  
+
+  
+
+  <td class="description last"><p>The price of the cheapest variant that belongs to the product.</p></td>
+</tr>
+
+  
+    
+<tr class="deep-level-1">
+  
+      <td class="name"><code>maxPriceRange</code></td>
+  
+
+  <td class="type">
+  
+      
+<code class="param-type">number</code>
+
+
+  
+  </td>
+
+  
+      <td class="attributes">
+      
+
+      
+
+      
+      </td>
+  
+
+  
+
+  <td class="description last"><p>The price of the most expensive  variant that belongs to the product.</p></td>
+</tr>
+
+  
+    
+<tr class="deep-level-1">
+  
+      <td class="name"><code>postalCode</code></td>
+  
+
+  <td class="type">
+  
+      
+<code class="param-type">string</code>
+
+
+  
+  </td>
+
+  
+      <td class="attributes">
+      
+          &lt;optional><br>
+      
+
+      
+
+      
+      </td>
+  
+
+  
+
+  <td class="description last"><p>The customer's postal code.</p></td>
+</tr>
+
+  
+    
+<tr class="deep-level-1">
+  
+      <td class="name"><code>remoteAddress</code></td>
+  
+
+  <td class="type">
+  
+      
+<code class="param-type">string</code>
 
 
   
@@ -2260,39 +3133,6 @@
   
 
   <td class="description last"><p>The customer's postal code.</p></td>
-</tr>
-
-  
-    
-<tr class="deep-level-1">
-  
-      <td class="name"><code>remoteAddress</code></td>
-  
-
-  <td class="type">
-  
-      
-<code class="param-type">number</code>
-
-
-  
-  </td>
-
-  
-      <td class="attributes">
-      
-          &lt;optional><br>
-      
-
-      
-
-      
-      </td>
-  
-
-  
-
-  <td class="description last"><p>The <code>'x-forwarded-for'</code> HTTP request header.</p></td>
 </tr>
 
   
@@ -2676,39 +3516,6 @@
     
 <tr class="deep-level-1">
   
-      <td class="name"><code>variantCost</code></td>
-  
-
-  <td class="type">
-  
-      
-<code class="param-type">number</code>
-
-
-  
-  </td>
-
-  
-      <td class="attributes">
-      
-          &lt;optional><br>
-      
-
-      
-
-      
-      </td>
-  
-
-  
-
-  <td class="description last"><p>The unit cost of the variant.</p></td>
-</tr>
-
-  
-    
-<tr class="deep-level-1">
-  
       <td class="name"><code>variantTotalPrice</code></td>
   
 
@@ -3024,13 +3831,13 @@
     
 <tr class="deep-level-1">
   
-      <td class="name"><code>variantCost</code></td>
+      <td class="name"><code>productId</code></td>
   
 
   <td class="type">
   
       
-<code class="param-type">number</code>
+<code class="param-type">string</code>
 
 
   
@@ -3050,7 +3857,7 @@
 
   
 
-  <td class="description last"><p>The unit cost of the variant.</p></td>
+  <td class="description last"><p>The unique identifier of the product to which the variant belongs.</p></td>
 </tr>
 
   
@@ -3063,7 +3870,7 @@
   <td class="type">
   
       
-<code class="param-type">number</code>
+<code class="param-type">string</code>
 
 
   
@@ -3096,7 +3903,7 @@
   <td class="type">
   
       
-<code class="param-type">number</code>
+<code class="param-type">string</code>
 
 
   
@@ -3406,13 +4213,13 @@ Should be used in addition to <a href="SpressoSdk.html#trackPageView">SpressoSdk
     
 <tr class="deep-level-1">
   
-      <td class="name"><code>variantCost</code></td>
+      <td class="name"><code>productId</code></td>
   
 
   <td class="type">
   
       
-<code class="param-type">number</code>
+<code class="param-type">string</code>
 
 
   
@@ -3432,7 +4239,7 @@ Should be used in addition to <a href="SpressoSdk.html#trackPageView">SpressoSdk
 
   
 
-  <td class="description last"><p>The unit cost of the variant.</p></td>
+  <td class="description last"><p>The unique identifier of the product to which the variant belongs.</p></td>
 </tr>
 
   
@@ -3445,7 +4252,7 @@ Should be used in addition to <a href="SpressoSdk.html#trackPageView">SpressoSdk
   <td class="type">
   
       
-<code class="param-type">number</code>
+<code class="param-type">boolean</code>
 
 
   
@@ -3478,7 +4285,7 @@ Should be used in addition to <a href="SpressoSdk.html#trackPageView">SpressoSdk
   <td class="type">
   
       
-<code class="param-type">number</code>
+<code class="param-type">string</code>
 
 
   
@@ -3511,7 +4318,7 @@ Should be used in addition to <a href="SpressoSdk.html#trackPageView">SpressoSdk
   <td class="type">
   
       
-<code class="param-type">number</code>
+<code class="param-type">string</code>
 
 
   
@@ -3703,6 +4510,29 @@ Should be used in addition to <a href="SpressoSdk.html#trackPageView">SpressoSdk
     
 
     <td class="description last"><p>Requires the same <code>eventData</code> as <a href="SpressoSdk.html#trackGlimpsePLE">SpressoSdk#trackGlimpsePLE</a>.</p></td>
+</tr>
+
+        
+            
+<tr class="deep-level-0">
+    
+        <td class="name"><code>GLIMPSE_PRODUCT_PLE</code></td>
+    
+
+    <td class="type">
+    
+        
+<code class="param-type">string</code>
+
+
+    
+    </td>
+
+    
+
+    
+
+    <td class="description last"><p>Requires the same <code>eventData</code> as <a href="SpressoSdk.html#trackGlimpseProductPLE">SpressoSdk#trackGlimpseProductPLE</a>.</p></td>
 </tr>
 
         
