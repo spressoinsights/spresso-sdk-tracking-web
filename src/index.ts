@@ -1,6 +1,6 @@
 import { addBeforeUnloadListener, addIntersectionObserver, isBrowser } from 'utils/browser';
 import { initDeviceId } from 'utils/properties';
-import { track } from 'utils/api';
+import { track, TErrorCallback } from 'utils/api';
 import { EventFactory, IEventData, IEventObject, TEventNameLiteral } from 'event-factory';
 import { consoleLog } from 'utils/debug';
 
@@ -12,9 +12,11 @@ import { consoleLog } from 'utils/debug';
 class SpressoSdk {
     options: IOptions;
     orgId: string;
+    deviceId: string;
     eventsQueue: Array<IEventObject>;
     timerId: number;
     EXECUTE_DELAY: number;
+    errorCallback?: TErrorCallback;
 
     constructor() {
         this.eventsQueue = [];
@@ -27,11 +29,18 @@ class SpressoSdk {
     }
 
     init(options: IOptions) {
-        this.orgId = options?.orgId;
         this.options = options;
+        this.orgId = options?.orgId;
+        this.deviceId = initDeviceId();
+        this.errorCallback = options?.errorCallback;
 
-        initDeviceId();
         addBeforeUnloadListener(this.executeNow.bind(this));
+
+        if (!this.orgId) {
+            const errorMessage = `[Spresso Event SDK] "orgId" is missing.`;
+            console.error(errorMessage);
+            this.errorCallback?.({ message: errorMessage });
+        }
 
         consoleLog('SpressoSdk INITIALIZED');
         return this;
@@ -62,6 +71,7 @@ class SpressoSdk {
             ...(userId && { userId }),
             ...(postalCode && { postalCode }),
             ...(remoteAddress && { remoteAddress }),
+            deviceId: this.deviceId,
         });
 
         if (typeof eventObj === 'object') {
@@ -76,9 +86,15 @@ class SpressoSdk {
 
     // fires API call
     execute() {
-        const { orgId, useStaging } = this.options;
+        const { useStaging } = this.options;
         const queuedEvents = this.flushQueue();
-        track({ orgId, events: queuedEvents, useStaging });
+        if (!this.orgId) {
+            const errorMessage = `[Spresso Event SDK] "orgId" is missing.`;
+            console.error(errorMessage);
+            this.errorCallback?.({ message: errorMessage });
+            return;
+        }
+        track({ orgId: this.orgId, events: queuedEvents, useStaging, errorCallback: this.errorCallback });
     }
 
     executeLater() {
@@ -108,7 +124,6 @@ class SpressoSdk {
      * @param {string | null} eventData.userId - The customer's user ID. Pass in `null` value if the customer is not logged in.
      * @param {string} eventData.remoteAddress - The `'x-forwarded-for'` HTTP request header.
      * @param {string} [eventData.postalCode] - The customer's postal code.
-     * @param {number} [eventData.remoteAddress] - The `'x-forwarded-for'` HTTP request header.
      */
     trackPageView(eventData: IEventData = {}) {
         this.queueEvent({ eventName: 'PAGE_VIEW', eventData });
@@ -124,10 +139,10 @@ class SpressoSdk {
      * @param {string} eventData.variantSku - The unique identifier of the product variant.
      * @param {string} eventData.variantName - The name of the product variant.
      * @param {number} eventData.variantPrice - The unit selling price of the variant.
-     * @param {number} [eventData.variantCost] - The unit cost of the variant.
-     * @param {number} [eventData.inStock] - Variant's stock availability.
-     * @param {number} [eventData.postalCode] - The customer's postal code.
-     * @param {number} [eventData.remoteAddress] - The `'x-forwarded-for'` HTTP request header.
+     * @param {string} [eventData.productId] - The unique identifier of the product to which the variant belongs.
+     * @param {boolean} [eventData.inStock] - Variant's stock availability.
+     * @param {string} [eventData.postalCode] - The customer's postal code.
+     * @param {string} [eventData.remoteAddress] - The `'x-forwarded-for'` HTTP request header.
      */
     trackViewPDP(eventData: IEventData = {}) {
         this.queueEvent({ eventName: 'VIEW_PDP', eventData });
@@ -145,9 +160,9 @@ class SpressoSdk {
      * @param {string} eventData.variantSku - The unique identifier of the product variant.
      * @param {string} eventData.variantName - The name of the product variant.
      * @param {number} eventData.variantPrice - The unit selling price of the variant.
-     * @param {number} [eventData.variantCost] - The unit cost of the variant.
-     * @param {number} [eventData.postalCode] - The customer's postal code.
-     * @param {number} [eventData.remoteAddress] - The `'x-forwarded-for'` HTTP request header.
+     * @param {string} [eventData.productId] - The unique identifier of the product to which the variant belongs.
+     * @param {string} [eventData.postalCode] - The customer's postal code.
+     * @param {string} [eventData.remoteAddress] - The `'x-forwarded-for'` HTTP request header.
      */
     registerGlimpsePLE({ root, target, glimpseThreshold, ...eventData }: IRegisterGlimpsePLE) {
         if (!(target instanceof HTMLElement)) {
@@ -163,7 +178,7 @@ class SpressoSdk {
     }
 
     /**
-     * Tracks when a user views a Product List Element (PLE). Should only fire when a PLE first becomes visible in the browser viewport.
+     * Tracks when a user views a variant Product List Element (PLE). Should only fire when a variant PLE first becomes visible in the browser viewport.
      *
      * This is a mandatory event.
      *
@@ -173,12 +188,60 @@ class SpressoSdk {
      * @param {string} eventData.variantSku - The unique identifier of the product variant.
      * @param {string} eventData.variantName - The name of the product variant.
      * @param {number} eventData.variantPrice - The unit selling price of the variant.
-     * @param {number} [eventData.variantCost] - The unit cost of the variant.
-     * @param {number} [eventData.postalCode] - The customer's postal code.
-     * @param {number} [eventData.remoteAddress] - The `'x-forwarded-for'` HTTP request header.
+     * @param {string} [eventData.productId] - The unique identifier of the product to which the variant belongs.
+     * @param {string} [eventData.postalCode] - The customer's postal code.
+     * @param {string} [eventData.remoteAddress] - The `'x-forwarded-for'` HTTP request header.
      */
     trackGlimpsePLE(eventData: IEventData = {}) {
         this.queueEvent({ eventName: 'GLIMPSE_PLE', eventData });
+    }
+
+    /**
+     * Registers a listener that invokes {@link SpressoSdk#trackGlimpseProductPLE} on the first appearance of a Product List Entity (PLE) within either the browser viewport or a bounding rectangle (if specified).
+     *
+     * Note: do not use {@link SpressoSdk#trackGlimpseProductPLE} if you opt to use this method.
+     * @param {object} eventData
+     * @param {HTMLElement} [eventData.root=null] - The parent container of the PLE elements, whose bounding rectangle will be considered the viewport. Defaults to browser viewport.
+     * @param {HTMLElement} eventData.target - The PLE element to be glimpsed.
+     * @param {number} [eventData.glimpseThreshold=1] - The area of the PLE element that's visible in the viewport, expressed as a ratio, to trigger the event.
+     * @param {string | null} eventData.userId - The customer's user ID. Pass in `null` value if the customer is not logged in.
+     * @param {string} eventData.productId - The unique identifier of the product.
+     * @param {string} eventData.productName - The name of the product.
+     * @param {number} eventData.minPriceRange - The price of the cheapest variant that belongs to the product.
+     * @param {number} eventData.maxPriceRange - The price of the most expensive  variant that belongs to the product.
+     * @param {string} [eventData.postalCode] - The customer's postal code.
+     * @param {string} [eventData.remoteAddress] - The `'x-forwarded-for'` HTTP request header.
+     */
+    registerGlimpseProductPLE({ root, target, glimpseThreshold, ...eventData }: IRegisterGlimpsePLE) {
+        if (!(target instanceof HTMLElement)) {
+            consoleLog('registerGlimpsePLE: `target` is not a valid `HTMLELement`.');
+        }
+
+        addIntersectionObserver({
+            listener: () => this.trackGlimpseProductPLE(eventData),
+            root: root instanceof HTMLElement ? root : null,
+            target,
+            threshold: glimpseThreshold || 1,
+        });
+    }
+
+    /**
+     * Tracks when a user views a product Product List Element (PLE). Should only fire when a product PLE first becomes visible in the browser viewport.
+     *
+     * This is an optional event.
+     *
+     * Note: do not use this method if you opt to use {@link SpressoSdk#registerGlimpsePLE}.
+     * @param {object} eventData
+     * @param {string | null} eventData.userId - The customer's user ID. Pass in `null` value if the customer is not logged in.
+     * @param {string} eventData.productId - The unique identifier of the product.
+     * @param {string} eventData.productName - The name of the product.
+     * @param {number} eventData.minPriceRange - The price of the cheapest variant that belongs to the product.
+     * @param {number} eventData.maxPriceRange - The price of the most expensive  variant that belongs to the product.
+     * @param {string} [eventData.postalCode] - The customer's postal code.
+     * @param {string} [eventData.remoteAddress] - The `'x-forwarded-for'` HTTP request header.
+     */
+    trackGlimpseProductPLE(eventData: IEventData = {}) {
+        this.queueEvent({ eventName: 'GLIMPSE_PRODUCT_PLE', eventData });
     }
 
     /**
@@ -190,9 +253,9 @@ class SpressoSdk {
      * @param {string} eventData.variantSku - The unique identifier of the product variant.
      * @param {string} eventData.variantName - The name of the product variant.
      * @param {number} eventData.variantPrice - The unit selling price of the variant.
-     * @param {number} [eventData.variantCost] - The unit cost of the variant.
-     * @param {number} [eventData.postalCode] - The customer's postal code.
-     * @param {number} [eventData.remoteAddress] - The `'x-forwarded-for'` HTTP request header.
+     * @param {string} [eventData.productId] - The unique identifier of the product to which the variant belongs.
+     * @param {string} [eventData.postalCode] - The customer's postal code.
+     * @param {string} [eventData.remoteAddress] - The `'x-forwarded-for'` HTTP request header.
      */
     trackTapAddToCart(eventData: IEventData = {}) {
         this.queueEvent({ eventName: 'TAP_ADD_TO_CART', eventData });
@@ -210,7 +273,6 @@ class SpressoSdk {
      * @param {number} eventData.variantPrice - The unit selling price of the variant.
      * @param {number} eventData.variantQuantity - Variant quantity.
      * @param {number} [eventData.variantStandardPrice] - The default base unit price of the variant not inclusive of price optimization or promotions.
-     * @param {number} [eventData.variantCost] - The unit cost of the variant.
      * @param {number} [eventData.variantTotalPrice] - The extended total price of the variant inclusive of tax and shipping.
      */
     trackPurchaseVariant(eventData: IEventData = {}) {
@@ -234,7 +296,6 @@ class SpressoSdk {
      * @param {string} eventData.shippingInfoFirstName
      * @param {string} eventData.shippingInfoLastName
      * @param {number} [eventData.totalVariantQuantity] - The total quantity amount of the order.
-     * @param {number} [eventData.totalVariantCost] - The extended variant cost of the order.
      * @param {number} [eventData.totalVariantPrice] - The extended selling price of the variant.
      * @param {number} [eventData.orderTax] - Order-level taxes.
      * @param {number} [eventData.totalOrderFees] - The total value of order-level fees such as shipping, delivery, convenience, service fees.
@@ -252,7 +313,8 @@ interface IOptions {
     userId?: string;
     postalCode?: string;
     remoteAddress?: string;
-    useStaging: boolean;
+    useStaging?: boolean;
+    errorCallback?: TErrorCallback;
 }
 
 interface IQueueEvent {

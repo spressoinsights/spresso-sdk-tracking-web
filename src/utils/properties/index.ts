@@ -3,8 +3,11 @@ import { writeCookie, readCookie } from 'utils/cookie';
 import { getCurrentUrl } from 'utils/browser';
 import { IEventData } from 'event-factory';
 
-function setDeviceId() {
-    const deviceId = uuidv4();
+function setDeviceId(id?: string) {
+    let deviceId = id;
+    if (!Boolean(deviceId)) {
+        deviceId = uuidv4();
+    }
     writeCookie({ name: 'spressoDeviceId', value: deviceId, domain: '' });
     return deviceId;
 }
@@ -33,12 +36,21 @@ export function getRootProps(): IRootProps {
     };
 }
 
-export function getMetaProps({ userId, postalCode, remoteAddress }: IEventData): IMetaProps {
-    const deviceId = getDeviceId();
+export function getMetaProps({ userId, postalCode, remoteAddress, deviceId }: IEventData): IMetaProps {
+    let _deviceId = getDeviceId(); // use cookie
+
+    if (!Boolean(_deviceId) && Boolean(deviceId)) {
+        // if cookie doesn't exist, use memory
+        _deviceId = setDeviceId(deviceId);
+    } else if (!Boolean(_deviceId) && !Boolean(deviceId)) {
+        // cookie/memory don't exist, re-generate new `deviceId`
+        _deviceId = setDeviceId();
+    }
+
     return {
-        deviceId,
+        deviceId: _deviceId,
         userId: userId || deviceId,
-        isLoggedIn: Boolean(userId),
+        isLoggedIn: Boolean(userId) && userId !== deviceId,
         page: getCurrentUrl(),
         postalCode,
         remoteAddress: remoteAddress || '',

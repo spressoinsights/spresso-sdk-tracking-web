@@ -32,7 +32,7 @@ export const EventFactory: TEventFactory = {
     },
 
     ['VIEW_PDP']: {
-        createEvent: function ({ variantSku, variantPrice, variantName, variantCost, inStock, ...otherProps }) {
+        createEvent: function ({ variantSku, variantPrice, variantName, productId, inStock, ...otherProps }) {
             return {
                 event: 'spresso_view_pdp',
                 ...getRootProps(),
@@ -41,8 +41,8 @@ export const EventFactory: TEventFactory = {
                     variantSku,
                     variantName,
                     variantPrice,
-                    variantCost,
-                    inStock,
+                    productId,
+                    inStock: Boolean(inStock),
                     queryParameters: getQueryParameters(),
                 },
             };
@@ -50,7 +50,7 @@ export const EventFactory: TEventFactory = {
     },
 
     ['GLIMPSE_PLE']: {
-        createEvent: function ({ variantSku, variantPrice, variantName, variantCost, ...otherProps }) {
+        createEvent: function ({ variantSku, variantPrice, variantName, productId, ...otherProps }) {
             return {
                 event: 'spresso_glimpse_ple',
                 ...getRootProps(),
@@ -58,8 +58,25 @@ export const EventFactory: TEventFactory = {
                     ...getMetaProps(otherProps),
                     variantSku,
                     variantName,
-                    variantCost,
                     variantPrice,
+                    productId,
+                    queryParameters: getQueryParameters(),
+                },
+            };
+        },
+    },
+
+    ['GLIMPSE_PRODUCT_PLE']: {
+        createEvent: function ({ productId, productName, minPriceRange, maxPriceRange, ...otherProps }) {
+            return {
+                event: 'spresso_glimpse_product_ple',
+                ...getRootProps(),
+                properties: {
+                    ...getMetaProps(otherProps),
+                    productId,
+                    productName,
+                    minPriceRange,
+                    maxPriceRange,
                     queryParameters: getQueryParameters(),
                 },
             };
@@ -67,7 +84,7 @@ export const EventFactory: TEventFactory = {
     },
 
     ['TAP_ADD_TO_CART']: {
-        createEvent: function ({ variantSku, variantPrice, variantName, variantCost, ...otherProps }) {
+        createEvent: function ({ variantSku, variantPrice, variantName, productId, ...otherProps }) {
             return {
                 event: 'spresso_tap_add_to_cart',
                 ...getRootProps(),
@@ -75,8 +92,8 @@ export const EventFactory: TEventFactory = {
                     ...getMetaProps(otherProps),
                     variantSku,
                     variantName,
-                    variantCost,
                     variantPrice,
+                    productId,
                     queryParameters: getQueryParameters(),
                 },
             };
@@ -90,7 +107,6 @@ export const EventFactory: TEventFactory = {
             variantQuantity,
             orderNumber,
             variantName,
-            variantCost,
             variantPrice,
             variantStandardPrice,
             ...otherProps
@@ -106,7 +122,6 @@ export const EventFactory: TEventFactory = {
                     variantTotalPrice,
                     variantPrice,
                     variantStandardPrice,
-                    variantCost,
                     variantQuantity,
                     orderNumber,
                 },
@@ -119,7 +134,6 @@ export const EventFactory: TEventFactory = {
             orderNumber,
             totalOrderPrice,
             totalVariantQuantity,
-            totalVariantCost,
             totalVariantPrice,
             shippingInfoAddressLine1,
             shippingInfoAddressLine2,
@@ -145,7 +159,6 @@ export const EventFactory: TEventFactory = {
                     orderNumber,
                     totalOrderPrice,
                     totalVariantQuantity,
-                    totalVariantCost,
                     totalVariantPrice,
                     shippingInfoAddressLine1,
                     shippingInfoAddressLine2,
@@ -166,10 +179,11 @@ export const EventFactory: TEventFactory = {
     },
 };
 
-export interface IEventData extends IPageEventData, IVariantEventData, IOrderEventData {
+export interface IEventData extends IPageEventData, IVariantEventData, IProductEventData, IOrderEventData {
     userId?: string;
     postalCode?: string;
     remoteAddress?: string;
+    deviceId?: string;
 }
 
 export interface IPageEventData {
@@ -190,17 +204,22 @@ export interface IVariantEventData {
     variantName?: string;
     variantPrice?: number;
     variantStandardPrice?: number;
-    variantCost?: number;
     variantQuantity?: number;
     variantTotalPrice?: number;
     inStock?: boolean;
+}
+
+export interface IProductEventData {
+    productId?: string;
+    productName?: string;
+    minPriceRange?: number;
+    maxPriceRange?: number;
 }
 
 export interface IOrderEventData {
     orderNumber?: string;
     totalOrderPrice?: number;
     totalVariantQuantity?: string;
-    totalVariantCost?: number;
     totalVariantPrice?: number;
     shippingInfoAddressLine1?: string;
     shippingInfoAddressLine2?: string;
@@ -236,6 +255,10 @@ type TEventName = {
      * Requires the same `eventData` as {@link SpressoSdk#trackGlimpsePLE}.
      */
     GLIMPSE_PLE: string;
+    /**
+     * Requires the same `eventData` as {@link SpressoSdk#trackGlimpseProductPLE}.
+     */
+    GLIMPSE_PRODUCT_PLE: string;
     /**
      * Requires the same `eventData` as {@link SpressoSdk#trackPageView}.
      */
