@@ -124,6 +124,7 @@ class SpressoSdk {
      * @param {string | null} eventData.userId - The customer's user ID. Pass in `null` value if the customer is not logged in.
      * @param {string} eventData.remoteAddress - The `'x-forwarded-for'` HTTP request header.
      * @param {string} [eventData.postalCode] - The customer's postal code.
+     * @param {string} [eventData.refUserId] - Other customer unique identifier.
      */
     trackPageView(eventData: IEventData = {}) {
         this.queueEvent({ eventName: 'PAGE_VIEW', eventData });
@@ -143,6 +144,7 @@ class SpressoSdk {
      * @param {boolean} [eventData.inStock] - Variant's stock availability.
      * @param {string} [eventData.postalCode] - The customer's postal code.
      * @param {string} [eventData.remoteAddress] - The `'x-forwarded-for'` HTTP request header.
+     * @param {string} [eventData.refUserId] - Other customer unique identifier.
      */
     trackViewPDP(eventData: IEventData = {}) {
         this.queueEvent({ eventName: 'VIEW_PDP', eventData });
@@ -163,6 +165,7 @@ class SpressoSdk {
      * @param {string} [eventData.productId] - The unique identifier of the product to which the variant belongs.
      * @param {string} [eventData.postalCode] - The customer's postal code.
      * @param {string} [eventData.remoteAddress] - The `'x-forwarded-for'` HTTP request header.
+     * @param {string} [eventData.refUserId] - Other customer unique identifier.
      */
     registerGlimpsePLE({ root, target, glimpseThreshold, ...eventData }: IRegisterGlimpsePLE) {
         if (!(target instanceof HTMLElement)) {
@@ -191,6 +194,7 @@ class SpressoSdk {
      * @param {string} [eventData.productId] - The unique identifier of the product to which the variant belongs.
      * @param {string} [eventData.postalCode] - The customer's postal code.
      * @param {string} [eventData.remoteAddress] - The `'x-forwarded-for'` HTTP request header.
+     * @param {string} [eventData.refUserId] - Other customer unique identifier.
      */
     trackGlimpsePLE(eventData: IEventData = {}) {
         this.queueEvent({ eventName: 'GLIMPSE_PLE', eventData });
@@ -211,6 +215,7 @@ class SpressoSdk {
      * @param {number} eventData.maxPriceRange - The price of the most expensive  variant that belongs to the product.
      * @param {string} [eventData.postalCode] - The customer's postal code.
      * @param {string} [eventData.remoteAddress] - The `'x-forwarded-for'` HTTP request header.
+     * @param {string} [eventData.refUserId] - Other customer unique identifier.
      */
     registerGlimpseProductPLE({ root, target, glimpseThreshold, ...eventData }: IRegisterGlimpsePLE) {
         if (!(target instanceof HTMLElement)) {
@@ -239,6 +244,7 @@ class SpressoSdk {
      * @param {number} eventData.maxPriceRange - The price of the most expensive  variant that belongs to the product.
      * @param {string} [eventData.postalCode] - The customer's postal code.
      * @param {string} [eventData.remoteAddress] - The `'x-forwarded-for'` HTTP request header.
+     * @param {string} [eventData.refUserId] - Other customer unique identifier.
      */
     trackGlimpseProductPLE(eventData: IEventData = {}) {
         this.queueEvent({ eventName: 'GLIMPSE_PRODUCT_PLE', eventData });
@@ -256,6 +262,7 @@ class SpressoSdk {
      * @param {string} [eventData.productId] - The unique identifier of the product to which the variant belongs.
      * @param {string} [eventData.postalCode] - The customer's postal code.
      * @param {string} [eventData.remoteAddress] - The `'x-forwarded-for'` HTTP request header.
+     * @param {string} [eventData.refUserId] - Other customer unique identifier.
      */
     trackTapAddToCart(eventData: IEventData = {}) {
         this.queueEvent({ eventName: 'TAP_ADD_TO_CART', eventData });
@@ -274,6 +281,7 @@ class SpressoSdk {
      * @param {number} eventData.variantQuantity - Variant quantity.
      * @param {number} [eventData.variantStandardPrice] - The default base unit price of the variant not inclusive of price optimization or promotions.
      * @param {number} [eventData.variantTotalPrice] - The extended total price of the variant inclusive of tax and shipping.
+     * @param {string} [eventData.refUserId] - Other customer unique identifier.
      */
     trackPurchaseVariant(eventData: IEventData = {}) {
         this.queueEvent({ eventName: 'PURCHASE_VARIANT', eventData });
@@ -302,6 +310,7 @@ class SpressoSdk {
      * @param {Array<{ type: string, id: string, value: number }>} [eventData.orderFees] - An array of order-level fees such as shipping, delivery, convenience, service fees.
      * @param {number} [eventData.totalOrderDeductions] - The total value of promo codes or discounts or credits or loyalty promotions.
      * @param {Array<{ type: string, id: string, value: number }>} [eventData.orderDeductions] - An array of all promo codes or discounts or credits or loyalty promotions.
+     * @param {string} [eventData.refUserId] - Other customer unique identifier.
      */
     trackCreateOrder(eventData: IEventData = {}) {
         this.queueEvent({ eventName: 'CREATE_ORDER', eventData });
