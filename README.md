@@ -1,4 +1,8 @@
-# Spresso Web SDK
+# Spresso Web Event SDK
+
+## Installation
+
+See the [docs](https://spressoinsights.github.io/spresso-sdk-tracking-web/) for more info.
 
 ## Development
 
@@ -8,7 +12,7 @@
 
 ### Developer workflow
 
--   Create branch from `staging` into `feature/SPRS-XXXX`.
+-   Create branch from `main` into `feature/SPRS-XXXX`.
 -   Test locally on webapp by changing the script `src` in `components/misc/spresso-web-sdk` to:
 
 ```
@@ -19,8 +23,6 @@ http://localhost:3002/spresso.sdk.tracking.web.js
 
 -   `npm run docs` will build the docs locally in watch mode.
 -   Open `./docs/index.html` in your browser.
-
-<br>
 
 ## Build and deploy
 
@@ -35,4 +37,12 @@ http://localhost:3002/spresso.sdk.tracking.web.js
 -   PR `staging` branch to `main`.
 -   Push/merge to `main` branch will NOT build/upload script.
 -   Create a new release tag (must equal the `package.json` version) on `main` to build/upload script to production [Spresso GCP bucket](<https://console.cloud.google.com/storage/browser/spresso-saas-prod-spresso-sdk-tracking-web?project=spresso-saas-prod&pageState=(%22StorageObjectListTable%22:(%22f%22:%22%255B%255D%22))&prefix=&forceOnObjectsSortingFiltering=false>), nested under the folder named the release version.
--   A new release tag will also re-publish the docs. 
+-   A new release tag will also re-publish the docs.
+
+## Author
+
+Spresso, developer@spresso.com
+
+## License
+
+Spresso Web Event SDK is available under the MIT license. See the LICENSE file for more info.
