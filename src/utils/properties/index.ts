@@ -36,7 +36,7 @@ export function getRootProps(): IRootProps {
     };
 }
 
-export function getMetaProps({ userId, postalCode, remoteAddress, deviceId }: IEventData): IMetaProps {
+export function getMetaProps({ userId, postalCode, remoteAddress, deviceId, refUserId }: IEventData): IMetaProps {
     let _deviceId = getDeviceId(); // use cookie
 
     if (!Boolean(_deviceId) && Boolean(deviceId)) {
@@ -50,6 +50,7 @@ export function getMetaProps({ userId, postalCode, remoteAddress, deviceId }: IE
     return {
         deviceId: _deviceId,
         userId: userId || deviceId,
+        refUserId,
         isLoggedIn: Boolean(userId) && userId !== deviceId,
         page: getCurrentUrl(),
         postalCode,
@@ -67,6 +68,7 @@ export interface IRootProps {
 export interface IMetaProps {
     deviceId: string;
     userId: string;
+    refUserId?: string;
     isLoggedIn: boolean;
     page: string;
     postalCode?: string;

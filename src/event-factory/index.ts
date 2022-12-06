@@ -181,6 +181,7 @@ export const EventFactory: TEventFactory = {
 
 export interface IEventData extends IPageEventData, IVariantEventData, IProductEventData, IOrderEventData {
     userId?: string;
+    refUserId?: string;
     postalCode?: string;
     remoteAddress?: string;
     deviceId?: string;
