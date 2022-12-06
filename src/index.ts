@@ -235,7 +235,7 @@ class SpressoSdk {
      *
      * This is an optional event.
      *
-     * Note: do not use this method if you opt to use {@link SpressoSdk#registerGlimpsePLE}.
+     * Note: do not use this method if you opt to use {@link SpressoSdk#registerGlimpseProductPLE}.
      * @param {object} eventData
      * @param {string | null} eventData.userId - The customer's user ID. Pass in `null` value if the customer is not logged in.
      * @param {string} eventData.productId - The unique identifier of the product.
