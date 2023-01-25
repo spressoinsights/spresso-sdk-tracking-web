@@ -53,6 +53,7 @@ export function getMetaProps({ userId, postalCode, remoteAddress, deviceId, refU
         refUserId,
         isLoggedIn: Boolean(userId) && userId !== deviceId,
         page: getCurrentUrl(),
+        platform: 'Web',
         postalCode,
         remoteAddress: remoteAddress || '',
         userAgent: typeof navigator !== 'undefined' ? navigator.userAgent : '',
@@ -71,6 +72,7 @@ export interface IMetaProps {
     refUserId?: string;
     isLoggedIn: boolean;
     page: string;
+    platform: string;
     postalCode?: string;
     remoteAddress?: string;
     userAgent: string;
