@@ -57,6 +57,7 @@ export function getMetaProps({ userId, postalCode, remoteAddress, deviceId, refU
         postalCode,
         remoteAddress: remoteAddress || '',
         userAgent: typeof navigator !== 'undefined' ? navigator.userAgent : '',
+        version: __SDK_VERSION__,
     };
 }
 
@@ -76,4 +77,5 @@ export interface IMetaProps {
     postalCode?: string;
     remoteAddress?: string;
     userAgent: string;
+    version: string;
 }

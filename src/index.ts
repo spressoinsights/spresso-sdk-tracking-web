@@ -342,6 +342,8 @@ declare global {
     interface globalThis {
         SpressoSdk: SpressoSdk;
     }
+
+    var __SDK_VERSION__: string;
 }
 
 export default new SpressoSdk();
