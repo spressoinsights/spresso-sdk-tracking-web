@@ -13,17 +13,14 @@ class SpressoSdk {
     options: IOptions;
     orgId: string;
     deviceId: string;
-    eventsQueue: Array<IEventObject>;
-    timerId: number;
-    EXECUTE_DELAY: number;
+    eventsQueue: Array<IEventObject> = [];
+    timerId: number | null = null;
+    EXECUTE_DELAY: number = 3000;
     errorCallback?: TErrorCallback;
 
     constructor() {
-        this.eventsQueue = [];
-        this.timerId = null;
         this.orgId = (isBrowser() && window?.SpressoSdk?.options?.orgId) || null;
         this.options = isBrowser() && window?.SpressoSdk?.options;
-        this.EXECUTE_DELAY = 3000;
 
         consoleLog('SpressoSdk CONSTRUCTED');
     }
@@ -345,6 +342,8 @@ declare global {
     interface globalThis {
         SpressoSdk: SpressoSdk;
     }
+
+    var __SDK_VERSION__: string;
 }
 
 export default new SpressoSdk();

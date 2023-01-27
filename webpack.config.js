@@ -2,6 +2,7 @@ const path = require('path');
 const webpack = require('webpack');
 const NodemonPlugin = require('nodemon-webpack-plugin');
 const TsconfigPathsPlugin = require('tsconfig-paths-webpack-plugin');
+const packageJson = require('./package.json');
 
 const isDev = !process.env.NODE_ENV || process.env.NODE_ENV === 'development';
 const useNodemon = process.env.USE_NODEMON === 'true';
@@ -79,6 +80,9 @@ module.exports = {
         // new webpack.ProgressPlugin({
         //     profile: true,
         // }),
+        new webpack.DefinePlugin({
+            __SDK_VERSION__: JSON.stringify(packageJson.version),
+        }),
         useNodemon &&
             new NodemonPlugin({
                 // only runs on `dev:prod-mode`
