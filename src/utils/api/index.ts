@@ -9,8 +9,8 @@ export function track({ orgId, events, useStaging, errorCallback }: ITrackOption
     consoleLog({ useStaging });
 
     let ENDPOINT = useStaging
-        ? 'https://public-pensieve-stats.us-east4.staging.spresso.com/track'
-        : 'https://public-pensieve-stats.us-east4.prod.spresso.com/track';
+        ? 'https://api.staging.spresso.com/pim/public/events'
+        : 'https://api.spresso.com/pim/public/events';
 
     if (isDev) {
         ENDPOINT = 'http://localhost:1337/track';
