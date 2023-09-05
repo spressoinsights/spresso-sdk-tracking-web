@@ -7,7 +7,7 @@ const packageJson = require('./package.json');
 const isDev = !process.env.NODE_ENV || process.env.NODE_ENV === 'development';
 const useNodemon = process.env.USE_NODEMON === 'true';
 
-const WEBPACK_DEV_SERVER_PORT = 3002;
+const WEBPACK_DEV_SERVER_PORT = 3003;
 
 const resolveExtensions = ['*', '.js', '.ts'];
 
