@@ -276,8 +276,8 @@ class SpressoSdk {
      * @param {string} eventData.variantName - The name of the product variant.
      * @param {number} eventData.variantPrice - The unit selling price of the variant.
      * @param {number} eventData.variantQuantity - Variant quantity.
-     * @param {number} [eventData.variantStandardPrice] - The default base unit price of the variant not inclusive of price optimization or promotions.
-     * @param {number} [eventData.variantTotalPrice] - The extended total price of the variant inclusive of tax and shipping.
+     * @param {number} [eventData.variantStandardPrice] - **Strongly recommended.** The default base unit price of the variant not inclusive of price optimization or promotions.
+     * @param {number} [eventData.variantTotalPrice] - **Strongly recommended.** The extended total price of the variant inclusive of tax and shipping.
      * @param {string} [eventData.refUserId] - Other customer unique identifier.
      */
     trackPurchaseVariant(eventData: IEventData = {}) {
@@ -300,8 +300,8 @@ class SpressoSdk {
      * @param {string} eventData.shippingInfoCountry
      * @param {string} eventData.shippingInfoFirstName
      * @param {string} eventData.shippingInfoLastName
-     * @param {number} [eventData.totalVariantQuantity] - The total quantity amount of the order.
-     * @param {number} [eventData.totalVariantPrice] - The extended selling price of the variant.
+     * @param {number} [eventData.totalVariantQuantity] - **Strongly recommended.** The total quantity amount of the order.
+     * @param {number} [eventData.totalVariantPrice] - **Strongly recommended.** The extended selling price of the variant.
      * @param {number} [eventData.orderTax] - Order-level taxes.
      * @param {number} [eventData.totalOrderFees] - The total value of order-level fees such as shipping, delivery, convenience, service fees.
      * @param {Array<{ type: string, id: string, value: number }>} [eventData.orderFees] - An array of order-level fees such as shipping, delivery, convenience, service fees.
