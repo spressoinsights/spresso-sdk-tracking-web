@@ -1,8 +1,8 @@
-import { addBeforeUnloadListener, addIntersectionObserver, isBrowser } from 'utils/browser';
-import { initDeviceId } from 'utils/properties';
-import { track, TErrorCallback } from 'utils/api';
-import { EventFactory, IEventData, IEventObject, TEventNameLiteral } from 'event-factory';
+import { EventFactory, IEventData, TEventNameLiteral } from 'event-factory';
+import { TErrorCallback, track } from 'utils/api';
+import { addIntersectionObserver, isBrowser } from 'utils/browser';
 import { consoleLog } from 'utils/debug';
+import { initDeviceId } from 'utils/properties';
 
 /**
  * @classdesc Instantiated as the global variable `window.SpressoSdk` on page load.
@@ -13,9 +13,6 @@ class SpressoSdk {
     options: IOptions;
     orgId: string;
     deviceId: string;
-    eventsQueue: Array<IEventObject> = [];
-    timerId: number | null = null;
-    EXECUTE_DELAY: number = 3000;
     errorCallback?: TErrorCallback;
 
     constructor() {
@@ -31,8 +28,6 @@ class SpressoSdk {
         this.deviceId = initDeviceId();
         this.errorCallback = options?.errorCallback;
 
-        addBeforeUnloadListener(this.executeNow.bind(this));
-
         if (!this.orgId) {
             const errorMessage = `[Spresso Event SDK] "orgId" is missing.`;
             console.error(errorMessage);
@@ -41,12 +36,6 @@ class SpressoSdk {
 
         consoleLog('SpressoSdk INITIALIZED');
         return this;
-    }
-
-    flushQueue(): Array<IEventObject> {
-        const previousQueue = this.eventsQueue;
-        this.eventsQueue = [];
-        return previousQueue;
     }
 
     /**
@@ -72,44 +61,15 @@ class SpressoSdk {
         });
 
         if (typeof eventObj === 'object') {
-            this.eventsQueue.push(eventObj);
-        }
-
-        // schedule execution ONLY when queue is not empty
-        if (!this.timerId && this.eventsQueue.length) {
-            this.executeLater();
-        }
-    }
-
-    // fires API call
-    execute() {
-        const { useStaging } = this.options;
-        const queuedEvents = this.flushQueue();
-        if (!this.orgId) {
-            const errorMessage = `[Spresso Event SDK] "orgId" is missing.`;
-            console.error(errorMessage);
-            this.errorCallback?.({ message: errorMessage });
-            return;
-        }
-        track({ orgId: this.orgId, events: queuedEvents, useStaging, errorCallback: this.errorCallback });
-    }
-
-    executeLater() {
-        this.timerId =
-            isBrowser() &&
-            window?.setTimeout?.(() => {
-                this.execute();
-                this.timerId = null;
-            }, this.EXECUTE_DELAY);
-    }
-
-    executeNow() {
-        // clear any timed execution
-        isBrowser() && window?.clearTimeout?.(this.timerId);
-        this.timerId = null;
-
-        if (this.eventsQueue.length) {
-            this.execute();
+            // fire event
+            const { useStaging } = this.options;
+            if (!this.orgId) {
+                const errorMessage = `[Spresso Event SDK] "orgId" is missing.`;
+                console.error(errorMessage);
+                this.errorCallback?.({ message: errorMessage });
+                return;
+            }
+            track({ orgId: this.orgId, events: [eventObj], useStaging, errorCallback: this.errorCallback });
         }
     }
 
