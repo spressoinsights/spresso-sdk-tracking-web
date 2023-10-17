@@ -1,8 +1,8 @@
-import { addBeforeUnloadListener, addIntersectionObserver, isBrowser } from 'utils/browser';
-import { initDeviceId } from 'utils/properties';
-import { track, TErrorCallback } from 'utils/api';
 import { EventFactory, IEventData, IEventObject, TEventNameLiteral } from 'event-factory';
+import { TErrorCallback, track } from 'utils/api';
+import { addBeforeUnloadListener, addIntersectionObserver, isBrowser } from 'utils/browser';
 import { consoleLog } from 'utils/debug';
+import { initDeviceId } from 'utils/properties';
 
 /**
  * @classdesc Instantiated as the global variable `window.SpressoSdk` on page load.
@@ -263,6 +263,8 @@ class SpressoSdk {
      */
     trackTapAddToCart(eventData: IEventData = {}) {
         this.queueEvent({ eventName: 'TAP_ADD_TO_CART', eventData });
+        // Immediately fire ATC event
+        this.executeNow();
     }
 
     /**
