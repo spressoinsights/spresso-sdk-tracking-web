@@ -1,5 +1,5 @@
-import { parseQueryParameters, getQueryParameters } from 'utils/browser';
-import { getMetaProps, getRootProps, IRootProps, IMetaProps } from 'utils/properties';
+import { getQueryParameters, parseQueryParameters } from 'utils/browser';
+import { IMetaProps, IRootProps, getMetaProps, getRootProps } from 'utils/properties';
 
 export const EventFactory: TEventFactory = {
     ['PAGE_VIEW']: {
@@ -89,7 +89,8 @@ export const EventFactory: TEventFactory = {
                 event: 'spresso_tap_add_to_cart',
                 ...getRootProps(),
                 properties: {
-                    ...getMetaProps(otherProps),
+                    ...otherProps, // allow caller-defined props
+                    ...getMetaProps(otherProps), // metaProps should override caller-defined props
                     variantSku,
                     variantName,
                     variantPrice,
