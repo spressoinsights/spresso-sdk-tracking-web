@@ -28,7 +28,7 @@ class SpressoSdk {
     init(options: IOptions) {
         this.options = options;
         this.orgId = options?.orgId;
-        this.deviceId = initDeviceId();
+        this.deviceId = initDeviceId(options.deviceId);
         this.errorCallback = options?.errorCallback;
 
         addBeforeUnloadListener(this.executeNow.bind(this));
@@ -318,6 +318,7 @@ class SpressoSdk {
 
 interface IOptions {
     orgId: string;
+    deviceId?: string;
     userId?: string;
     postalCode?: string;
     remoteAddress?: string;

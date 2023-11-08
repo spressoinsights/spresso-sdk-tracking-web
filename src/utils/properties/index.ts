@@ -16,11 +16,11 @@ export function getDeviceId() {
     return readCookie('spressoDeviceId');
 }
 
-export function initDeviceId() {
+export function initDeviceId(id?: string) {
     let deviceId = getDeviceId();
 
     if (!deviceId || deviceId === '') {
-        deviceId = setDeviceId();
+        deviceId = setDeviceId(id);
     }
 
     return deviceId;
