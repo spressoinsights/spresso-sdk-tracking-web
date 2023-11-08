@@ -4,7 +4,7 @@
 
 Web Event SDK is a client-side JavaScript library you can install in your project to start sending event data from anywhere in your application. 
  
-Please use the latest version **4.6.2**. Click [here](SpressoSdk.html) for the full API reference. 
+Please use the latest version **4.6.1**. Click [here](SpressoSdk.html) for the full API reference. 
 
 ### 1. Initialize the library in your project
 
@@ -17,7 +17,7 @@ Paste the HTML script tag snippet within the `<head>` tag of your page and initi
         var s = document.createElement('script');
         s.type = 'text/javascript';
         s.async = true;
-        s.src = 'https://spresso-sdk-tracking-web.us-east4.prod.spresso.com/v4.6.2/spresso.sdk.tracking.web.js';
+        s.src = 'https://spresso-sdk-tracking-web.us-east4.prod.spresso.com/v4.6.1/spresso.sdk.tracking.web.js';
         s.onload = function() { window.SpressoSdk.init(options) }
         var x = document.getElementsByTagName('script')[0];
         x.parentNode.insertBefore(s, x);
@@ -33,7 +33,7 @@ If User ID is available, paste the HTML script tag snippet below to initialize w
         var s = document.createElement('script');
         s.type = 'text/javascript';
         s.async = true;
-        s.src = 'https://spresso-sdk-tracking-web.us-east4.prod.spresso.com/v4.6.2/spresso.sdk.tracking.web.js';
+        s.src = 'https://spresso-sdk-tracking-web.us-east4.prod.spresso.com/v4.6.1/spresso.sdk.tracking.web.js';
         s.onload = function() { window.SpressoSdk.init(options) }
         var x = document.getElementsByTagName('script')[0];
         x.parentNode.insertBefore(s, x);
