@@ -3,5 +3,3 @@ description: Deploy for spresso-sdk-tracking-web app
 config: pulumi
 runtime: 
   name: nodejs
-backend:
-  url: s3://spresso-saas-pulumi
