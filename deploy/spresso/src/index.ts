@@ -21,12 +21,12 @@ var host = '';
 export = async () => {
     // Get top level infrastructure stack staging vs prod
     if (environment == 'staging' || environment == 'ephemeral') {
-        spresso_infra = new pulumi.StackReference('staging');
+        spresso_infra = new pulumi.StackReference('organization/spresso-saas/staging');
         environment = 'staging';
         console.log('Setting env :', environment);
         host = `${environment}.spresso.com`;
     } else if (environment == 'prod') {
-        spresso_infra = new pulumi.StackReference('prod');
+        spresso_infra = new pulumi.StackReference('organization/spresso-saas/prod');
         host = '.spresso.com';
     }
 
