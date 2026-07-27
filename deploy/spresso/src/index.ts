@@ -26,9 +26,7 @@ export = async () => {
         console.log('Setting env :', environment);
         host = `${environment}.spresso.com`;
     } else if (environment == 'prod') {
-        spresso_infra = new pulumi.StackReference('organization/spresso-saas/prod',{},{
-            aliases: [{name:'prod'}]
-        });
+        spresso_infra = new pulumi.StackReference('organization/spresso-saas/prod');
         host = '.spresso.com';
     }
 
@@ -100,7 +98,5 @@ export = async () => {
         }
     });
 
-    return {
-       // output: 'dummy'
-    }
+    return {}
 }
