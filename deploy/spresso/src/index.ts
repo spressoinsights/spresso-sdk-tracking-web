@@ -101,6 +101,6 @@ export = async () => {
     });
 
     return {
-       // output: 'dummy'
+       output: 'dummy'
     }
 }
