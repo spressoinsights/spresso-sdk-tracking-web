@@ -103,6 +103,6 @@ export = async () => {
     });
 
     return {
-        dummy: 'dummy'
+        output: 'dummy'
     }
 }
