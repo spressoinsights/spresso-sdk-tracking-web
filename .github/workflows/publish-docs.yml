@@ -16,7 +16,7 @@ jobs:
             - name: Setup Node
               uses: actions/setup-node@v2
               with:
-                  node-version: '16.13.2'
+                  node-version: '24.14.0'
                   cache: 'npm' # https://github.com/actions/setup-node#caching-packages-dependencies
             - run: npm install --include=dev
             - id: 'build-docs'
